@@ -11,81 +11,65 @@ package domain;
  */
 public class ProductoVenta {
 
-    private int idPV;
-    private int idP;
-    private int idV;
-    private int idVendedor;
+    private int idProd;
+    private int idVenta;
+    private int cantidad;
 
-    public ProductoVenta(int idP) {
-        this.idP = idP;
+    public ProductoVenta() {
     }
 
-    public ProductoVenta(int idPV, int idP, int idV, int idVendedor) {
-        this.idPV = idPV;
-        this.idP = idP;
-        this.idV = idV;
-        this.idVendedor = idVendedor;
+    public ProductoVenta(int idProd, int idVenta, int cantidad) {
+        this.idProd = idProd;
+        this.idVenta = idVenta;
+        this.cantidad = cantidad;
     }
 
     /**
-     * @return the idPV
+     * @return the idProd
      */
-    public int getIdPV() {
-        return idPV;
+    public int getIdProd() {
+        return idProd;
     }
 
     /**
-     * @param idPV the idPV to set
+     * @param idProd the idProd to set
      */
-    public void setIdPV(int idPV) {
-        this.idPV = idPV;
+    public void setIdProd(int idProd) {
+        this.idProd = idProd;
     }
 
     /**
-     * @return the idP
+     * @return the idVenta
      */
-    public int getIdP() {
-        return idP;
+    public int getIdVenta() {
+        return idVenta;
     }
 
     /**
-     * @param idP the idP to set
+     * @param idVenta the idVenta to set
      */
-    public void setIdP(int idP) {
-        this.idP = idP;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
 
     /**
-     * @return the idV
+     * @return the cantidad
      */
-    public int getIdV() {
-        return idV;
+    public int getCantidad() {
+        return cantidad;
     }
 
     /**
-     * @param idV the idV to set
+     * @param cantidad the cantidad to set
      */
-    public void setIdV(int idV) {
-        this.idV = idV;
-    }
-
-    /**
-     * @return the idVendedor
-     */
-    public int getIdVendedor() {
-        return idVendedor;
-    }
-
-    /**
-     * @param idVendedor the idVendedor to set
-     */
-    public void setIdVendedor(int idVendedor) {
-        this.idVendedor = idVendedor;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     @Override
     public String toString() {
-        return "ID PV = " + idPV + "\nID Producto = " + idP
-                + "\nID Venta =" + idV + "\nID Vendedor = " + idVendedor;
+        return "ID Producto = " + idProd
+                + "\nID Venta = " + idVenta
+                + "\nCantidad = " + cantidad;
     }
 }

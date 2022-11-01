@@ -15,16 +15,18 @@ public class Ventas {
     private String fecha;
     private double monto;
     private double total;
+    private int idVendedor;
 
     public Ventas(int idVenta) {
         this.idVenta = idVenta;
     }
 
-    public Ventas(int idVenta, String fecha, double monto, double total) {
+    public Ventas(int idVenta, String fecha, double monto, double total, int idVendedor) {
         this.idVenta = idVenta;
         this.fecha = fecha;
         this.monto = monto;
         this.total = total;
+        this.idVendedor = idVendedor;
     }
 
     /**
@@ -83,12 +85,27 @@ public class Ventas {
         this.total = total;
     }
 
+    /**
+     * @return the idVendedor
+     */
+    private int getIdVendedor() {
+        return idVendedor;
+    }
+
+    /**
+     * @param idVendedor the idVendedor to set
+     */
+    private void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
+    }
+
     @Override
     public String toString() {
         return "ID Venta = " + idVenta
                 + "\nFecha = " + fecha
                 + "\nMonto = " + monto
-                + "\nTotal = " + total;
+                + "\nTotal = " + total
+                + "\nID Vendedor = " + idVendedor;
     }
 
 }

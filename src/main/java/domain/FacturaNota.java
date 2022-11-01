@@ -12,44 +12,23 @@ package domain;
 public class FacturaNota {
 
     private int idFacturaNota;
-    private String producto;
-    private int cantidad;
     private int descuento;
     private String rfc;
     private double iva;
-    private int Prod_VentIdPV;
+    private int idVenta;
+    private int idCliente;
 
     public FacturaNota(int idFacturaNota) {
         this.idFacturaNota = idFacturaNota;
     }
 
-    public FacturaNota(int idFacturaNota, String producto, int cantidad, int descuento, String rfc, double iva, int Prod_VentIdPV) {
+    public FacturaNota(int idFacturaNota, int descuento, String rfc, double iva, int idVenta, int idCliente) {
         this.idFacturaNota = idFacturaNota;
-        this.producto = producto;
-        this.cantidad = cantidad;
         this.descuento = descuento;
         this.rfc = rfc;
         this.iva = iva;
-        this.Prod_VentIdPV = Prod_VentIdPV;
-    }
-
-    public FacturaNota(int idFacturaNota, String producto, int cantidad, String rfc, double iva, int Prod_VentIdPV) {
-        this.idFacturaNota = idFacturaNota;
-        this.producto = producto;
-        this.cantidad = cantidad;
-        this.rfc = rfc;
-        this.iva = iva;
-        this.Prod_VentIdPV = Prod_VentIdPV;
-    }
-
-    public FacturaNota(int idFacturaNota, String producto, int cantidad, int descuento, int Prod_VentIdPV) {
-        this.idFacturaNota = idFacturaNota;
-        this.producto = producto;
-        this.cantidad = cantidad;
-        this.descuento = descuento;
-        this.rfc = rfc;
-        this.iva = iva;
-        this.Prod_VentIdPV = Prod_VentIdPV;
+        this.idVenta = idVenta;
+        this.idCliente = idCliente;
     }
 
     /**
@@ -64,34 +43,6 @@ public class FacturaNota {
      */
     public void setIdFacturaNota(int idFacturaNota) {
         this.idFacturaNota = idFacturaNota;
-    }
-
-    /**
-     * @return the producto
-     */
-    public String getProducto() {
-        return producto;
-    }
-
-    /**
-     * @param producto the producto to set
-     */
-    public void setProducto(String producto) {
-        this.producto = producto;
-    }
-
-    /**
-     * @return the cantidad
-     */
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    /**
-     * @param cantidad the cantidad to set
-     */
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     /**
@@ -137,43 +88,56 @@ public class FacturaNota {
     }
 
     /**
-     * @return the Prod_VentIdPV
+     * @return the idVenta
      */
-    public int getProd_VentIdPV() {
-        return Prod_VentIdPV;
+    public int getIdVenta() {
+        return idVenta;
     }
 
     /**
-     * @param Prod_VentIdPV the Prod_VentIdPV to set
+     * @param idVenta the idVenta to set
      */
-    public void setProd_VentIdPV(int Prod_VentIdPV) {
-        this.Prod_VentIdPV = Prod_VentIdPV;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    /**
+     * @return the idCliente
+     */
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    /**
+     * @param idCliente the idCliente to set
+     */
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String despFactura() {
-        return "ID Factura  = " + idFacturaNota
-                + "\nProducto = " + producto
-                + "\nCantidad = " + cantidad
-                + "\nRFC = " + rfc
-                + "\nIVA = " + iva;
+        return "ID FacturaNota = " + idFacturaNota
+                + "\nRFC =" + rfc
+                + "\nIVA = " + iva
+                + "\nID Venta = " + idVenta
+                + "\nID Cliente = " + idCliente;
     }
 
     public String despNota() {
-        return "ID Nota = " + idFacturaNota
-                + "\nProducto = " + producto
-                + "\nCantidad = " + cantidad
-                + "\nDescuento = " + descuento + "%";
+        return "ID FacturaNota = " + idFacturaNota
+                + "\nDescuento = " + descuento
+                + "\nID Venta = " + idVenta
+                + "\nID Cliente = " + idCliente;
     }
 
     @Override
     public String toString() {
-        return "ID Factura_Nota = " + idFacturaNota
-                + "\nProducto = " + producto
-                + "\nCantidad = " + cantidad
+        return "ID FacturaNota = " + idFacturaNota
                 + "\nDescuento = " + descuento
-                + "\nRFC = " + rfc
+                + "\nRFC =" + rfc
                 + "\nIVA = " + iva
-                + "\nID PV = " + Prod_VentIdPV;
+                + "\nID Venta = " + idVenta
+                + "\nID Cliente = " + idCliente;
     }
 
 }
