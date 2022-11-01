@@ -17,7 +17,7 @@ import java.util.*;
 public class VtnBajaCve extends javax.swing.JFrame {
 
     FerreteriaDAO ferrD = new FerreteriaDAO();
-    int pos, prod_idP;
+    int prod_idP;
 
     /**
      * Creates new form VtnBajaCve
@@ -249,7 +249,7 @@ public class VtnBajaCve extends javax.swing.JFrame {
             llenaComboCve();
         } catch (Exception e) {
             Mensaje.error(this, "Aún no hay registros");
-            dispose();
+            this.dispose();
         }
 
     }//GEN-LAST:event_formWindowOpened

@@ -24,7 +24,7 @@ public class FerreteriaDAO {
 
     private static final String SELECT_PRODUCTOS = "select * from productos";
     private static final String SELECT_PRODUCTOS_MAX = "select max(idProductos) from productos";
-    private static final String SELECT_PROD_IDP = "select productos_idProductos from producto_venta";
+    private static final String SELECT_PROD_IDP = "select Productos_idProductos from producto_venta";
     private static final String SELECT_PRODUCTOS_WHERE = "select * from productos where idProductos = ?";
     private static final String SELECT_PRODUCTOS_CANT = "select cantidad from productos where idProductos = ?";
     private static final String SELECT_VENDEDOR_ID = "select idVendedor from vendedor order by idVendedor asc";

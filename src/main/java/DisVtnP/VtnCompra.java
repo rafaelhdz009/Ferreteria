@@ -17,8 +17,7 @@ import java.util.*;
 public class VtnCompra extends javax.swing.JFrame {
 
     FerreteriaDAO ferrD = new FerreteriaDAO();
-    int pos, prod_idP;
-    double total;
+    int prod_idP;
 
     /**
      * Creates new form VtnCompra
@@ -189,27 +188,19 @@ public class VtnCompra extends javax.swing.JFrame {
             if (Integer.parseInt(this.txtCant.getText()) <= 0) {
                 Mensaje.error(this, "Cantidad incorrecta (No puede ser menor o igual a 0)");
                 CtrlInterfaz.cambia(txtCant);
-                CtrlInterfaz.limpia(txtAreaC, txtCant);
-                CtrlInterfaz.cambia(comboBoxP);
                 CtrlInterfaz.habilita(false, btnAceptar);
-                this.comboBoxP.setSelectedIndex(0);
             } else {
                 if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
-                    Mensaje.exito(this, String.valueOf(this.prod_idP));
                     int cant = this.ferrD.cantidadP(this.prod_idP) + Integer.parseInt(this.txtCant.getText());
                     int registro = this.ferrD.actualizarPcant(cant, this.prod_idP);
                     Mensaje.exito(this, registro + " registro actualizado");
                     Mensaje.exito(this, "Compra exitosa");
-                    CtrlInterfaz.limpia(txtAreaC, txtCant);
-                    CtrlInterfaz.cambia(comboBoxP);
-                    CtrlInterfaz.habilita(false, btnAceptar);
-                    comboBoxP.setSelectedIndex(0);
+                    btnCancelarActionPerformed(evt);
                 } else {
                     Mensaje.error(this, "Operacion cancelada");
                     btnCancelarActionPerformed(evt);
                 }
             }
-
         } catch (Exception e) {
             Mensaje.error(this, "Verifique los datos, no esta seleccionando producto o no esta llenando el campo de cantidad");
         }

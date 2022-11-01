@@ -8,7 +8,6 @@ package DisVtnP;
 import cjb.ci.Mensaje;
 import datos.FerreteriaDAO;
 import domain.Productos;
-import java.sql.*;
 import java.util.*;
 
 /**
@@ -18,10 +17,6 @@ import java.util.*;
 public class VtnCosultaCveP extends javax.swing.JFrame {
 
     FerreteriaDAO ferrD = new FerreteriaDAO();
-
-    Connection conn;
-    PreparedStatement smtm;
-    ResultSet rs;
 
     /**
      * Creates new form VtnCosultaP

@@ -203,7 +203,6 @@ public class VtnProductoM extends javax.swing.JFrame {
             Mensaje.exito(this, registro + " registro modificado");
             Mensaje.exito(this, "Producto Modificado");
             btnCancelarActionPerformed(evt);
-            comboBoxP.setSelectedIndex(0);
         } else {
             Mensaje.error(this, "Operacion cancelada");
             btnCancelarActionPerformed(evt);
@@ -301,32 +300,32 @@ public class VtnProductoM extends javax.swing.JFrame {
     private void comboBoxPActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboBoxPActionPerformed
     {//GEN-HEADEREND:event_comboBoxPActionPerformed
         try {
-            boolean ban = false;
-            List<Integer> listaPV = this.ferrD.listaProdIdP();
-            prod_idP = Integer.parseInt(String.valueOf(comboBoxP.getSelectedItem()));
-            this.pos = this.comboBoxP.getSelectedIndex() - 1;
+            if (this.comboBoxP.getSelectedIndex() != 0) {
+                boolean ban = false;
+                List<Integer> listaPV = this.ferrD.listaProdIdP();
+                prod_idP = Integer.parseInt(String.valueOf(comboBoxP.getSelectedItem()));
+                this.pos = this.comboBoxP.getSelectedIndex() - 1;
 
-            for (int pv : listaPV) {
-                if (pv == prod_idP) {
-                    ban = true;
-                    break;
+                for (int pv : listaPV) {
+                    if (pv == prod_idP) {
+                        ban = true;
+                        break;
+                    }
                 }
-            }
 
-            if (ban) {
-                Mensaje.error(this, "El producto con ID: " + prod_idP + " ya se ha vendido, "
-                        + "no se puede modificar");
-                CtrlInterfaz.limpia(txtExistP, txtNomP, txtPrecioP);
-                CtrlInterfaz.cambia(comboBoxP);
-                comboBoxP.setSelectedIndex(0);
-                btnCancelarActionPerformed(evt);
+                if (ban) {
+                    Mensaje.error(this, "El producto con ID: " + prod_idP + " ya se ha vendido, "
+                            + "no se puede modificar");
+                    btnCancelarActionPerformed(evt);
+                } else {
+                    Productos p = this.ferrD.listaPWhere(prod_idP);
+                    txtNomP.setText(p.getNombre());
+                    txtPrecioP.setText(String.valueOf(p.getPrecio()));
+                    txtExistP.setText(String.valueOf(p.getCantidad()));
+                    CtrlInterfaz.cambia(this.txtNomP);
+                }
             } else {
-                Productos p = this.ferrD.listaPWhere(prod_idP);
-                CtrlInterfaz.limpia(txtExistP, txtNomP, txtPrecioP);
-                txtNomP.setText(p.getNombre());
-                txtPrecioP.setText(String.valueOf(p.getPrecio()));
-                txtExistP.setText(String.valueOf(p.getCantidad()));
-                CtrlInterfaz.cambia(this.txtNomP);
+                btnCancelarActionPerformed(evt);
             }
         } catch (Exception e) {
             //e.printStackTrace(System.out);
@@ -392,15 +391,6 @@ public class VtnProductoM extends javax.swing.JFrame {
             }
         });
     }
-
-//    @Override
-//    public Image getIconImage()
-//    {
-//        Image obj = Toolkit.getDefaultToolkit().
-//                getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
-//
-//        return obj;
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

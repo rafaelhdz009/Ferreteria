@@ -5,8 +5,6 @@
  */
 package DisVtnP;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 
 /**
  *
@@ -227,14 +225,6 @@ public class VtnConsulVItem extends javax.swing.JFrame
         });
     }
 
-//    @Override
-//    public Image getIconImage()
-//    {
-//        Image obj = Toolkit.getDefaultToolkit().
-//                getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
-//
-//        return obj;
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClvB;

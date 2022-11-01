@@ -5,8 +5,6 @@
  */
 package DisVtnP;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 
 /**
  *
@@ -61,7 +59,7 @@ public class VtnConsulPItem extends javax.swing.JFrame
                 btnNomBActionPerformed(evt);
             }
         });
-        panelFondo.add(btnNomB, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+        panelFondo.add(btnNomB, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
         btnClvB.setBackground(new java.awt.Color(255, 255, 255));
         btnClvB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -192,14 +190,6 @@ public class VtnConsulPItem extends javax.swing.JFrame
         });
     }
 
-//    @Override
-//    public Image getIconImage()
-//    {
-//        Image obj = Toolkit.getDefaultToolkit().
-//                getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
-//
-//        return obj;
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClvB;

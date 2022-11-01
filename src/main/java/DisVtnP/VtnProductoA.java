@@ -357,15 +357,6 @@ public class VtnProductoA extends javax.swing.JFrame {
         });
     }
 
-//    @Override
-//    public Image getIconImage()
-//    {
-//        Image obj = Toolkit.getDefaultToolkit().
-//                getImage(ClassLoader.getSystemResource("Imagenes/logo.png"));
-//
-//        return obj;
-//    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
