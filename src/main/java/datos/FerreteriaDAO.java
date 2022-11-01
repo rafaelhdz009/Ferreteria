@@ -22,8 +22,8 @@ public class FerreteriaDAO {
 
     private Connection conexionTransaccional;
 
-    private static final String SELECT_VENTAS = "select idVenta, fecha, monto, total from ventas";
     private static final String SELECT_PRODUCTOS = "select * from productos";
+    private static final String SELECT_PRODUCTOS_MAX = "select max(idProductos) from productos";
     private static final String SELECT_PROD_IDP = "select productos_idProductos from producto_venta";
     private static final String SELECT_PRODUCTOS_WHERE = "select * from productos where idProductos = ?";
     private static final String SELECT_PRODUCTOS_CANT = "select cantidad from productos where idProductos = ?";
@@ -33,10 +33,6 @@ public class FerreteriaDAO {
     private static final String SELECT_FACNOTA_IS_NULL = "select idFactura_Nota from facturanota where descuento is null";
     private static final String SELECT_FACNOTA_IS_NOT_NULL = "select idFactura_Nota from facturanota where descuento is not null";
     private static final String SELECT_FACNOTA_WHERE = "select * from facturanota where idFactura_Nota = ?";
-    private static final String SELECT_JOIN_VEND = "select v.idVenta, v.fecha, v.monto, v.total from facturanota f "
-            + "join producto_venta p on (f.Producto_Venta_idPV = p.idPV) "
-            + "join ventas v on(p.Ventas_idVenta = v.idVenta) "
-            + "where f.idFactura_Nota = ?";
 
     private static final String UPDATE_PROD = "update productos set nombre = ?, precioU = ?, cantidad = ? where idProductos = ?";
     private static final String UDPATE_PROD_CANT = "update productos set cantidad = ? where idProductos = ?";
@@ -122,6 +118,25 @@ public class FerreteriaDAO {
             close(conn);
         }
         return listaP;
+    }
+
+    public int listaIdMax() {
+        int idP = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_PRODUCTOS_MAX);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idP = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return idP;
     }
 
     public List<Integer> listaProdIdP() {
@@ -265,8 +280,8 @@ public class FerreteriaDAO {
     public FacturaNota listaFacturaNotaWhere(int idFacNot) {
         FacturaNota fn = null;
         try {
-            int idFacturaNota, cantidad, descuento, prod_VentIdPV;
-            String producto, rfc;
+            int idFacturaNota, descuento, idVenta, idCliente;
+            String rfc;
             double iva;
             conn = getConnection();
             smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE);
@@ -274,13 +289,12 @@ public class FerreteriaDAO {
             rs = smtm.executeQuery();
             while (rs.next()) {
                 idFacturaNota = rs.getInt("idFactura_Nota");
-                producto = rs.getString("producto");
-                cantidad = rs.getInt("cantidad");
                 descuento = rs.getInt("descuento");
                 rfc = rs.getString("rfc");
                 iva = rs.getDouble("iva");
-                prod_VentIdPV = rs.getInt("Producto_Venta_idPV");
-                fn = new FacturaNota(idFacturaNota, producto, cantidad, descuento, rfc, iva, prod_VentIdPV);
+                idVenta = rs.getInt("Ventas_idVenta");
+                idCliente = rs.getInt("Cliente_idCliente");
+                fn = new FacturaNota(idFacturaNota, descuento, rfc, iva, idVenta, idCliente);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -290,33 +304,6 @@ public class FerreteriaDAO {
             close(conn);
         }
         return fn;
-    }
-
-    public Ventas listaVentasWhere(int idFacNot) {
-        Ventas v = null;
-        try {
-            int idVenta;
-            String fecha;
-            double monto, total;
-            conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_JOIN_VEND);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
-            while (rs.next()) {
-                idVenta = rs.getInt("idVenta");
-                fecha = String.valueOf(rs.getDate("fecha"));
-                monto = rs.getDouble("monto");
-                total = rs.getDouble("total");
-                v = new Ventas(idVenta, fecha, monto, total);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        } finally {
-            close(rs);
-            close(smtm);
-            close(conn);
-        }
-        return v;
     }
 
     public int actualizarP(String nombre, double precio, int cantidad, int IdP) {

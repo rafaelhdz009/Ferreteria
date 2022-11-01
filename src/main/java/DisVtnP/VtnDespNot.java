@@ -103,11 +103,11 @@ public class VtnDespNot extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_comboBoxNActionPerformed
         try {
             if (this.comboBoxN.getSelectedIndex() != 0) {
-                this.IdFN = Integer.parseInt(String.valueOf(this.comboBoxN.getSelectedItem()));
-                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
-                Ventas v = this.ferrD.listaVentasWhere(this.IdFN);
-                String desp = fn.despNota() + "\n------------------------------------\n" + v.toString();
-                this.txtNota.setText(desp);
+//                this.IdFN = Integer.parseInt(String.valueOf(this.comboBoxN.getSelectedItem()));
+//                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
+//                Ventas v = this.ferrD.listaVentasWhere(this.IdFN);
+//                String desp = fn.despNota() + "\n------------------------------------\n" + v.toString();
+//                this.txtNota.setText(desp);
             } else {
                 this.txtNota.setText("");
             }

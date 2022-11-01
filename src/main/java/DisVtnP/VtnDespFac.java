@@ -121,11 +121,11 @@ public class VtnDespFac extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_comboBoxFActionPerformed
         try {
             if (this.comboBoxF.getSelectedIndex() != 0) {
-                this.IdFN = Integer.parseInt(String.valueOf(comboBoxF.getSelectedItem()));
-                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
-                Ventas v = this.ferrD.listaVentasWhere(this.IdFN);
-                String desp = fn.despFactura() + "\n------------------------------------\n" + v.toString();
-                txtConsultaF.setText(desp);
+//                this.IdFN = Integer.parseInt(String.valueOf(comboBoxF.getSelectedItem()));
+//                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
+//                Ventas v = this.ferrD.listaVentasWhere(this.IdFN);
+//                String desp = fn.despFactura() + "\n------------------------------------\n" + v.toString();
+//                txtConsultaF.setText(desp);
             } else {
                 this.txtConsultaF.setText("");
             }

@@ -7,6 +7,7 @@ package DisVtnP;
 
 import cjb.ci.*;
 import datos.FerreteriaDAO;
+import java.util.*;
 
 /**
  *
@@ -232,7 +233,14 @@ public class VtnProductoA extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public int aleatorio() {
-        return (int) (Math.random() * 1000);
+        List<Integer> list = this.ferrD.listaIdP();
+        int id = 1;
+        if (list == null) {
+            return id;
+        } else {
+            id = this.ferrD.listaIdMax() + 1;
+            return id;
+        }
     }
     private void txtNomPActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtNomPActionPerformed
     {//GEN-HEADEREND:event_txtNomPActionPerformed
