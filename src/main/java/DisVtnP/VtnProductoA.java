@@ -52,11 +52,6 @@ public class VtnProductoA extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 255, 255));
         setIconImage(getIconImage());
         setType(java.awt.Window.Type.UTILITY);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelAzul.setBackground(new java.awt.Color(204, 255, 255));
@@ -82,11 +77,6 @@ public class VtnProductoA extends javax.swing.JFrame {
 
         txtExistP.setToolTipText("Escribe las existencias del producto");
         txtExistP.setEnabled(false);
-        txtExistP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtExistPActionPerformed(evt);
-            }
-        });
         txtExistP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtExistPKeyPressed(evt);
@@ -103,11 +93,6 @@ public class VtnProductoA extends javax.swing.JFrame {
 
         txtNomP.setToolTipText("Escribe el nombre del producto");
         txtNomP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtNomP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomPActionPerformed(evt);
-            }
-        });
         txtNomP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomPKeyPressed(evt);
@@ -125,11 +110,6 @@ public class VtnProductoA extends javax.swing.JFrame {
 
         txtPrecioP.setToolTipText("Escribe el precio del producto");
         txtPrecioP.setEnabled(false);
-        txtPrecioP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioPActionPerformed(evt);
-            }
-        });
         txtPrecioP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPrecioPKeyPressed(evt);
@@ -188,16 +168,6 @@ public class VtnProductoA extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPrecioPActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtPrecioPActionPerformed
-    {//GEN-HEADEREND:event_txtPrecioPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioPActionPerformed
-
-    private void txtExistPActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtExistPActionPerformed
-    {//GEN-HEADEREND:event_txtExistPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtExistPActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
         CtrlInterfaz.limpia(txtNomP, txtPrecioP, txtExistP, btnAceptar);
@@ -207,46 +177,41 @@ public class VtnProductoA extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAceptarActionPerformed
     {//GEN-HEADEREND:event_btnAceptarActionPerformed
-        if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
-            boolean ban = false;
-            int registro = 0;
-            int cveProd = aleatorio();
-            do {
-                try {
+        try {
+
+            if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
+                int cveProd = idProducto();
+                if (txtNomP.getText().equals("") || txtPrecioP.getText().equals("")
+                        || txtExistP.getText().equals("")) {
+                    Mensaje.error(this, "No se han llenado todos lo campos, verifique.");
+                } else {
                     String nombre = txtNomP.getText();
                     double precio = Double.parseDouble(txtPrecioP.getText());
                     int cantidad = Integer.parseInt(txtExistP.getText());
-                    registro = this.ferrD.insertP(cveProd, nombre, precio, cantidad);
+                    int registro = this.ferrD.insertP(cveProd, nombre, precio, cantidad);
                     Mensaje.exito(this, registro + " registro insertado");
                     Mensaje.exito(this, "Producto dado de alta");
                     btnCancelarActionPerformed(evt);
-                    ban = true;
-                } catch (Exception e) {
-                    cveProd = aleatorio();
-                    ban = false;
                 }
-            } while (!ban);
-        } else {
-            Mensaje.error(this, "Operacion cancelada");
-            btnCancelarActionPerformed(evt);
+            } else {
+                Mensaje.error(this, "Operacion cancelada");
+                btnCancelarActionPerformed(evt);
+            }
+        } catch (Exception e) {
+            Mensaje.error(this, "No se han llenado todos los campos, compruebe.");
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    public int aleatorio() {
+    public int idProducto() {
         List<Integer> list = this.ferrD.listaIdP();
         int id = 1;
-        if (list == null) {
+        if (list.size() == 0) {
             return id;
         } else {
             id = this.ferrD.listaIdMax() + 1;
             return id;
         }
     }
-    private void txtNomPActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtNomPActionPerformed
-    {//GEN-HEADEREND:event_txtNomPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomPActionPerformed
-
     private void txtNomPKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtNomPKeyPressed
     {//GEN-HEADEREND:event_txtNomPKeyPressed
         String s = "";
@@ -308,11 +273,6 @@ public class VtnProductoA extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_txtExistPKeyTyped
         Validaciones.validaEntero(evt, 6, txtExistP.getText());
     }//GEN-LAST:event_txtExistPKeyTyped
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
-    {//GEN-HEADEREND:event_formWindowClosing
-//        ManipulaArchivos.guardaArchivo("productos.dat", VtnPrincipal.p);
-    }//GEN-LAST:event_formWindowClosing
 
     private void btnAceptarKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_btnAceptarKeyPressed
     {//GEN-HEADEREND:event_btnAceptarKeyPressed

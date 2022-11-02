@@ -196,16 +196,25 @@ public class VtnProductoM extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAceptarActionPerformed
     {//GEN-HEADEREND:event_btnAceptarActionPerformed
-        if (Mensaje.pregunta(this, "Esta seguro de modificar el producto") == 0) {
-            int registro = ferrD.actualizarP(txtNomP.getText(),
-                    Double.parseDouble(txtPrecioP.getText()),
-                    Integer.parseInt(txtExistP.getText()), prod_idP);
-            Mensaje.exito(this, registro + " registro modificado");
-            Mensaje.exito(this, "Producto Modificado");
-            btnCancelarActionPerformed(evt);
-        } else {
-            Mensaje.error(this, "Operacion cancelada");
-            btnCancelarActionPerformed(evt);
+        try {
+            if (Mensaje.pregunta(this, "Esta seguro de modificar el producto") == 0) {
+                if (txtNomP.getText().equals("") || txtPrecioP.getText().equals("")
+                        || txtExistP.getText().equals("")) {
+                    Mensaje.error(this, "No se han llenado todos lo campos, verifique.");
+                } else {
+                    int registro = ferrD.actualizarP(txtNomP.getText(),
+                            Double.parseDouble(txtPrecioP.getText()),
+                            Integer.parseInt(txtExistP.getText()), prod_idP);
+                    Mensaje.exito(this, registro + " registro modificado");
+                    Mensaje.exito(this, "Producto Modificado");
+                    btnCancelarActionPerformed(evt);
+                }
+            } else {
+                Mensaje.error(this, "Operacion cancelada");
+                btnCancelarActionPerformed(evt);
+            }
+        } catch (Exception e) {
+            Mensaje.error(this, "No se han llenado todos los campos, compruebe.");
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 

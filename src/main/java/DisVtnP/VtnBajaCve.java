@@ -76,7 +76,7 @@ public class VtnBajaCve extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Baja por clave");
+        setTitle("Baja por clave del producto");
         setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -95,7 +95,6 @@ public class VtnBajaCve extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Producto para dar de baja");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
-        jLabel1.getAccessibleContext().setAccessibleName("Producto para dar de baja");
 
         txtAB.setEditable(false);
         txtAB.setColumns(20);

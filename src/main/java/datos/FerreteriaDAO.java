@@ -23,9 +23,16 @@ public class FerreteriaDAO {
     private Connection conexionTransaccional;
 
     private static final String SELECT_PRODUCTOS = "select * from productos";
+    private static final String SELECT_CLIENTE = "select * from cliente";
     private static final String SELECT_PRODUCTOS_MAX = "select max(idProductos) from productos";
+    private static final String SELECT_CLIENTE_MAX = "select max(idCliente) from cliente";
     private static final String SELECT_PROD_IDP = "select Productos_idProductos from producto_venta";
+    private static final String SELECT_CLIENTE_ID = "select cliente_idCliente from FacturaNota";
     private static final String SELECT_PRODUCTOS_WHERE = "select * from productos where idProductos = ?";
+    private static final String SELECT_CLIENTE_WHERE = "select * from cliente where idCliente = ?";
+    private static final String SELECT_CLIENTE_WHERE_RFC = "select * from cliente where rfc = ?";
+    private static final String SELECT_CLIENTE_WHERE_LIKE = "select rfc from cliente where rfc like ?";
+
     private static final String SELECT_PRODUCTOS_CANT = "select cantidad from productos where idProductos = ?";
     private static final String SELECT_VENDEDOR_ID = "select idVendedor from vendedor order by idVendedor asc";
     private static final String SELECT_VENDEDOR_WHERE = "select * from vendedor where idVendedor = ?";
@@ -38,7 +45,9 @@ public class FerreteriaDAO {
     private static final String UDPATE_PROD_CANT = "update productos set cantidad = ? where idProductos = ?";
 
     private static final String DELETE_PROD_WHERE = "delete from productos where idProductos=?";
+    private static final String DELETE_CLIENTE_WHERE = "delete from cliente where idCliente=?";
 
+    private static final String INSERT_CLIENTE = "insert into cliente values(?,?,?,?,?,?,?)";
     private static final String INSERT_PROD = "insert into productos values (?,?,?,?)";
     private static final String INSERT_FAC = "insert into facturanota values (?,?,?,null,?,?,?)";
     private static final String INSERT_PROD_VENT = "insert into producto_venta values (?,?,?,?)";
@@ -77,6 +86,34 @@ public class FerreteriaDAO {
             close(conn);
         }
         return listaP;
+    }
+
+    public List<Cliente> listaCliente() {
+        List<Cliente> listaCliente = new ArrayList<>();
+        try {
+            int idCliente;
+            String nombre, apPat, apMat, rfc, correo, tel;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+                nombre = rs.getString("nombre");
+                apPat = rs.getString("apellidoPat");
+                apMat = rs.getString("apellidoMat");
+                rfc = rs.getString("RFC");
+                correo = rs.getString("correo");
+                tel = rs.getString("telefono");
+                listaCliente.add(new Cliente(idCliente, nombre, apPat, apMat, rfc, correo, tel));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listaCliente;
     }
 
     public int cantidadP(int idProd) {
@@ -120,6 +157,48 @@ public class FerreteriaDAO {
         return listaP;
     }
 
+    public List<Integer> listaIdCliente() {
+        List<Integer> listaC = new ArrayList<>();
+        try {
+            int idCliente;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+                listaC.add(idCliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listaC;
+    }
+
+    public List<String> listaRFCliente() {
+        List<String> listaC = new ArrayList<>();
+        try {
+            String rfc;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                rfc = rs.getString("rfc");
+                listaC.add(rfc);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listaC;
+    }
+
     public int listaIdMax() {
         int idP = 0;
         try {
@@ -137,6 +216,25 @@ public class FerreteriaDAO {
             close(conn);
         }
         return idP;
+    }
+
+    public int listaIdMaxCliente() {
+        int idClienteMax = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_MAX);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idClienteMax = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return idClienteMax;
     }
 
     public List<Integer> listaProdIdP() {
@@ -158,6 +256,49 @@ public class FerreteriaDAO {
             close(conn);
         }
         return listaPV;
+    }
+
+    public List<Integer> listaClienteFN() {
+        List<Integer> listClienteFN = new ArrayList<>();
+        try {
+            int idCliente;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_ID);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idCliente = rs.getInt("Cliente_idCliente");
+                listClienteFN.add(idCliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listClienteFN;
+    }
+
+    public List<String> listaClienteLikeRFC(String cliente_rfc) {
+        List<String> listClienteRFC = new ArrayList<>();
+        try {
+            String rfc;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_LIKE);
+            smtm.setString(1, cliente_rfc + "%");
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                rfc = rs.getString("rfc");
+                listClienteRFC.add(rfc);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listClienteRFC;
     }
 
     public List<Integer> listaVendId() {
@@ -206,6 +347,64 @@ public class FerreteriaDAO {
             close(conn);
         }
         return p;
+    }
+
+    public Cliente listaClienteWhere(int ID) {
+        Cliente c = null;
+        try {
+            int idCliente;
+            String nombre, apPat, apMat, rfc, correo, tel;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE);
+            smtm.setInt(1, ID);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+                nombre = rs.getString("nombre");
+                apPat = rs.getString("apellidoPat");
+                apMat = rs.getString("apellidoMat");
+                rfc = rs.getString("RFC");
+                correo = rs.getString("correo");
+                tel = rs.getString("telefono");
+                c = new Cliente(idCliente, nombre, apPat, apMat, rfc, correo, tel);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return c;
+    }
+
+    public Cliente listaClienteWhereRFC(String cliente_rfc) {
+        Cliente c = null;
+        try {
+            int idCliente;
+            String nombre, apPat, apMat, rfc, correo, tel;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_RFC);
+            smtm.setString(1, cliente_rfc);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+                nombre = rs.getString("nombre");
+                apPat = rs.getString("apellidoPat");
+                apMat = rs.getString("apellidoMat");
+                rfc = rs.getString("RFC");
+                correo = rs.getString("correo");
+                tel = rs.getString("telefono");
+                c = new Cliente(idCliente, nombre, apPat, apMat, rfc, correo, tel);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return c;
     }
 
     public Vendedor listaVendWhere(int ID) {
@@ -350,6 +549,45 @@ public class FerreteriaDAO {
             conn = getConnection();
             smtm = conn.prepareStatement(DELETE_PROD_WHERE);
             smtm.setInt(1, IdP);
+            registros = smtm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(smtm);
+            close(conn);
+        }
+        return registros;
+    }
+
+    public int deleteCW(int IdP) {
+        int registros = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(DELETE_CLIENTE_WHERE);
+            smtm.setInt(1, IdP);
+            registros = smtm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(smtm);
+            close(conn);
+        }
+        return registros;
+    }
+
+    public int insertCliente(int idCliente, String nombre, String apPat,
+            String apMat, String rfc, String correo, String tel) {
+        int registros = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(INSERT_CLIENTE);
+            smtm.setInt(1, idCliente);
+            smtm.setString(2, nombre);
+            smtm.setString(3, apPat);
+            smtm.setString(4, apMat);
+            smtm.setString(5, rfc);
+            smtm.setString(6, correo);
+            smtm.setString(7, tel);
             registros = smtm.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

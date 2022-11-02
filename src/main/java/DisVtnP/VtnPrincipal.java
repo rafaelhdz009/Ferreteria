@@ -33,6 +33,8 @@ public class VtnPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnAgregar = new javax.swing.JButton();
+        lbCliente = new javax.swing.JLabel();
         panelVentas = new javax.swing.JPanel();
         btnVentas = new javax.swing.JButton();
         panelProductos = new javax.swing.JPanel();
@@ -54,13 +56,18 @@ public class VtnPrincipal extends javax.swing.JFrame {
         menuVenta = new javax.swing.JMenu();
         itemFactura = new javax.swing.JMenuItem();
         itemNota = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        Alta = new javax.swing.JMenuItem();
+        bajaCliente = new javax.swing.JMenuItem();
         menuConsultas = new javax.swing.JMenu();
         itemProductoC = new javax.swing.JMenuItem();
         itemVentaC = new javax.swing.JMenuItem();
+        consultaCliente = new javax.swing.JMenuItem();
         verOpc = new javax.swing.JMenu();
         checkP = new javax.swing.JCheckBoxMenuItem();
         checkV = new javax.swing.JCheckBoxMenuItem();
-        checkC = new javax.swing.JCheckBoxMenuItem();
+        checkCosulta = new javax.swing.JCheckBoxMenuItem();
+        checkCliente = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -75,6 +82,22 @@ public class VtnPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnAgregar.setBackground(new java.awt.Color(0, 102, 102));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas.png"))); // NOI18N
+        btnAgregar.setToolTipText("Da de alta un cliente");
+        btnAgregar.setBorder(null);
+        btnAgregar.setBorderPainted(false);
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+
+        lbCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cliente.png"))); // NOI18N
+        getContentPane().add(lbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
         panelVentas.setBackground(new java.awt.Color(51, 51, 51));
         panelVentas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelVentas.setForeground(new java.awt.Color(204, 255, 255));
@@ -83,6 +106,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
         btnVentas.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnVentas.setText("Ventas");
+        btnVentas.setToolTipText("");
         btnVentas.setBorder(new javax.swing.border.MatteBorder(null));
         btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -279,6 +303,31 @@ public class VtnPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuVenta);
 
+        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu1.setText("Cliente");
+
+        Alta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        Alta.setForeground(new java.awt.Color(0, 0, 0));
+        Alta.setText("Alta");
+        Alta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AltaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Alta);
+
+        bajaCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        bajaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        bajaCliente.setText("Baja");
+        bajaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bajaCliente);
+
+        menuBar.add(jMenu1);
+
         menuConsultas.setBackground(new java.awt.Color(255, 255, 255));
         menuConsultas.setForeground(new java.awt.Color(0, 0, 0));
         menuConsultas.setText("Consulta");
@@ -315,6 +364,16 @@ public class VtnPrincipal extends javax.swing.JFrame {
         });
         menuConsultas.add(itemVentaC);
 
+        consultaCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        consultaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        consultaCliente.setText("Cliente");
+        consultaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultaClienteActionPerformed(evt);
+            }
+        });
+        menuConsultas.add(consultaCliente);
+
         menuBar.add(menuConsultas);
 
         verOpc.setForeground(new java.awt.Color(0, 0, 0));
@@ -346,17 +405,28 @@ public class VtnPrincipal extends javax.swing.JFrame {
         });
         verOpc.add(checkV);
 
-        checkC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        checkC.setForeground(new java.awt.Color(0, 0, 0));
-        checkC.setSelected(true);
-        checkC.setText("Consultas");
-        checkC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        checkC.addActionListener(new java.awt.event.ActionListener() {
+        checkCosulta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        checkCosulta.setForeground(new java.awt.Color(0, 0, 0));
+        checkCosulta.setSelected(true);
+        checkCosulta.setText("Consultas");
+        checkCosulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkCosulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkCActionPerformed(evt);
+                checkCosultaActionPerformed(evt);
             }
         });
-        verOpc.add(checkC);
+        verOpc.add(checkCosulta);
+
+        checkCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        checkCliente.setForeground(new java.awt.Color(0, 0, 0));
+        checkCliente.setSelected(true);
+        checkCliente.setText("Cliente");
+        checkCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkClienteActionPerformed(evt);
+            }
+        });
+        verOpc.add(checkCliente);
 
         menuBar.add(verOpc);
 
@@ -447,14 +517,14 @@ public class VtnPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkVActionPerformed
 
-    private void checkCActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_checkCActionPerformed
-    {//GEN-HEADEREND:event_checkCActionPerformed
+    private void checkCosultaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_checkCosultaActionPerformed
+    {//GEN-HEADEREND:event_checkCosultaActionPerformed
         if (panelConsultas.isVisible()) {
             panelConsultas.setVisible(false);
         } else {
             panelConsultas.setVisible(true);
         }
-    }//GEN-LAST:event_checkCActionPerformed
+    }//GEN-LAST:event_checkCosultaActionPerformed
 
     private void itemFacturaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_itemFacturaActionPerformed
     {//GEN-HEADEREND:event_itemFacturaActionPerformed
@@ -478,6 +548,37 @@ public class VtnPrincipal extends javax.swing.JFrame {
         VtnProductoPanel vtnProdPan = new VtnProductoPanel();
         vtnProdPan.setVisible(true);
     }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void AltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaActionPerformed
+        VtnClienteA vtnClienteA = new VtnClienteA();
+        vtnClienteA.setVisible(true);
+    }//GEN-LAST:event_AltaActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        VtnClienteA vtnClienteA = new VtnClienteA();
+        vtnClienteA.setVisible(true);
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void bajaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaClienteActionPerformed
+        VtnClienteBajaCve vtnClienteBajaCve = new VtnClienteBajaCve();
+        vtnClienteBajaCve.setVisible(true);
+    }//GEN-LAST:event_bajaClienteActionPerformed
+
+    private void consultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaClienteActionPerformed
+        VtnConsulCItem vtnCosultaClMnu = new VtnConsulCItem();
+        vtnCosultaClMnu.setVisible(true);
+    }//GEN-LAST:event_consultaClienteActionPerformed
+
+    private void checkClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkClienteActionPerformed
+        if (this.lbCliente.isVisible() && this.btnAgregar.isVisible()) {
+            this.lbCliente.setVisible(false);
+            this.btnAgregar.setVisible(false);
+        } else {
+            this.lbCliente.setVisible(true);
+            this.btnAgregar.setVisible(true);
+        }
+    }//GEN-LAST:event_checkClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,14 +631,19 @@ public class VtnPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Alta;
     private javax.swing.JLabel FondoPrincipal;
     private javax.swing.JLabel armeirBlanco;
+    private javax.swing.JMenuItem bajaCliente;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnConsultas;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnVentas;
-    private javax.swing.JCheckBoxMenuItem checkC;
+    private javax.swing.JCheckBoxMenuItem checkCliente;
+    private javax.swing.JCheckBoxMenuItem checkCosulta;
     private javax.swing.JCheckBoxMenuItem checkP;
     private javax.swing.JCheckBoxMenuItem checkV;
+    private javax.swing.JMenuItem consultaCliente;
     private javax.swing.JLabel dinero;
     private javax.swing.JLabel gabinete;
     private javax.swing.JMenuItem itemAlta;
@@ -547,7 +653,9 @@ public class VtnPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemNota;
     private javax.swing.JMenuItem itemProductoC;
     private javax.swing.JMenuItem itemVentaC;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel lbCliente;
     private javax.swing.JLabel madera3;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuConsultas;
