@@ -18,6 +18,11 @@ public class ProductoVenta {
     public ProductoVenta() {
     }
 
+    public ProductoVenta(int idProd, int cantidad) {
+        this.idProd = idProd;
+        this.cantidad = cantidad;
+    }
+
     public ProductoVenta(int idProd, int idVenta, int cantidad) {
         this.idProd = idProd;
         this.idVenta = idVenta;

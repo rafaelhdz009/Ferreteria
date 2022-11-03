@@ -19,13 +19,14 @@ import java.util.*;
 public class VtnFactura extends javax.swing.JFrame {
 
     FerreteriaDAO ferrD = new FerreteriaDAO();
-    int pos, prod_idP, vend_idV, cantidad, cantP, updateCant;
-    double total;
+    int prod_idP, vend_idV, idVenta = -1, cantidadP = -1;
+    String cliente_rfc;
+    double monto;
 
     Connection conexion = getConnection();
     FerreteriaDAO ferrDaoT = new FerreteriaDAO(conexion);
-    Productos prod;
-    List<FacturaNota> fn = new ArrayList<>();
+
+    List<ProductoVenta> listPV = new ArrayList<>();
 
     /**
      * Creates new form VtnFactura
@@ -48,11 +49,8 @@ public class VtnFactura extends javax.swing.JFrame {
         btnCancelarF = new javax.swing.JButton();
         etqCveVend = new javax.swing.JLabel();
         etqRfc = new javax.swing.JLabel();
-        txtRfc = new javax.swing.JTextField();
-        etqCantP = new javax.swing.JLabel();
         txtCantP = new javax.swing.JTextField();
         etqCantP1 = new javax.swing.JLabel();
-        comboBoxProd = new javax.swing.JComboBox<>();
         btnConfirmarF = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         panelBlanco = new javax.swing.JPanel();
@@ -66,14 +64,14 @@ public class VtnFactura extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         etqDetV1 = new javax.swing.JLabel();
         comboBoxVend = new javax.swing.JComboBox<>();
+        comboBoxRFC = new javax.swing.JComboBox<>();
+        etqCantP = new javax.swing.JLabel();
+        comboBoxProd = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Factura");
         setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -121,32 +119,7 @@ public class VtnFactura extends javax.swing.JFrame {
         etqRfc.setText("RFC: ");
         panelGis.add(etqRfc, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
-        txtRfc.setEnabled(false);
-        txtRfc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRfcActionPerformed(evt);
-            }
-        });
-        txtRfc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtRfcKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRfcKeyTyped(evt);
-            }
-        });
-        panelGis.add(txtRfc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 168, -1));
-
-        etqCantP.setForeground(new java.awt.Color(0, 0, 0));
-        etqCantP.setText("Producto:");
-        panelGis.add(etqCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
-
         txtCantP.setEnabled(false);
-        txtCantP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantPActionPerformed(evt);
-            }
-        });
         txtCantP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantPKeyPressed(evt);
@@ -160,23 +133,6 @@ public class VtnFactura extends javax.swing.JFrame {
         etqCantP1.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP1.setText("Cantidad:");
         panelGis.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
-
-        comboBoxProd.setBackground(new java.awt.Color(204, 255, 255));
-        comboBoxProd.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona tu producto" }));
-        comboBoxProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        comboBoxProd.setEnabled(false);
-        comboBoxProd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                comboBoxProdMousePressed(evt);
-            }
-        });
-        comboBoxProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxProdActionPerformed(evt);
-            }
-        });
-        panelGis.add(comboBoxProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 170, 20));
 
         btnConfirmarF.setBackground(new java.awt.Color(51, 153, 0));
         btnConfirmarF.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -284,6 +240,34 @@ public class VtnFactura extends javax.swing.JFrame {
         });
         jPanel1.add(comboBoxVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 170, -1));
 
+        comboBoxRFC.setBackground(new java.awt.Color(204, 255, 255));
+        comboBoxRFC.setForeground(new java.awt.Color(0, 0, 0));
+        comboBoxRFC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el RFC" }));
+        comboBoxRFC.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboBoxRFC.setEnabled(false);
+        comboBoxRFC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxRFCActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboBoxRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 170, 20));
+
+        etqCantP.setForeground(new java.awt.Color(0, 0, 0));
+        etqCantP.setText("Producto:");
+        jPanel1.add(etqCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+
+        comboBoxProd.setBackground(new java.awt.Color(204, 255, 255));
+        comboBoxProd.setForeground(new java.awt.Color(0, 0, 0));
+        comboBoxProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona tu producto" }));
+        comboBoxProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comboBoxProd.setEnabled(false);
+        comboBoxProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxProdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboBoxProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 170, 20));
+
         panelGis.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1020, 380));
 
         getContentPane().add(panelGis, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, -3, 1060, 420));
@@ -292,91 +276,83 @@ public class VtnFactura extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRfcActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtRfcActionPerformed
-    {//GEN-HEADEREND:event_txtRfcActionPerformed
-
-    }//GEN-LAST:event_txtRfcActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAgregarActionPerformed
     {//GEN-HEADEREND:event_btnAgregarActionPerformed
         try {
-            if ("".equals(this.txtRfc.getText())) {
-                Mensaje.error(this, "Campo de RFC no se ha llenado");
-            } else if (txtRfc.getText().length() < 12 || txtRfc.getText().length() > 13) {
-                Mensaje.error(this, "Faltan o sobran digitos en el campo de RFC, compruebe");
+            int cant = this.cantidadP == -1 ? this.ferrD.cantidadP(this.prod_idP) : this.cantidadP;
+            if (Integer.parseInt(txtCantP.getText()) <= 0 || Integer.parseInt(txtCantP.getText()) > cant) {
+                Mensaje.error(this, "No puede ser menor o igual a 0, o la petición excede las existencias.");
+                CtrlInterfaz.cambia(txtCantP);
             } else {
-                cantP = this.ferrD.cantidadP(this.prod_idP);
-                if (Integer.parseInt(txtCantP.getText()) <= 0 || Integer.parseInt(txtCantP.getText()) > cantP) {
-                    Mensaje.error(this, "Cantidad incorrecta");
-                    CtrlInterfaz.cambia(txtCantP);
-                } else {
-                    if (conexion.getAutoCommit()) {
-                        conexion.setAutoCommit(false);
-                    }
-                    this.prod_idP = Integer.parseInt(String.valueOf(this.comboBoxProd.getSelectedItem()));
-                    Productos p = this.ferrD.listaPWhere(this.prod_idP);
-
-                    int idPV;
-                    do {
-                        idPV = generaIdPV();
-                    } while (idPV == -1);
-
-                    double mont = p.getPrecio();
-                    this.total = (mont * Integer.parseInt(txtCantP.getText()));
-                    double iva = calculaIva(total);
-                    double totalIva = this.total + iva;
-                    int idV = generaNumVent();
-                    String prod = p.getNombre();
-                    updateCant = cantP - Integer.parseInt(txtCantP.getText());
-
-                    ferrDaoT.insertVent(idV, mont, totalIva);
-                    ferrDaoT.insertProductoVen(idPV, this.prod_idP, idV, this.vend_idV);
-//                    fn.add(new FacturaNota(generaNumFac(), prod, Integer.parseInt(txtCantP.getText()), txtRfc.getText().toUpperCase(), iva, idPV));
-                    ferrDaoT.insertFacturaN(generaNumFac(), prod, Integer.parseInt(txtCantP.getText()), txtRfc.getText().toUpperCase(), iva, idPV);
-                    ferrDaoT.actualizarPcant(updateCant, this.prod_idP);
-
-                    String s = txtDteVn.getText() + "Producto: " + prod + "\nPrecio: "
-                            + mont + "\nCantidad: " + txtCantP.getText() + "\n";
-                    txtDteVn.setText(s);
-                    CtrlInterfaz.limpia(txtAVta, txtCantP);
-                    CtrlInterfaz.cambia(btnConfirmarF);
-                    CtrlInterfaz.habilita(false, btnAgregar);
-                    CtrlInterfaz.habilita(true, btnConfirmarF);
-                    comboBoxProd.setSelectedIndex(0);
+                if (conexion.getAutoCommit()) {
+                    conexion.setAutoCommit(false);
                 }
+                this.prod_idP = Integer.parseInt(String.valueOf(this.comboBoxProd.getSelectedItem()));
+                Productos p = this.ferrD.listaPWhere(this.prod_idP);
+                if (this.idVenta == -1) {
+                    this.idVenta = generaNumVent();
+                }
+                boolean b = validaProd();
+                int cantidadT;
+                int cantTxt = Integer.parseInt(this.txtCantP.getText());
+
+                if (!b) {
+                    listPV.add(new ProductoVenta(this.prod_idP, this.idVenta, Integer.parseInt(txtCantP.getText())));
+                } else {
+                    for (ProductoVenta pv : listPV) {
+                        if (this.prod_idP == pv.getIdProd()) {
+                            cantidadT = cantTxt + pv.getCantidad();
+                            pv.setCantidad(cantidadT);
+                            break;
+                        }
+                    }
+                }
+
+                double mont = p.getPrecio();
+                this.monto += (mont * Integer.parseInt(txtCantP.getText()));
+                String s = txtDteVn.getText() + "Producto: " + p.getNombre() + "\nPrecio: "
+                        + mont + "\nCantidad: " + txtCantP.getText() + "\n";
+                txtDteVn.setText(s);
+                CtrlInterfaz.limpia(txtCantP);
+                CtrlInterfaz.cambia(btnConfirmarF);
+                CtrlInterfaz.habilita(false, btnAgregar, comboBoxVend, comboBoxRFC);
+                CtrlInterfaz.habilita(true, btnConfirmarF);
+                comboBoxProd.setSelectedIndex(0);
             }
         } catch (Exception e) {
             Mensaje.error(this, "Verifique los datos, no esta seleccionando producto o no esta llenando el campo de cantidad");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-
-    private void txtRfcKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtRfcKeyPressed
-    {//GEN-HEADEREND:event_txtRfcKeyPressed
-        String s = "";
-        if (evt.getKeyChar() == '\n') {
-            if (txtRfc.getText().equals(s)) {
-                Mensaje.error(this, "El campo no puede estar vacío");
-            } else if (txtRfc.getText().length() < 12 || txtRfc.getText().length() > 13) {
-                Mensaje.error(this, "Faltan o sobran digitos, compruebe");
-            } else {
-                Validaciones.enter(this, evt, this.comboBoxProd);
+    private boolean validaProd() {
+        boolean b = false;
+        if (listPV.size() != 0) {
+            for (ProductoVenta pv : listPV) {
+                if (this.prod_idP == pv.getIdProd()) {
+                    b = true;
+                    break;
+                } else {
+                    b = false;
+                }
             }
         }
-    }//GEN-LAST:event_txtRfcKeyPressed
+        return b;
+    }
+
 
     private void btnCancelarFActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarFActionPerformed
     {//GEN-HEADEREND:event_btnCancelarFActionPerformed
-        CtrlInterfaz.limpia(txtRfc, txtCantP, btnAgregar, btnConfirmarF, txtDteVn, txtAVta);
-        CtrlInterfaz.habilita(false, comboBoxProd, txtRfc, txtCantP, btnAgregar, btnConfirmarF);
-        this.comboBoxProd.setSelectedIndex(0);
+        CtrlInterfaz.limpia(txtCantP, btnAgregar, btnConfirmarF, txtDteVn, txtAVta);
+        CtrlInterfaz.habilita(false, comboBoxRFC, comboBoxProd, txtCantP, btnAgregar, btnConfirmarF);
+        CtrlInterfaz.habilita(true, comboBoxVend);
         this.comboBoxVend.setSelectedIndex(0);
+        this.comboBoxRFC.setSelectedIndex(0);
+        this.comboBoxProd.setSelectedIndex(0);
+        this.cantidadP = -1;
+        this.idVenta = -1;
+        this.monto = 0;
+        listPV.clear();
     }//GEN-LAST:event_btnCancelarFActionPerformed
-
-    private void txtRfcKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtRfcKeyTyped
-    {//GEN-HEADEREND:event_txtRfcKeyTyped
-        Validaciones.validaAlfanumerico(evt, 13, txtRfc.getText());
-    }//GEN-LAST:event_txtRfcKeyTyped
 
     private void txtCantPKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtCantPKeyTyped
     {//GEN-HEADEREND:event_txtCantPKeyTyped
@@ -399,17 +375,12 @@ public class VtnFactura extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCantPKeyPressed
 
-    private void txtCantPActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCantPActionPerformed
-    {//GEN-HEADEREND:event_txtCantPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantPActionPerformed
-
     private void btnConfirmarFActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConfirmarFActionPerformed
     {//GEN-HEADEREND:event_btnConfirmarFActionPerformed
         try {
             if (Mensaje.pregunta(this, "Desea Confirmar la venta?") == 0) {
                 this.conexion.commit();
-                total = 0;
+                monto = 0;
                 Mensaje.exito(this, "Venta realizada con exito!");
                 btnCancelarFActionPerformed(evt);
             } else {
@@ -422,11 +393,6 @@ public class VtnFactura extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConfirmarFActionPerformed
 
-    private void comboBoxProdMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboBoxProdMousePressed
-    {//GEN-HEADEREND:event_comboBoxProdMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxProdMousePressed
-
     private void btnAgregarKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_btnAgregarKeyPressed
     {//GEN-HEADEREND:event_btnAgregarKeyPressed
         if (evt.getKeyChar() == '\n') {
@@ -434,30 +400,24 @@ public class VtnFactura extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgregarKeyPressed
 
-    private void comboBoxProdActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboBoxProdActionPerformed
-    {//GEN-HEADEREND:event_comboBoxProdActionPerformed
+    private void comboBoxRFCActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboBoxRFCActionPerformed
+    {//GEN-HEADEREND:event_comboBoxRFCActionPerformed
         try {
-            if (this.comboBoxProd.getSelectedIndex() != 0) {
-                String desp = "";
-                this.vend_idV = Integer.parseInt(String.valueOf(this.comboBoxVend.getSelectedItem()));
-                Vendedor v = this.ferrD.listaVendWhere(this.vend_idV);
-                desp += v.desp();
-
-                this.prod_idP = Integer.parseInt(String.valueOf(this.comboBoxProd.getSelectedItem()));
-                Productos p = this.ferrD.listaPWhere(this.prod_idP);
-                desp += p.toString();
+            if (this.comboBoxRFC.getSelectedIndex() != 0) {
+                this.comboBoxProd.setSelectedIndex(0);
+                String desp = this.vendedorDesp() + this.clienteDesp();
                 txtAVta.setText(desp);
-                CtrlInterfaz.habilita(true, txtCantP);
-                CtrlInterfaz.cambia(this.txtCantP);
+                CtrlInterfaz.habilita(true, comboBoxProd);
             } else {
-                CtrlInterfaz.habilita(false, txtCantP);
+                CtrlInterfaz.habilita(false, comboBoxProd, txtCantP, btnAgregar);
+                this.comboBoxProd.setSelectedIndex(0);
                 comboBoxVendActionPerformed(evt);
             }
 
         } catch (Exception e) {
             //e.printStackTrace(System.out);
         }
-    }//GEN-LAST:event_comboBoxProdActionPerformed
+    }//GEN-LAST:event_comboBoxRFCActionPerformed
 
 
     private void btnConfirmarFKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_btnConfirmarFKeyPressed
@@ -472,77 +432,125 @@ public class VtnFactura extends javax.swing.JFrame {
         try {
             llenaComboProd();
             llenaComboVend();
+            llenaComboRfc();
         } catch (Exception e) {
             Mensaje.error(this, "Aún no hay registros");
             dispose();
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
-    {//GEN-HEADEREND:event_formWindowClosing
-
-    }//GEN-LAST:event_formWindowClosing
-
     private void comboBoxVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxVendActionPerformed
         try {
             if (this.comboBoxVend.getSelectedIndex() != 0) {
-                this.vend_idV = Integer.parseInt(String.valueOf(this.comboBoxVend.getSelectedItem()));
-                Vendedor v = this.ferrD.listaVendWhere(this.vend_idV);
-                txtAVta.setText(v.desp());
-                CtrlInterfaz.habilita(true, this.txtRfc);
-                CtrlInterfaz.cambia(this.txtRfc);
+                this.comboBoxRFC.setSelectedIndex(0);
+                this.comboBoxProd.setSelectedIndex(0);
+                txtAVta.setText(vendedorDesp());
+                CtrlInterfaz.habilita(true, this.comboBoxRFC);
+                CtrlInterfaz.cambia(this.comboBoxRFC);
             } else {
                 CtrlInterfaz.limpia(txtCantP, txtAVta);
-                CtrlInterfaz.habilita(false, comboBoxProd, txtRfc, txtCantP, btnAgregar);
+                CtrlInterfaz.habilita(false, comboBoxRFC, comboBoxProd, txtCantP, btnAgregar);
+                this.comboBoxRFC.setSelectedIndex(0);
                 this.comboBoxProd.setSelectedIndex(0);
             }
-
         } catch (Exception e) {
 //            e.printStackTrace(System.out);
         }
     }//GEN-LAST:event_comboBoxVendActionPerformed
 
-    public void llenaComboProd() {
+    private void comboBoxProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxProdActionPerformed
+        try {
+            if (this.comboBoxProd.getSelectedIndex() != 0) {
+                String desp = this.vendedorDesp() + this.clienteDesp() + this.productoDesp();
+                txtAVta.setText(desp);
+                CtrlInterfaz.habilita(true, txtCantP);
+                CtrlInterfaz.cambia(this.txtCantP);
+            } else {
+                CtrlInterfaz.habilita(false, txtCantP, btnAgregar);
+                comboBoxRFCActionPerformed(evt);
+            }
+        } catch (Exception e) {
+            //e.printStackTrace(System.out);
+        }
+    }//GEN-LAST:event_comboBoxProdActionPerformed
+
+    private String vendedorDesp() {
+        this.vend_idV = Integer.parseInt(String.valueOf(this.comboBoxVend.getSelectedItem()));
+        Vendedor v = this.ferrD.listaVendWhere(this.vend_idV);
+        return v.desp();
+    }
+
+    private String productoDesp() {
+        this.prod_idP = Integer.parseInt(String.valueOf(this.comboBoxProd.getSelectedItem()));
+        Productos p = this.ferrD.listaPWhere(this.prod_idP);
+        int cantidadT;
+        if (listPV.size() != 0) {
+            for (ProductoVenta pv : listPV) {
+                if (this.prod_idP == pv.getIdProd()) {
+                    cantidadT = p.getCantidad() - pv.getCantidad();
+                    this.cantidadP = cantidadT;
+                    p.setCantidad(cantidadT);
+                    break;
+                }
+            }
+        }
+        return p.toString();
+    }
+
+    private String clienteDesp() {
+        this.cliente_rfc = String.valueOf(this.comboBoxRFC.getSelectedItem());
+        Cliente c = this.ferrD.listaClienteWhereRFC(this.cliente_rfc);
+        return c.desp();
+    }
+
+    private void llenaComboProd() {
         List<Integer> arr = ferrD.listaIdP();
         for (int idP : arr) {
             this.comboBoxProd.addItem(String.valueOf(idP));
         }
     }
 
-    public void llenaComboVend() {
+    private void llenaComboVend() {
         List<Integer> arr = ferrD.listaVendId();
         for (int idVend : arr) {
             this.comboBoxVend.addItem(String.valueOf(idVend));
         }
     }
 
-    public int generaNumFac() {
-        int num = (int) (Math.random() * 1000);
-        String uno = "1" + num;
-        int numF = Integer.parseInt(uno);
-        return numF;
+    private void llenaComboRfc() {
+        List<String> arr = ferrD.listaRFCliente();
+        for (String rfc : arr) {
+            this.comboBoxRFC.addItem(rfc);
+        }
     }
 
-    public int generaNumVent() {
-        int num = (int) (Math.random() * 1000);
-        String uno = "3" + num;
-        int numF = Integer.parseInt(uno);
-        return numF;
-    }
-
-    public int generaIdPV() {
-        int numF = -1;
-        try {
-            int num = (int) (Math.random() * 1000);
-            String uno = "4" + num;
+    private int generaNumFac() {
+        boolean b = false;
+        int numF = 0;
+        while (!b) {
+            int num = (int) (Math.random() * 10000);
+            String uno = "1" + num;
             numF = Integer.parseInt(uno);
-        } catch (Exception e) {
-
+            int idFactNota = this.ferrD.listaVendWhereID(numF);
+            b = idFactNota == 0 ? true : false;
         }
         return numF;
     }
 
-    public double calculaIva(double total) {
+    private int generaNumVent() {
+        boolean b = false;
+        int numF = 0;
+        while (!b) {
+            int num = (int) (Math.random() * 10000);
+            String uno = "3" + num;
+            numF = Integer.parseInt(uno);
+            int idVendedor = this.ferrD.listaVendWhereID(numF);
+            b = idVendedor == 0 ? true : false;
+        }
+        return numF;
+    }
+
+    private double calculaIva(double total) {
         double iva;
         iva = total * 0.16;
         return iva;
@@ -590,6 +598,7 @@ public class VtnFactura extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarF;
     private javax.swing.JButton btnConfirmarF;
     private javax.swing.JComboBox<String> comboBoxProd;
+    private javax.swing.JComboBox<String> comboBoxRFC;
     private javax.swing.JComboBox<String> comboBoxVend;
     private javax.swing.JLabel etqCantP;
     private javax.swing.JLabel etqCantP1;
@@ -608,6 +617,5 @@ public class VtnFactura extends javax.swing.JFrame {
     private javax.swing.JTextArea txtAVta;
     private javax.swing.JTextField txtCantP;
     private javax.swing.JTextArea txtDteVn;
-    private javax.swing.JTextField txtRfc;
     // End of variables declaration//GEN-END:variables
 }

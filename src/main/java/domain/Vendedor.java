@@ -98,11 +98,11 @@ public class Vendedor {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    public String desp(){
+
+    public String desp() {
         return "ID Vendedor: " + idVend + "\n"
-                        + "Nombre: " + nombre + " " + apellido + "\n"
-                        + "-----------------------------------\n";
+                + "Nombre: " + nombre + " " + apellido + "\n"
+                + "-----------------------------------\n";
     }
 
     @Override

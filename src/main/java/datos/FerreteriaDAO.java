@@ -27,6 +27,7 @@ public class FerreteriaDAO {
     private static final String SELECT_PRODUCTOS_MAX = "select max(idProductos) from productos";
     private static final String SELECT_CLIENTE_MAX = "select max(idCliente) from cliente";
     private static final String SELECT_PROD_IDP = "select Productos_idProductos from producto_venta";
+    private static final String SELECT_PROD_IDVent_WHERE = "select Ventas_idVenta from producto_venta where Ventas_idVenta = ?";
     private static final String SELECT_CLIENTE_ID = "select cliente_idCliente from FacturaNota";
     private static final String SELECT_PRODUCTOS_WHERE = "select * from productos where idProductos = ?";
     private static final String SELECT_CLIENTE_WHERE = "select * from cliente where idCliente = ?";
@@ -258,6 +259,26 @@ public class FerreteriaDAO {
         return listaPV;
     }
 
+    public int listaProdIdWhere(int idVenta) {
+        int idV = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_PROD_IDVent_WHERE);
+            smtm.setInt(1, idVenta);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idV = rs.getInt("Ventas_idVenta");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return idV;
+    }
+
     public List<Integer> listaClienteFN() {
         List<Integer> listClienteFN = new ArrayList<>();
         try {
@@ -434,6 +455,26 @@ public class FerreteriaDAO {
         return v;
     }
 
+    public int listaVendWhereID(int ID) {
+        int idVend = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_VENDEDOR_WHERE);
+            smtm.setInt(1, ID);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idVend = rs.getInt("idVendedor");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return idVend;
+    }
+
     public List<Integer> listaFacNotIsNull() {
         List<Integer> listaFNin = new ArrayList<>();
         try {
@@ -494,6 +535,26 @@ public class FerreteriaDAO {
                 idVenta = rs.getInt("Ventas_idVenta");
                 idCliente = rs.getInt("Cliente_idCliente");
                 fn = new FacturaNota(idFacturaNota, descuento, rfc, iva, idVenta, idCliente);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return fn;
+    }
+
+    public int listaFacturaNotaWhereID(int idFacNot) {
+        int fn = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE);
+            smtm.setInt(1, idFacNot);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                fn = rs.getInt("idFactura_Nota");
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

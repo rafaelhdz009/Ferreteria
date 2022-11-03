@@ -130,6 +130,13 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public String desp() {
+        return "ID Cliente = " + idCliente
+                + "\nNombre = " + nombre + " " + apPat + " " + apMat
+                + "\nCorreo = " + correo
+                + "\n-----------------------------------\n";
+    }
+
     @Override
     public String toString() {
         return "ID Cliente = " + idCliente
