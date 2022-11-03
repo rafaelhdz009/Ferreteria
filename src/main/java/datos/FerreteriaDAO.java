@@ -24,6 +24,7 @@ public class FerreteriaDAO {
 
     private static final String SELECT_PRODUCTOS = "select * from productos";
     private static final String SELECT_CLIENTE = "select * from cliente";
+    private static final String SELECT_CLIENTE_RFC_NOT_NULL = "select * from cliente where rfc <> 'NULL'";
     private static final String SELECT_PRODUCTOS_MAX = "select max(idProductos) from productos";
     private static final String SELECT_CLIENTE_MAX = "select max(idCliente) from cliente";
     private static final String SELECT_PROD_IDP = "select Productos_idProductos from producto_venta";
@@ -184,7 +185,7 @@ public class FerreteriaDAO {
         try {
             String rfc;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE);
+            smtm = conn.prepareStatement(SELECT_CLIENTE_RFC_NOT_NULL);
             rs = smtm.executeQuery();
             while (rs.next()) {
                 rfc = rs.getString("rfc");

@@ -6,10 +6,8 @@
 package DisVtnP;
 
 import cjb.ci.*;
-import static datos.Conexion.*;
 import datos.FerreteriaDAO;
 import domain.*;
-import java.sql.*;
 import java.util.*;
 
 /**
@@ -414,7 +412,6 @@ public class VtnFactura extends javax.swing.JFrame {
                 this.comboBoxProd.setSelectedIndex(0);
                 comboBoxVendActionPerformed(evt);
             }
-
         } catch (Exception e) {
             //e.printStackTrace(System.out);
         }
@@ -431,9 +428,9 @@ public class VtnFactura extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
         try {
-            llenaComboProd();
             llenaComboVend();
             llenaComboRfc();
+            llenaComboProd();
         } catch (Exception e) {
             Mensaje.error(this, "Aún no hay registros");
             dispose();

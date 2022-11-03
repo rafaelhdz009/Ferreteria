@@ -7,6 +7,7 @@ package DisVtnP;
 
 import cjb.ci.*;
 import datos.FerreteriaDAO;
+import domain.Cliente;
 import java.util.*;
 
 /**
@@ -53,6 +54,7 @@ public class VtnClienteA extends javax.swing.JFrame {
         etqCantP2 = new javax.swing.JLabel();
         etqCantP3 = new javax.swing.JLabel();
         etqCantP4 = new javax.swing.JLabel();
+        etqOpcional1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Altas");
@@ -84,7 +86,7 @@ public class VtnClienteA extends javax.swing.JFrame {
 
         etqOpcional.setForeground(new java.awt.Color(0, 0, 0));
         etqOpcional.setText("(Opcional)");
-        panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
+        panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
 
         txtTel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTel.setToolTipText("");
@@ -223,6 +225,10 @@ public class VtnClienteA extends javax.swing.JFrame {
         etqCantP4.setText("Teléfono:");
         panelAzul.add(etqCantP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
+        etqOpcional1.setForeground(new java.awt.Color(0, 0, 0));
+        etqOpcional1.setText("(Opcional)");
+        panelAzul.add(etqOpcional1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
+
         getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 460));
 
         pack();
@@ -242,23 +248,36 @@ public class VtnClienteA extends javax.swing.JFrame {
             if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
                 int cveProd = idCliente();
                 if (txtNom.getText().equals("") || txtApPat.getText().equals("")
-                        || txtApMat.getText().equals("") || txtRFC.getText().equals("")
-                        || txtCorreo.getText().equals("")) {
+                        || txtApMat.getText().equals("") || txtCorreo.getText().equals("")) {
                     Mensaje.error(this, "No se han llenado todos lo campos, verifique.");
                 } else {
-                    String nombre = this.txtNom.getText();
-                    String apPat = this.txtApPat.getText();
-                    String apMat = this.txtApMat.getText();
-                    String rfc = this.txtRFC.getText().toUpperCase();
-                    String correo = this.txtCorreo.getText();
-                    String tel = this.txtTel.getText();
-                    if (tel.equals("")) {
-                        tel = "NULL";
+                    boolean ban = false;
+                    List<Cliente> cliente = this.ferrD.listaCliente();
+                    for (Cliente c : cliente) {
+                        if (c.getRfc().equals(this.txtRFC.getText()) || c.getCorreo().equals(this.txtCorreo.getText())) {
+                            ban = true;
+                            break;
+                        }
                     }
-                    int registro = this.ferrD.insertCliente(cveProd, nombre, apPat, apMat, rfc, correo, tel);
-                    Mensaje.exito(this, registro + " registro insertado");
-                    Mensaje.exito(this, "Cliente dado de alta");
-                    btnCancelarActionPerformed(evt);
+                    if (!ban) {
+                        String nombre = this.txtNom.getText();
+                        String apPat = this.txtApPat.getText();
+                        String apMat = this.txtApMat.getText();
+                        String rfc = this.txtRFC.getText().toUpperCase();
+                        String correo = this.txtCorreo.getText();
+                        String tel = this.txtTel.getText();
+                        if (tel.equals("")) {
+                            tel = "NULL";
+                        } else if (rfc.equals("")) {
+                            rfc = "NULL";
+                        }
+                        int registro = this.ferrD.insertCliente(cveProd, nombre, apPat, apMat, rfc, correo, tel);
+                        Mensaje.exito(this, registro + " registro insertado");
+                        Mensaje.exito(this, "Cliente dado de alta");
+                        btnCancelarActionPerformed(evt);
+                    } else {
+                        Mensaje.error(this, "El correo y el RFC son unicos, verifique.");
+                    }
                 }
             } else {
                 Mensaje.error(this, "Operacion cancelada");
@@ -357,10 +376,12 @@ public class VtnClienteA extends javax.swing.JFrame {
     private void txtRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyPressed
         String s = "";
         if (evt.getKeyChar() == '\n') {
-            if (txtRFC.getText().equals(s)) {
-                Mensaje.error(this, "El campo no puede estar vacío");
-            } else if (txtRFC.getText().length() < 12) {
-                Mensaje.error(this, "Faltan digitos, compruebe.");
+            if (!txtRFC.getText().equals(s)) {
+                if (txtRFC.getText().length() < 12) {
+                    Mensaje.error(this, "Faltan digitos, compruebe.");
+                } else {
+                    Validaciones.enter(this, evt, txtCorreo);
+                }
             } else {
                 Validaciones.enter(this, evt, txtCorreo);
             }
@@ -439,6 +460,7 @@ public class VtnClienteA extends javax.swing.JFrame {
     private javax.swing.JLabel etqMonP;
     private javax.swing.JLabel etqNomP;
     private javax.swing.JLabel etqOpcional;
+    private javax.swing.JLabel etqOpcional1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelAzul;
     private javax.swing.JTextField txtApMat;
