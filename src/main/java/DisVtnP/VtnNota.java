@@ -330,10 +330,10 @@ public class VtnNota extends javax.swing.JFrame {
                 String prod = p.getNombre();
                 int updateCant = cantP - Integer.parseInt(txtCantP.getText());
 
-                ferrDaoT.insertVent(idV, mont, totalD);
-                ferrDaoT.insertProductoVen(idPV, this.prod_idP, idV, this.vend_idV);
-                ferrDaoT.insertNota(generaNumNot(), prod, Integer.parseInt(txtCantP.getText()), desc, idPV);
-                ferrDaoT.actualizarPcant(updateCant, this.prod_idP);
+//                ferrDaoT.insertVent(idV, mont, totalD);
+//                ferrDaoT.insertProductoVen(idPV, this.prod_idP, idV, this.vend_idV);
+//                ferrDaoT.insertNota(generaNumNot(), prod, Integer.parseInt(txtCantP.getText()), desc, idPV);
+//                ferrDaoT.actualizarPcant(updateCant, this.prod_idP);
                 String s = txtDteVn.getText() + "Producto: " + prod + "\nPrecio: "
                         + mont + "\nCantidad: " + txtCantP.getText() + "\n";
                 txtDteVn.setText(s);

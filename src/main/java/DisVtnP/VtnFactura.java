@@ -23,9 +23,6 @@ public class VtnFactura extends javax.swing.JFrame {
     String cliente_rfc;
     double monto;
 
-    Connection conexion = getConnection();
-    FerreteriaDAO ferrDaoT = new FerreteriaDAO(conexion);
-
     List<ProductoVenta> listPV = new ArrayList<>();
 
     /**
@@ -284,9 +281,6 @@ public class VtnFactura extends javax.swing.JFrame {
                 Mensaje.error(this, "No puede ser menor o igual a 0, o la petición excede las existencias.");
                 CtrlInterfaz.cambia(txtCantP);
             } else {
-                if (conexion.getAutoCommit()) {
-                    conexion.setAutoCommit(false);
-                }
                 this.prod_idP = Integer.parseInt(String.valueOf(this.comboBoxProd.getSelectedItem()));
                 Productos p = this.ferrD.listaPWhere(this.prod_idP);
                 if (this.idVenta == -1) {
@@ -311,7 +305,8 @@ public class VtnFactura extends javax.swing.JFrame {
                 double mont = p.getPrecio();
                 this.monto += (mont * Integer.parseInt(txtCantP.getText()));
                 String s = txtDteVn.getText() + "Producto: " + p.getNombre() + "\nPrecio: "
-                        + mont + "\nCantidad: " + txtCantP.getText() + "\n";
+                        + mont + "\nCantidad: " + txtCantP.getText()
+                        + "\n------------------------------------\n";
                 txtDteVn.setText(s);
                 CtrlInterfaz.limpia(txtCantP);
                 CtrlInterfaz.cambia(btnConfirmarF);
@@ -326,7 +321,7 @@ public class VtnFactura extends javax.swing.JFrame {
 
     private boolean validaProd() {
         boolean b = false;
-        if (listPV.size() != 0) {
+        if (!listPV.isEmpty()) {
             for (ProductoVenta pv : listPV) {
                 if (this.prod_idP == pv.getIdProd()) {
                     b = true;
@@ -377,19 +372,25 @@ public class VtnFactura extends javax.swing.JFrame {
 
     private void btnConfirmarFActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConfirmarFActionPerformed
     {//GEN-HEADEREND:event_btnConfirmarFActionPerformed
-        try {
-            if (Mensaje.pregunta(this, "Desea Confirmar la venta?") == 0) {
-                this.conexion.commit();
-                monto = 0;
-                Mensaje.exito(this, "Venta realizada con exito!");
-                btnCancelarFActionPerformed(evt);
-            } else {
-                this.conexion.rollback();
-                Mensaje.error(this, "Operacion cancelada");
-                btnCancelarFActionPerformed(evt);
+        if (Mensaje.pregunta(this, "Desea Confirmar la venta?") == 0) {
+            double iva = calculaIva(monto);
+            double total = monto + iva;
+            this.ferrD.insertVent(idVenta, monto, total,
+                    Integer.parseInt(String.valueOf(comboBoxVend.getSelectedItem())));
+
+            int cantidadAct;
+            for (ProductoVenta pv : this.listPV) {
+                this.ferrD.insertProductoVen(pv.getIdProd(), pv.getIdVenta(), pv.getCantidad());
+                cantidadAct = this.ferrD.listaCantidadP(pv.getIdProd()) - pv.getCantidad();
+                this.ferrD.actualizarPcant(cantidadAct, pv.getIdProd());
             }
-        } catch (SQLException ex) {
-            //ex.printStackTrace(System.out);
+            int idCliente = this.ferrD.selectIdClienteRfc(String.valueOf(this.comboBoxRFC.getSelectedItem()));
+            this.ferrD.insertFacturaN(generaNumFac(), String.valueOf(this.comboBoxRFC.getSelectedItem()), iva, this.idVenta, idCliente);
+            Mensaje.exito(this, "Venta realizada con exito!");
+            btnCancelarFActionPerformed(evt);
+        } else {
+            Mensaje.error(this, "Operacion cancelada");
+            btnCancelarFActionPerformed(evt);
         }
     }//GEN-LAST:event_btnConfirmarFActionPerformed
 
@@ -531,7 +532,7 @@ public class VtnFactura extends javax.swing.JFrame {
             int num = (int) (Math.random() * 10000);
             String uno = "1" + num;
             numF = Integer.parseInt(uno);
-            int idFactNota = this.ferrD.listaVendWhereID(numF);
+            int idFactNota = this.ferrD.listaFacturaNotaWhereID(numF);
             b = idFactNota == 0 ? true : false;
         }
         return numF;

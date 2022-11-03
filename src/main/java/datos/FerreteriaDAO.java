@@ -50,10 +50,10 @@ public class FerreteriaDAO {
 
     private static final String INSERT_CLIENTE = "insert into cliente values(?,?,?,?,?,?,?)";
     private static final String INSERT_PROD = "insert into productos values (?,?,?,?)";
-    private static final String INSERT_FAC = "insert into facturanota values (?,?,?,null,?,?,?)";
-    private static final String INSERT_PROD_VENT = "insert into producto_venta values (?,?,?,?)";
-    private static final String INSERT_VENTAS = "insert into ventas values (?,sysdate(),?,?)";
-    private static final String INSERT_NOT = "insert into facturanota values (?,?,?,?,null,null,?)";
+    private static final String INSERT_FAC = "insert into facturanota values (?,null,?,?,?,?)";
+    private static final String INSERT_PROD_VENT = "insert into producto_venta values (?,?,?)";
+    private static final String INSERT_VENTAS = "insert into ventas values (?,sysdate(),?,?,?)";
+    private static final String INSERT_NOT = "insert into facturanota values (?,?,null,null,?,?)";
 
     public FerreteriaDAO() {
 
@@ -370,6 +370,26 @@ public class FerreteriaDAO {
         return p;
     }
 
+    public int listaCantidadP(int idProducto) {
+        int cantidad = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_PRODUCTOS_WHERE);
+            smtm.setInt(1, idProducto);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                cantidad = rs.getInt("cantidad");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return cantidad;
+    }
+
     public Cliente listaClienteWhere(int ID) {
         Cliente c = null;
         try {
@@ -426,6 +446,26 @@ public class FerreteriaDAO {
             close(conn);
         }
         return c;
+    }
+
+    public int selectIdClienteRfc(String cliente_rfc) {
+        int idCliente = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_RFC);
+            smtm.setString(1, cliente_rfc);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return idCliente;
     }
 
     public Vendedor listaVendWhere(int ID) {
@@ -678,16 +718,15 @@ public class FerreteriaDAO {
         return registros;
     }
 
-    public int insertNota(int idNota, String prod, int cant, int desc, int idProd) {
+    public int insertNota(int idNota, int desc, int idVenta, int idCliente) {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
             smtm = conn.prepareStatement(INSERT_NOT);
             smtm.setInt(1, idNota);
-            smtm.setString(2, prod);
-            smtm.setInt(3, cant);
-            smtm.setInt(4, desc);
-            smtm.setInt(5, idProd);
+            smtm.setInt(2, desc);
+            smtm.setInt(3, idVenta);
+            smtm.setInt(4, idCliente);
             registros = smtm.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -700,18 +739,16 @@ public class FerreteriaDAO {
         return registros;
     }
 
-    public int insertFacturaN(int idFactN, String prod, int cant, String rfc,
-            double iva, int idProd) {
+    public int insertFacturaN(int idFact, String rfc, double iva, int idVenta, int idCliente) {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
             smtm = conn.prepareStatement(INSERT_FAC);
-            smtm.setInt(1, idFactN);
-            smtm.setString(2, prod);
-            smtm.setInt(3, cant);
-            smtm.setString(4, rfc);
-            smtm.setDouble(5, iva);
-            smtm.setInt(6, idProd);
+            smtm.setInt(1, idFact);
+            smtm.setString(2, rfc);
+            smtm.setDouble(3, iva);
+            smtm.setInt(4, idVenta);
+            smtm.setInt(5, idCliente);
             registros = smtm.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -724,15 +761,14 @@ public class FerreteriaDAO {
         return registros;
     }
 
-    public int insertProductoVen(int idPV, int idProd, int idVenta, int idVendedor) {
+    public int insertProductoVen(int idProd, int idVenta, int cantidad) {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
             smtm = conn.prepareStatement(INSERT_PROD_VENT);
-            smtm.setInt(1, idPV);
-            smtm.setInt(2, idProd);
-            smtm.setInt(3, idVenta);
-            smtm.setInt(4, idVendedor);
+            smtm.setInt(1, idProd);
+            smtm.setInt(2, idVenta);
+            smtm.setInt(3, cantidad);
             registros = smtm.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -745,7 +781,7 @@ public class FerreteriaDAO {
         return registros;
     }
 
-    public int insertVent(int idVenta, double monto, double total) {
+    public int insertVent(int idVenta, double monto, double total, int idVendedor) {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
@@ -753,6 +789,7 @@ public class FerreteriaDAO {
             smtm.setInt(1, idVenta);
             smtm.setDouble(2, monto);
             smtm.setDouble(3, total);
+            smtm.setInt(4, idVendedor);
             registros = smtm.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
