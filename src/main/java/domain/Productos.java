@@ -10,7 +10,7 @@ package domain;
  * @author rafael
  */
 public class Productos {
-    
+
     private int idP;
     private String nombre;
     private double precio;
@@ -19,8 +19,8 @@ public class Productos {
     public Productos(int idP) {
         this.idP = idP;
     }
-    
-    public Productos(String nombre, double precio, int cantidad){
+
+    public Productos(String nombre, double precio, int cantidad) {
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -91,9 +91,8 @@ public class Productos {
 
     @Override
     public String toString() {
-        return "ID Producto = " + idP + "\nNombre = " + nombre + 
-                "\nPrecio = " + precio + "\nCantidad = " + cantidad;
+        return "ID Producto: " + idP + "\nNombre: " + nombre
+                + "\nPrecio: " + precio + "\nCantidad: " + cantidad;
     }
-    
-    
+
 }

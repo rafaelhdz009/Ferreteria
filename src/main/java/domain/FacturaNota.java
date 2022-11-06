@@ -116,28 +116,28 @@ public class FacturaNota {
     }
 
     public String despFactura() {
-        return "ID FacturaNota = " + idFacturaNota
-                + "\nRFC =" + rfc
-                + "\nIVA = " + iva
-                + "\nID Venta = " + idVenta
-                + "\nID Cliente = " + idCliente;
+        return "ID FacturaNota: " + idFacturaNota
+                + "\nRFC: " + rfc
+                + "\nIVA: " + iva
+                + "\nID Venta: " + idVenta
+                + "\nID Cliente: " + idCliente;
     }
 
     public String despNota() {
-        return "ID FacturaNota = " + idFacturaNota
-                + "\nDescuento = " + descuento
-                + "\nID Venta = " + idVenta
-                + "\nID Cliente = " + idCliente;
+        return "ID FacturaNota: " + idFacturaNota
+                + "\nDescuento: " + descuento
+                + "\nID Venta: " + idVenta
+                + "\nID Cliente: " + idCliente;
     }
 
     @Override
     public String toString() {
-        return "ID FacturaNota = " + idFacturaNota
-                + "\nDescuento = " + descuento
-                + "\nRFC =" + rfc
-                + "\nIVA = " + iva
-                + "\nID Venta = " + idVenta
-                + "\nID Cliente = " + idCliente;
+        return "ID FacturaNota: " + idFacturaNota
+                + "\nDescuento: " + descuento
+                + "\nRFC: " + rfc
+                + "\nIVA: " + iva
+                + "\nID Venta: " + idVenta
+                + "\nID Cliente: " + idCliente;
     }
 
 }

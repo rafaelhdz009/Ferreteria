@@ -101,11 +101,11 @@ public class Ventas {
 
     @Override
     public String toString() {
-        return "ID Venta = " + idVenta
-                + "\nFecha = " + fecha
-                + "\nMonto = " + monto
-                + "\nTotal = " + total
-                + "\nID Vendedor = " + idVendedor;
+        return "ID Venta: " + idVenta
+                + "\nFecha: " + fecha
+                + "\nMonto: " + monto
+                + "\nTotal: " + total
+                + "\nID Vendedor: " + idVendedor;
     }
 
 }

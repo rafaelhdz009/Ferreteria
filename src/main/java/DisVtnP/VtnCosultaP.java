@@ -5,7 +5,6 @@
  */
 package DisVtnP;
 
-
 import datos.*;
 import cjb.ci.Mensaje;
 import java.util.*;
@@ -31,8 +30,7 @@ public class VtnCosultaP extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         etqCons = new javax.swing.JLabel();
         etqTodP = new javax.swing.JLabel();
@@ -44,10 +42,8 @@ public class VtnCosultaP extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta todos los productos");
         setType(java.awt.Window.Type.UTILITY);
-        addWindowListener(new java.awt.event.WindowAdapter()
-        {
-            public void windowOpened(java.awt.event.WindowEvent evt)
-            {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
@@ -81,7 +77,8 @@ public class VtnCosultaP extends javax.swing.JFrame {
 
         txtConsultaP.setEditable(false);
         txtConsultaP.setColumns(20);
-        txtConsultaP.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        txtConsultaP.setFont(new java.awt.Font("Monospaced", 0, 15)); // NOI18N
+        txtConsultaP.setForeground(new java.awt.Color(0, 0, 0));
         txtConsultaP.setRows(5);
         scrollPane.setViewportView(txtConsultaP);
 
@@ -119,14 +116,41 @@ public class VtnCosultaP extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     public void llena() {
-        String desp = "";
+
+        String desp = muestraArea();
+        this.txtConsultaP.setText(desp);
+    }
+
+    public static String muestraArea() {
         FerreteriaDAO ferrD = new FerreteriaDAO();
         List<Productos> listP = ferrD.listaP();
+        String s = "ID\tNombre\t\tPrecio\t   Cantidad"
+                + "\n--------------------------------------------\n";
         for (Productos p : listP) {
-            desp += p.toString()
-                    + "\n--------------------------------\n";
+
+            String cve = "";
+            String nom = "";
+            String pre = "";
+
+            int l1, l2, l3;
+            l1 = 8 - (String.valueOf(p.getIdP()).length());
+            l2 = 17 - (p.getNombre().length());
+            l3 = 12 - (String.valueOf(p.getPrecio()).length());
+            for (int i = 0; i < l1; i++) {
+                cve += " ";
+            }
+
+            for (int i = 0; i < l2; i++) {
+
+                nom += " ";
+            }
+
+            for (int i = 0; i < l3; i++) {
+                pre += " ";
+            }
+            s += ((p.getIdP()) + (cve) + p.getNombre().toUpperCase() + (nom) + (p.getPrecio()) + (pre) + " " + (p.getCantidad()) + "\n");
         }
-        this.txtConsultaP.setText(desp);
+        return s;
     }
 
     /**

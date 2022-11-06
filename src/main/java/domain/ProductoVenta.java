@@ -73,8 +73,8 @@ public class ProductoVenta {
 
     @Override
     public String toString() {
-        return "ID Producto = " + idProd
-                + "\nID Venta = " + idVenta
-                + "\nCantidad = " + cantidad;
+        return "ID Producto: " + idProd
+                + "\nID Venta: " + idVenta
+                + "\nCantidad: " + cantidad;
     }
 }

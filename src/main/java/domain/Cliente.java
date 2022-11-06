@@ -131,19 +131,19 @@ public class Cliente {
     }
 
     public String desp() {
-        return "ID Cliente = " + idCliente
-                + "\nNombre = " + nombre + " " + apPat + " " + apMat
-                + "\nCorreo = " + correo
+        return "ID Cliente: " + idCliente
+                + "\nNombre: " + nombre + " " + apPat + " " + apMat
+                + "\nCorreo: " + correo
                 + "\n-----------------------------------\n";
     }
 
     @Override
     public String toString() {
-        return "ID Cliente = " + idCliente
-                + "\nNombre = " + nombre + " " + apPat + " " + apMat
-                + "\nRFC = " + rfc
-                + "\nCorreo = " + correo
-                + "\nTelefono = " + telefono;
+        return "ID Cliente: " + idCliente
+                + "\nNombre: " + nombre + " " + apPat + " " + apMat
+                + "\nRFC: " + rfc
+                + "\nCorreo: " + correo
+                + "\nTelefono: " + telefono;
     }
 
 }

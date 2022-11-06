@@ -107,8 +107,8 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return "ID Vendedor = " + idVend + "\nNombre = " + nombre
-                + "\nApellido = " + apellido + "\nTeléfono = " + telefono
-                + "\nCorreo = " + correo;
+        return "ID Vendedor: " + idVend + "\nNombre: " + nombre
+                + "\nApellido: " + apellido + "\nTeléfono: " + telefono
+                + "\nCorreo: " + correo;
     }
 }
