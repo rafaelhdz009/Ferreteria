@@ -22,18 +22,20 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nombre, String apPat, String rfc, String correo) {
+    public Cliente(int idCliente, String nombre, String apPat, String apMat, String rfc, String correo) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apPat = apPat;
+        this.apMat = apMat;
         this.rfc = rfc;
         this.correo = correo;
     }
 
-    public Cliente(int idCliente, String nombre, String apPat, String correo) {
+    public Cliente(int idCliente, String nombre, String apPat, String apMat, String correo) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apPat = apPat;
+        this.apMat = apMat;
         this.correo = correo;
     }
 

@@ -121,7 +121,6 @@ public class VtnDespFac extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_comboBoxFActionPerformed
         try {
             if (this.comboBoxF.getSelectedIndex() != 0) {
-                String desp = "";
                 int cantidad;
                 this.IdFN = Integer.parseInt(String.valueOf(comboBoxF.getSelectedItem()));
                 FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
@@ -130,11 +129,15 @@ public class VtnDespFac extends javax.swing.JFrame {
                 List<Productos> prod = this.ferrD.listaFNotaWhereP(IdFN);
                 Vendedor vend = this.ferrD.listaFNotaWhereVend(IdFN);
 
-                desp += "Fecha: " + vent.getFecha() + "\n"
+                String desp = "Num. de Factura: " + fn.getIdFacturaNota() + "\n"
+                        + "Fecha: " + vent.getFecha() + "\n"
                         + "Clave del vendedor: " + vend.getIdVend() + "\n"
-                        + "RFC: " + c.getRfc() + "\n"
-                        + "Num. de Factura: " + fn.getIdFacturaNota() + "\n"
-                        + "--------------------------------------\n\tProductos\n\n";
+                        + "Nombre del vendedor: " + vend.getNombre() + " " + vend.getApellido()
+                        + "\n--------------------------------------\n\tDatos del cliente\n\n"
+                        + "Nombre: " + c.getNombre() + " " + c.getApPat() + " " + c.getApMat() + "\n"
+                        + "Correo: " + c.getCorreo() + "\n"
+                        + "RFC: " + c.getRfc()
+                        + "\n--------------------------------------\n\tProductos\n\n";
                 for (int i = 0; i < prod.size(); i++) {
                     cantidad = this.ferrD.listaProdVentCant(vent.getIdVenta(), prod.get(i).getIdP());
                     desp += "Nombre: " + prod.get(i).getNombre() + "\n"
@@ -143,6 +146,7 @@ public class VtnDespFac extends javax.swing.JFrame {
                             + "Precio: " + prod.get(i).getPrecio() + "\n\n";
                 }
                 desp += "--------------------------------------\n"
+                        + "IVA: " + fn.getIva() + "\n"
                         + "Monto: " + vent.getMonto() + "\n"
                         + "Total: " + vent.getTotal();
                 txtConsultaF.setText(desp);

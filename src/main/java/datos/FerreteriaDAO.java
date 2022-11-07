@@ -48,14 +48,14 @@ public class FerreteriaDAO {
             + "join producto_venta pv on (v.idVenta = pv.Ventas_idVenta) "
             + "join productos p on (pv.Productos_idProductos = p.idProductos) "
             + "where idFactura_Nota = ?";
-    private static final String SELECT_FACNOTA_WHERE_VENT_IDFACT = "select v.idVenta, v.fecha, v.monto, v.total, v.Vendedor_idVendedor "
+    private static final String SELECT_FACNOTA_WHERE_VENT_IDFACT = "select v.idVenta, date_format(v.fecha, \"%d-%m-%Y\"), v.monto, v.total, v.Vendedor_idVendedor "
             + "from facturanota f join ventas v on (f.Ventas_idVenta = v.idVenta) where idFactura_Nota = ?";
     private static final String SELECT_FACNOTA_WHERE_VEND_IDFACT = "select vend.idVendedor, vend.nombre, vend.apellido, vend.telefono, "
             + "vend.correo from facturanota f join ventas v on (f.Ventas_idVenta = v.idVenta) "
             + "join vendedor vend on (v.Vendedor_idVendedor = vend.idVendedor) where idFactura_Nota = ?";
-    private static final String SELECT_FACNOTA_WHERE_CLIEN_FACT = "select c.idCliente, c.nombre, c.apellidoPat, c.RFC, c.correo "
+    private static final String SELECT_FACNOTA_WHERE_CLIEN_FACT = "select c.idCliente, c.nombre, c.apellidoPat, c.apellidoMat, c.RFC, c.correo "
             + "from facturanota f join cliente c on (f.cliente_idCliente = c.idCliente) where idFactura_Nota = ?";
-    private static final String SELECT_FACNOTA_WHERE_CLIEN_NOTA = "select c.idCliente, c.nombre, c.apellidoPat, c.correo "
+    private static final String SELECT_FACNOTA_WHERE_CLIEN_NOTA = "select c.idCliente, c.nombre, c.apellidoPat, c.apellidoMat, c.correo "
             + "from facturanota f join cliente c on (f.cliente_idCliente = c.idCliente) where idFactura_Nota =  ?";
 
     private static final String UPDATE_PROD = "update productos set nombre = ?, precioU = ?, cantidad = ? where idProductos = ?";
@@ -662,7 +662,7 @@ public class FerreteriaDAO {
             rs = smtm.executeQuery();
             while (rs.next()) {
                 idVenta = rs.getInt("v.idVenta");
-                fecha = rs.getString("v.fecha");
+                fecha = rs.getString("date_format(v.fecha, \"%d-%m-%Y\")");
                 monto = rs.getDouble("v.monto");
                 total = rs.getDouble("v.total");
                 Vendedor_idVend = rs.getInt("v.Vendedor_idVendedor");
@@ -709,7 +709,7 @@ public class FerreteriaDAO {
         Cliente c = null;
         try {
             int idCliente;
-            String nombre, apPat, rfc, correo;
+            String nombre, apPat, apMat, rfc, correo;
             conn = getConnection();
             smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE_CLIEN_FACT);
             smtm.setInt(1, idFacNot);
@@ -718,9 +718,10 @@ public class FerreteriaDAO {
                 idCliente = rs.getInt("c.idCliente");
                 nombre = rs.getString("c.nombre");
                 apPat = rs.getString("c.apellidoPat");
+                apMat = rs.getString("c.apellidoMat");
                 rfc = rs.getString("c.RFC");
                 correo = rs.getString("c.correo");
-                c = new Cliente(idCliente, nombre, apPat, rfc, correo);
+                c = new Cliente(idCliente, nombre, apPat, apMat, rfc, correo);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -736,7 +737,7 @@ public class FerreteriaDAO {
         Cliente c = null;
         try {
             int idCliente;
-            String nombre, apPat, correo;
+            String nombre, apPat, apMat, correo;
             conn = getConnection();
             smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE_CLIEN_NOTA);
             smtm.setInt(1, idFacNot);
@@ -745,8 +746,9 @@ public class FerreteriaDAO {
                 idCliente = rs.getInt("c.idCliente");
                 nombre = rs.getString("c.nombre");
                 apPat = rs.getString("c.apellidoPat");
+                apMat = rs.getString("c.apellidoMat");
                 correo = rs.getString("c.correo");
-                c = new Cliente(idCliente, nombre, apPat, correo);
+                c = new Cliente(idCliente, nombre, apPat, apMat, correo);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

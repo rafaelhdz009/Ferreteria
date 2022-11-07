@@ -7,8 +7,7 @@ package DisVtnP;
 
 import cjb.ci.Mensaje;
 import datos.FerreteriaDAO;
-import domain.FacturaNota;
-import domain.Ventas;
+import domain.*;
 import java.util.List;
 
 /**
@@ -103,11 +102,34 @@ public class VtnDespNot extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_comboBoxNActionPerformed
         try {
             if (this.comboBoxN.getSelectedIndex() != 0) {
-//                this.IdFN = Integer.parseInt(String.valueOf(this.comboBoxN.getSelectedItem()));
-//                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
-//                Ventas v = this.ferrD.listaVentasWhere(this.IdFN);
-//                String desp = fn.despNota() + "\n------------------------------------\n" + v.toString();
-//                this.txtNota.setText(desp);
+                int cantidad;
+                this.IdFN = Integer.parseInt(String.valueOf(comboBoxN.getSelectedItem()));
+                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
+                Ventas vent = this.ferrD.listaFNotaWhereVent(IdFN);
+                Cliente c = this.ferrD.listaFNotaWhereClienteNota(IdFN);
+                List<Productos> prod = this.ferrD.listaFNotaWhereP(IdFN);
+                Vendedor vend = this.ferrD.listaFNotaWhereVend(IdFN);
+
+                String desp = "Num. de Nota: " + fn.getIdFacturaNota() + "\n"
+                        + "Fecha: " + vent.getFecha() + "\n"
+                        + "Clave del vendedor: " + vend.getIdVend() + "\n"
+                        + "Nombre del vendedor: " + vend.getNombre() + " " + vend.getApellido()
+                        + "\n--------------------------------------\n\tDatos del cliente\n\n"
+                        + "Nombre: " + c.getNombre() + " " + c.getApPat() + " " + c.getApMat() + "\n"
+                        + "Correo: " + c.getCorreo()
+                        + "\n--------------------------------------\n\tProductos\n\n";
+                for (int i = 0; i < prod.size(); i++) {
+                    cantidad = this.ferrD.listaProdVentCant(vent.getIdVenta(), prod.get(i).getIdP());
+                    desp += "Nombre: " + prod.get(i).getNombre() + "\n"
+                            + "Clave del producto: " + prod.get(i).getIdP() + "\n"
+                            + "Cantidad: " + cantidad + "\n"
+                            + "Precio: " + prod.get(i).getPrecio() + "\n\n";
+                }
+                desp += "--------------------------------------\n"
+                        + "Descuento: " + fn.getDescuento() + "%\n"
+                        + "Monto: " + vent.getMonto() + "\n"
+                        + "Total: " + vent.getTotal();
+                this.txtNota.setText(desp);
             } else {
                 this.txtNota.setText("");
             }
