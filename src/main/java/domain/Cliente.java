@@ -22,6 +22,21 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(int idCliente, String nombre, String apPat, String rfc, String correo) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apPat = apPat;
+        this.rfc = rfc;
+        this.correo = correo;
+    }
+
+    public Cliente(int idCliente, String nombre, String apPat, String correo) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apPat = apPat;
+        this.correo = correo;
+    }
+
     public Cliente(int idCliente, String nombre, String apPat, String apMat, String rfc, String correo, String telefono) {
         this.idCliente = idCliente;
         this.nombre = nombre;

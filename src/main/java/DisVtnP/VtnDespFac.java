@@ -121,16 +121,36 @@ public class VtnDespFac extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_comboBoxFActionPerformed
         try {
             if (this.comboBoxF.getSelectedIndex() != 0) {
-//                this.IdFN = Integer.parseInt(String.valueOf(comboBoxF.getSelectedItem()));
-//                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
-//                Ventas v = this.ferrD.listaVentasWhere(this.IdFN);
-//                String desp = fn.despFactura() + "\n------------------------------------\n" + v.toString();
-//                txtConsultaF.setText(desp);
+                String desp = "";
+                int cantidad;
+                this.IdFN = Integer.parseInt(String.valueOf(comboBoxF.getSelectedItem()));
+                FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
+                Ventas vent = this.ferrD.listaFNotaWhereVent(IdFN);
+                Cliente c = this.ferrD.listaFNotaWhereClienteFact(IdFN);
+                List<Productos> prod = this.ferrD.listaFNotaWhereP(IdFN);
+                Vendedor vend = this.ferrD.listaFNotaWhereVend(IdFN);
+
+                desp += "Fecha: " + vent.getFecha() + "\n"
+                        + "Clave del vendedor: " + vend.getIdVend() + "\n"
+                        + "RFC: " + c.getRfc() + "\n"
+                        + "Num. de Factura: " + fn.getIdFacturaNota() + "\n"
+                        + "--------------------------------------\n\tProductos\n\n";
+                for (int i = 0; i < prod.size(); i++) {
+                    cantidad = this.ferrD.listaProdVentCant(vent.getIdVenta(), prod.get(i).getIdP());
+                    desp += "Nombre: " + prod.get(i).getNombre() + "\n"
+                            + "Clave del producto: " + prod.get(i).getIdP() + "\n"
+                            + "Cantidad: " + cantidad + "\n"
+                            + "Precio: " + prod.get(i).getPrecio() + "\n\n";
+                }
+                desp += "--------------------------------------\n"
+                        + "Monto: " + vent.getMonto() + "\n"
+                        + "Total: " + vent.getTotal();
+                txtConsultaF.setText(desp);
             } else {
                 this.txtConsultaF.setText("");
             }
         } catch (Exception e) {
-            //e.printStackTrace(System.out);
+//            e.printStackTrace(System.out);
         }
     }//GEN-LAST:event_comboBoxFActionPerformed
 
