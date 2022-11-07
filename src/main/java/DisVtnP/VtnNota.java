@@ -42,8 +42,6 @@ public class VtnNota extends javax.swing.JFrame {
         panelGis = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtCantP = new javax.swing.JTextField();
-        etqCantP1 = new javax.swing.JLabel();
         btnConfirmarN = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         panelBlanco = new javax.swing.JPanel();
@@ -64,6 +62,8 @@ public class VtnNota extends javax.swing.JFrame {
         comboBoxVend = new javax.swing.JComboBox<>();
         etqCliente = new javax.swing.JLabel();
         comboBoxCliente = new javax.swing.JComboBox<>();
+        txtCantP = new javax.swing.JTextField();
+        etqCantP1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Factura");
@@ -107,21 +107,6 @@ public class VtnNota extends javax.swing.JFrame {
             }
         });
         panelGis.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
-
-        txtCantP.setEnabled(false);
-        txtCantP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantPKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCantPKeyTyped(evt);
-            }
-        });
-        panelGis.add(txtCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 80, -1));
-
-        etqCantP1.setForeground(new java.awt.Color(0, 0, 0));
-        etqCantP1.setText("Cantidad:");
-        panelGis.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
 
         btnConfirmarN.setBackground(new java.awt.Color(51, 153, 0));
         btnConfirmarN.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -248,7 +233,7 @@ public class VtnNota extends javax.swing.JFrame {
                 txtDescuentoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 100, -1));
+        jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 100, -1));
 
         cbDescuento.setForeground(new java.awt.Color(0, 0, 0));
         cbDescuento.setText("Descuento");
@@ -285,6 +270,21 @@ public class VtnNota extends javax.swing.JFrame {
             }
         });
         jPanel1.add(comboBoxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 170, -1));
+
+        txtCantP.setEnabled(false);
+        txtCantP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantPKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantPKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 80, 20));
+
+        etqCantP1.setForeground(new java.awt.Color(0, 0, 0));
+        etqCantP1.setText("Cantidad:");
+        jPanel1.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
 
         panelGis.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1020, 380));
 

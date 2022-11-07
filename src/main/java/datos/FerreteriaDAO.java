@@ -25,6 +25,7 @@ public class FerreteriaDAO {
     private static final String SELECT_PRODUCTOS = "select * from productos";
     private static final String SELECT_CLIENTE = "select * from cliente";
     private static final String SELECT_CLIENTE_RFC_NOT_NULL = "select * from cliente where rfc <> 'NULL'";
+    private static final String SELECT_CLIENTE_WHERE_CORREO = "select * from cliente where correo = ?";
     private static final String SELECT_PRODUCTOS_MAX = "select max(idProductos) from productos";
     private static final String SELECT_CLIENTE_MAX = "select max(idCliente) from cliente";
     private static final String SELECT_PROD_IDP = "select Productos_idProductos from producto_venta";
@@ -32,7 +33,9 @@ public class FerreteriaDAO {
     private static final String SELECT_PRODUCTOS_WHERE = "select * from productos where idProductos = ?";
     private static final String SELECT_CLIENTE_WHERE = "select * from cliente where idCliente = ?";
     private static final String SELECT_CLIENTE_WHERE_RFC = "select * from cliente where rfc = ?";
-    private static final String SELECT_CLIENTE_WHERE_LIKE = "select rfc from cliente where rfc like ?";
+    private static final String SELECT_CLIENTE_WHERE_LIKE = "select rfc from cliente where rfc like ? and rfc <> 'NULL'";
+    private static final String SELECT_CLIENTE_WHERE_LIKE_CORREO = "select correo from cliente where correo like ?";
+    private static final String SELECT_CLIENTE_CORREO = "select correo from cliente";
 
     private static final String SELECT_PRODUCTOS_CANT = "select cantidad from productos where idProductos = ?";
     private static final String SELECT_VENDEDOR_ID = "select idVendedor from vendedor order by idVendedor asc";
@@ -216,6 +219,56 @@ public class FerreteriaDAO {
         return listaC;
     }
 
+    public List<String> listaCorreoCliente() {
+        List<String> listaC = new ArrayList<>();
+        try {
+            String correo;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_CORREO);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                correo = rs.getString("correo");
+                listaC.add(correo);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listaC;
+    }
+
+    public Cliente listaClienteWhereCorreo(String cliente_correo) {
+        Cliente c = null;
+        try {
+            int idCliente;
+            String nombre, apPat, apMat, rfc, correo, tel;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_CORREO);
+            smtm.setString(1, cliente_correo);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+                nombre = rs.getString("nombre");
+                apPat = rs.getString("apellidoPat");
+                apMat = rs.getString("apellidoMat");
+                rfc = rs.getString("RFC");
+                correo = rs.getString("correo");
+                tel = rs.getString("telefono");
+                c = new Cliente(idCliente, nombre, apPat, apMat, rfc, correo, tel);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return c;
+    }
+
     public int listaIdMax() {
         int idP = 0;
         try {
@@ -316,6 +369,28 @@ public class FerreteriaDAO {
             close(conn);
         }
         return listClienteRFC;
+    }
+
+    public List<String> listaClienteLikeCorreo(String correo) {
+        List<String> listClienteCorreo = new ArrayList<>();
+        try {
+            String c;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_LIKE_CORREO);
+            smtm.setString(1, correo + "%");
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                c = rs.getString("correo");
+                listClienteCorreo.add(c);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listClienteCorreo;
     }
 
     public List<Integer> listaVendId() {

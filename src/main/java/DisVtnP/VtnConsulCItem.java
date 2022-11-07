@@ -48,7 +48,7 @@ public class VtnConsulCItem extends javax.swing.JFrame {
         btnNomB.setBackground(new java.awt.Color(255, 255, 255));
         btnNomB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNomB.setForeground(new java.awt.Color(0, 0, 0));
-        btnNomB.setText("RFC del cliente");
+        btnNomB.setText("RFC/Correo del cliente");
         btnNomB.setToolTipText("Consulta algún producto por clave del producto");
         btnNomB.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNomB.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +56,7 @@ public class VtnConsulCItem extends javax.swing.JFrame {
                 btnNomBActionPerformed(evt);
             }
         });
-        panelFondo.add(btnNomB, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+        panelFondo.add(btnNomB, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
         btnClvB.setBackground(new java.awt.Color(255, 255, 255));
         btnClvB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -123,7 +123,7 @@ public class VtnConsulCItem extends javax.swing.JFrame {
 
     private void btnNomBActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNomBActionPerformed
     {//GEN-HEADEREND:event_btnNomBActionPerformed
-        VtnCosultaRFCliente vtnCosultaRFC = new VtnCosultaRFCliente();
+        VtnCosultaRCliente vtnCosultaRFC = new VtnCosultaRCliente();
         vtnCosultaRFC.setVisible(true);
     }//GEN-LAST:event_btnNomBActionPerformed
 
