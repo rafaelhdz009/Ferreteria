@@ -63,6 +63,7 @@ public class VtnClienteM extends javax.swing.JFrame {
         setTitle("Altas");
         setBackground(new java.awt.Color(204, 255, 255));
         setIconImage(getIconImage());
+        setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {

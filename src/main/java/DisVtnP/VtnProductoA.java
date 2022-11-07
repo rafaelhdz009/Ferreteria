@@ -51,6 +51,7 @@ public class VtnProductoA extends javax.swing.JFrame {
         setTitle("Altas");
         setBackground(new java.awt.Color(204, 255, 255));
         setIconImage(getIconImage());
+        setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
