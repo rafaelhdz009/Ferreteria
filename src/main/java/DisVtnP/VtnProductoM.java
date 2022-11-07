@@ -68,7 +68,7 @@ public class VtnProductoM extends javax.swing.JFrame {
 
         etqSubtitulo.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         etqSubtitulo.setForeground(new java.awt.Color(0, 0, 0));
-        etqSubtitulo.setText("Inserta la clave del producto que deseas modificar: ");
+        etqSubtitulo.setText("Escoge la clave del producto que deseas modificar: ");
         panelNaranja.add(etqSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
 
         comboBoxP.setBackground(new java.awt.Color(255, 204, 153));

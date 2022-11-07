@@ -14,14 +14,15 @@ import java.util.*;
  *
  * @author Rafael
  */
-public class VtnClienteA extends javax.swing.JFrame {
+public class VtnClienteM extends javax.swing.JFrame {
 
     FerreteriaDAO ferrD = new FerreteriaDAO();
+    int cliente_idC;
 
     /**
      * Creates new form VtnProductoA
      */
-    public VtnClienteA() {
+    public VtnClienteM() {
         initComponents();
         this.setTitle("Altas");
 
@@ -55,12 +56,19 @@ public class VtnClienteA extends javax.swing.JFrame {
         etqCantP3 = new javax.swing.JLabel();
         etqCantP4 = new javax.swing.JLabel();
         etqOpcional1 = new javax.swing.JLabel();
+        comboBoxCve = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Altas");
         setBackground(new java.awt.Color(204, 255, 255));
         setIconImage(getIconImage());
         setType(java.awt.Window.Type.UTILITY);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelAzul.setBackground(new java.awt.Color(204, 255, 255));
@@ -82,11 +90,11 @@ public class VtnClienteA extends javax.swing.JFrame {
                 btnAceptarKeyPressed(evt);
             }
         });
-        panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
+        panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, -1));
 
         etqOpcional.setForeground(new java.awt.Color(0, 0, 0));
         etqOpcional.setText("(Opcional)");
-        panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
+        panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
 
         txtTel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTel.setToolTipText("");
@@ -100,19 +108,19 @@ public class VtnClienteA extends javax.swing.JFrame {
                 txtTelKeyTyped(evt);
             }
         });
-        panelAzul.add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 130, -1));
+        panelAzul.add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 130, -1));
 
         etqNomP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqNomP.setForeground(new java.awt.Color(0, 0, 0));
         etqNomP.setText("Nombre:");
         etqNomP.setToolTipText("Escribe el nombre del Producto");
-        panelAzul.add(etqNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+        panelAzul.add(etqNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         etqMonP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqMonP.setForeground(new java.awt.Color(0, 0, 0));
         etqMonP.setText("Apellido Paterno:");
         etqMonP.setToolTipText("Escribe el precio del producto");
-        panelAzul.add(etqMonP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        panelAzul.add(etqMonP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
         btnCancelar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -124,7 +132,7 @@ public class VtnClienteA extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        panelAzul.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, -1, -1));
+        panelAzul.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -139,6 +147,7 @@ public class VtnClienteA extends javax.swing.JFrame {
         txtNom.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNom.setToolTipText("");
         txtNom.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtNom.setEnabled(false);
         txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomKeyPressed(evt);
@@ -147,7 +156,7 @@ public class VtnClienteA extends javax.swing.JFrame {
                 txtNomKeyTyped(evt);
             }
         });
-        panelAzul.add(txtNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 170, -1));
+        panelAzul.add(txtNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 170, -1));
 
         txtApPat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtApPat.setToolTipText("");
@@ -161,7 +170,7 @@ public class VtnClienteA extends javax.swing.JFrame {
                 txtApPatKeyTyped(evt);
             }
         });
-        panelAzul.add(txtApPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 170, -1));
+        panelAzul.add(txtApPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 170, -1));
 
         txtApMat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtApMat.setToolTipText("");
@@ -175,7 +184,7 @@ public class VtnClienteA extends javax.swing.JFrame {
                 txtApMatKeyTyped(evt);
             }
         });
-        panelAzul.add(txtApMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 170, -1));
+        panelAzul.add(txtApMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 170, -1));
 
         txtRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtRFC.setToolTipText("");
@@ -189,7 +198,7 @@ public class VtnClienteA extends javax.swing.JFrame {
                 txtRFCKeyTyped(evt);
             }
         });
-        panelAzul.add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 170, -1));
+        panelAzul.add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 170, -1));
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtCorreo.setToolTipText("");
@@ -203,33 +212,46 @@ public class VtnClienteA extends javax.swing.JFrame {
                 txtCorreoKeyTyped(evt);
             }
         });
-        panelAzul.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 240, -1));
+        panelAzul.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 240, -1));
 
         etqCantP1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCantP1.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP1.setText("Apellido Materno:");
-        panelAzul.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        panelAzul.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
         etqCantP2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCantP2.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP2.setText("RFC:");
-        panelAzul.add(etqCantP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+        panelAzul.add(etqCantP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
 
         etqCantP3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCantP3.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP3.setText("Correo:");
-        panelAzul.add(etqCantP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+        panelAzul.add(etqCantP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
 
         etqCantP4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCantP4.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP4.setText("Teléfono:");
-        panelAzul.add(etqCantP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+        panelAzul.add(etqCantP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
 
         etqOpcional1.setForeground(new java.awt.Color(0, 0, 0));
         etqOpcional1.setText("(Opcional)");
-        panelAzul.add(etqOpcional1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
+        panelAzul.add(etqOpcional1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
-        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 460));
+        comboBoxCve.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona clave del cliente" }));
+        comboBoxCve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxCveActionPerformed(evt);
+            }
+        });
+        panelAzul.add(comboBoxCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 200, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Escoge la clave del cliente que deseas modificar: ");
+        panelAzul.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+
+        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 530));
 
         pack();
         setLocationRelativeTo(null);
@@ -238,49 +260,69 @@ public class VtnClienteA extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
         CtrlInterfaz.limpia(txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
-        CtrlInterfaz.habilita(false, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
-        CtrlInterfaz.cambia(txtNom);
+        CtrlInterfaz.habilita(false, txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
+        this.comboBoxCve.setSelectedIndex(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAceptarActionPerformed
     {//GEN-HEADEREND:event_btnAceptarActionPerformed
         try {
             if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
-                int cveProd = idCliente();
-                if (txtNom.getText().equals("") || txtApPat.getText().equals("")
-                        || txtApMat.getText().equals("") || txtCorreo.getText().equals("")) {
-                    Mensaje.error(this, "No se han llenado todos lo campos, verifique.");
-                } else if (!txtRFC.getText().equals("") && txtRFC.getText().length() < 12) {
-                    Mensaje.error(this, "Faltan digitos en el rfc, compruebe.");
-                } else if (!txtTel.getText().equals("") && txtTel.getText().length() < 10) {
-                    Mensaje.error(this, "Faltan digitos en el teléfono, compruebe.");
-                } else {
-                    boolean ban = false;
-                    List<Cliente> cliente = this.ferrD.listaCliente();
-                    for (Cliente c : cliente) {
-                        if (c.getRfc().equals(this.txtRFC.getText()) || c.getCorreo().equals(this.txtCorreo.getText())) {
-                            ban = true;
-                            break;
+                boolean b = validarCompra();
+                boolean ban = validaRFCorreo();
+                if (b) {
+                    if (txtCorreo.getText().equals("")) {
+                        Mensaje.error(this, "El correo no puede ser nulo.");
+                    } else if (!txtRFC.getText().equals("") && txtRFC.getText().length() < 12) {
+                        Mensaje.error(this, "Faltan digitos en el rfc, compruebe.");
+                    } else if (!txtTel.getText().equals("") && txtTel.getText().length() < 10) {
+                        Mensaje.error(this, "Faltan digitos en el teléfono, compruebe.");
+                    } else {
+                        if (!ban) {
+                            String rfc = this.txtRFC.getText().toUpperCase();
+                            String correo = this.txtCorreo.getText();
+                            String tel = this.txtTel.getText();
+                            if (tel.equals("")) {
+                                tel = "NULL";
+                            } else if (rfc.equals("")) {
+                                rfc = "NULL";
+                            }
+                            int registro = this.ferrD.actualizarCliente(rfc, correo, tel, cliente_idC);
+                            Mensaje.exito(this, registro + " registro actualizado");
+                            Mensaje.exito(this, "Cliente actualizado");
+                            btnCancelarActionPerformed(evt);
+                        } else {
+                            Mensaje.error(this, "El correo y el RFC son unicos, verifique.");
                         }
                     }
-                    if (!ban) {
-                        String nombre = this.txtNom.getText();
-                        String apPat = this.txtApPat.getText();
-                        String apMat = this.txtApMat.getText();
-                        String rfc = this.txtRFC.getText().toUpperCase();
-                        String correo = this.txtCorreo.getText();
-                        String tel = this.txtTel.getText();
-                        if (tel.equals("")) {
-                            tel = "NULL";
-                        } else if (rfc.equals("")) {
-                            rfc = "NULL";
-                        }
-                        int registro = this.ferrD.insertCliente(cveProd, nombre, apPat, apMat, rfc, correo, tel);
-                        Mensaje.exito(this, registro + " registro insertado");
-                        Mensaje.exito(this, "Cliente dado de alta");
-                        btnCancelarActionPerformed(evt);
+                } else {
+                    if (txtNom.getText().equals("") || txtApPat.getText().equals("")
+                            || txtApMat.getText().equals("") || txtCorreo.getText().equals("")) {
+                        Mensaje.error(this, "No se han llenado todos lo campos, verifique.");
+                    } else if (!txtRFC.getText().equals("") && txtRFC.getText().length() < 12) {
+                        Mensaje.error(this, "Faltan digitos en el rfc, compruebe.");
+                    } else if (!txtTel.getText().equals("") && txtTel.getText().length() < 10) {
+                        Mensaje.error(this, "Faltan digitos en el teléfono, compruebe.");
                     } else {
-                        Mensaje.error(this, "El correo y el RFC son unicos, verifique.");
+                        if (!ban) {
+                            String nombre = this.txtNom.getText();
+                            String apPat = this.txtApPat.getText();
+                            String apMat = this.txtApMat.getText();
+                            String rfc = this.txtRFC.getText().toUpperCase();
+                            String correo = this.txtCorreo.getText();
+                            String tel = this.txtTel.getText();
+                            if (tel.equals("")) {
+                                tel = "NULL";
+                            } else if (rfc.equals("")) {
+                                rfc = "NULL";
+                            }
+                            int registro = this.ferrD.actualizarCliente(nombre, apPat, apMat, rfc, correo, tel, cliente_idC);
+                            Mensaje.exito(this, registro + " registro actualizado");
+                            Mensaje.exito(this, "Cliente actualizado");
+                            btnCancelarActionPerformed(evt);
+                        } else {
+                            Mensaje.error(this, "El correo y el RFC son unicos, verifique.");
+                        }
                     }
                 }
             } else {
@@ -292,17 +334,19 @@ public class VtnClienteA extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    public int idCliente() {
-        List<Integer> list = this.ferrD.listaIdCliente();
-        int id = 1027;
-        if (list.size() == 0) {
-            return id;
-        } else {
-            id = this.ferrD.listaIdMaxCliente() + 1;
-            return id;
+    public boolean validaRFCorreo() {
+        boolean ban = false;
+        List<Cliente> cliente = this.ferrD.listaCliente();
+        for (Cliente c : cliente) {
+            if (c.getIdCliente() != this.cliente_idC) {
+                if (c.getRfc().equals(this.txtRFC.getText()) || c.getCorreo().equals(this.txtCorreo.getText())) {
+                    ban = true;
+                    break;
+                }
+            }
         }
+        return ban;
     }
-
 
     private void txtTelKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtTelKeyPressed
     {//GEN-HEADEREND:event_txtTelKeyPressed
@@ -415,6 +459,68 @@ public class VtnClienteA extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCorreoKeyTyped
 
+    private void comboBoxCveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCveActionPerformed
+        try {
+            if (this.comboBoxCve.getSelectedIndex() != 0) {
+                CtrlInterfaz.limpia(txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
+                CtrlInterfaz.habilita(false, txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
+                this.cliente_idC = Integer.parseInt(String.valueOf(this.comboBoxCve.getSelectedItem()));
+                Cliente p = this.ferrD.listaClienteWhere(cliente_idC);
+                this.txtNom.setText(p.getNombre());
+                this.txtApPat.setText(p.getApPat());
+                this.txtApMat.setText(p.getApMat());
+                String rfc = !p.getRfc().equals("NULL") ? p.getRfc() : "";
+                this.txtRFC.setText(rfc);
+                this.txtCorreo.setText(p.getCorreo());
+                String tel = !p.getTelefono().equals("NULL") ? p.getTelefono() : "";
+                this.txtTel.setText(tel);
+                boolean ban = validarCompra();
+                if (ban) {
+                    Mensaje.error(this, "Solo puede modificar los siguientes campos debido"
+                            + " a que el cliente ya ha realizado una compra");
+                    CtrlInterfaz.habilita(true, txtRFC);
+                    CtrlInterfaz.cambia(txtRFC);
+                } else {
+                    CtrlInterfaz.habilita(true, txtNom);
+                    CtrlInterfaz.cambia(txtNom);
+                }
+            } else {
+                btnCancelarActionPerformed(evt);
+            }
+        } catch (Exception e) {
+            //e.printStackTrace(System.out);
+        }
+    }//GEN-LAST:event_comboBoxCveActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            llenaComboCve();
+        } catch (Exception e) {
+            Mensaje.error(this, "Aún no hay registros");
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    public void llenaComboCve() {
+        List<Integer> arr = ferrD.listaIdCliente();
+        for (int idCl : arr) {
+            this.comboBoxCve.addItem(String.valueOf(idCl));
+        }
+    }
+
+    public boolean validarCompra() {
+        boolean ban = false;
+        List<Integer> listaPV = this.ferrD.listaClienteFN();
+        cliente_idC = Integer.parseInt(String.valueOf(comboBoxCve.getSelectedItem()));
+        for (int idCliente : listaPV) {
+            if (idCliente == cliente_idC) {
+                ban = true;
+                break;
+            }
+        }
+        return ban;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -432,14 +538,18 @@ public class VtnClienteA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VtnClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnClienteM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VtnClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnClienteM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VtnClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnClienteM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VtnClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VtnClienteM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -448,7 +558,7 @@ public class VtnClienteA extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VtnClienteA().setVisible(true);
+                new VtnClienteM().setVisible(true);
             }
         });
     }
@@ -456,6 +566,7 @@ public class VtnClienteA extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox<String> comboBoxCve;
     private javax.swing.JLabel etqAltasT;
     private javax.swing.JLabel etqCantP1;
     private javax.swing.JLabel etqCantP2;
@@ -465,6 +576,7 @@ public class VtnClienteA extends javax.swing.JFrame {
     private javax.swing.JLabel etqNomP;
     private javax.swing.JLabel etqOpcional;
     private javax.swing.JLabel etqOpcional1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelAzul;
     private javax.swing.JTextField txtApMat;

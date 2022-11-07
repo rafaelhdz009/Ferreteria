@@ -58,6 +58,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
         itemNota = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         Alta = new javax.swing.JMenuItem();
+        itemModificaciones = new javax.swing.JMenuItem();
         bajaCliente = new javax.swing.JMenuItem();
         menuConsultas = new javax.swing.JMenu();
         itemProductoC = new javax.swing.JMenuItem();
@@ -249,6 +250,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
         itemBajas.setForeground(new java.awt.Color(0, 0, 0));
         itemBajas.setText("Bajas");
         itemBajas.setToolTipText("Da de baja un producto");
+        itemBajas.setActionCommand("Baja");
         itemBajas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         itemBajas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,6 +318,16 @@ public class VtnPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(Alta);
 
+        itemModificaciones.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        itemModificaciones.setForeground(new java.awt.Color(0, 0, 0));
+        itemModificaciones.setText("Modificaciones");
+        itemModificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemModificacionesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemModificaciones);
+
         bajaCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         bajaCliente.setForeground(new java.awt.Color(0, 0, 0));
         bajaCliente.setText("Baja");
@@ -354,7 +366,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
         itemVentaC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         itemVentaC.setBackground(new java.awt.Color(0, 0, 0));
         itemVentaC.setForeground(new java.awt.Color(0, 0, 0));
-        itemVentaC.setText("Venta");
+        itemVentaC.setText("Ventas");
         itemVentaC.setToolTipText("Consulta tus ventas");
         itemVentaC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         itemVentaC.addActionListener(new java.awt.event.ActionListener() {
@@ -366,7 +378,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
 
         consultaCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         consultaCliente.setForeground(new java.awt.Color(0, 0, 0));
-        consultaCliente.setText("Cliente");
+        consultaCliente.setText("Clientes");
         consultaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultaClienteActionPerformed(evt);
@@ -580,6 +592,11 @@ public class VtnPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkClienteActionPerformed
 
+    private void itemModificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemModificacionesActionPerformed
+        VtnClienteM vtnClienteM = new VtnClienteM();
+        vtnClienteM.setVisible(true);
+    }//GEN-LAST:event_itemModificacionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -650,6 +667,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemBajas;
     private javax.swing.JMenuItem itemFactura;
     private javax.swing.JMenuItem itemModif;
+    private javax.swing.JMenuItem itemModificaciones;
     private javax.swing.JMenuItem itemNota;
     private javax.swing.JMenuItem itemProductoC;
     private javax.swing.JMenuItem itemVentaC;

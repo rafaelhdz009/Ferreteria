@@ -62,7 +62,10 @@ public class FerreteriaDAO {
             + "from facturanota f join cliente c on (f.cliente_idCliente = c.idCliente) where idFactura_Nota =  ?";
 
     private static final String UPDATE_PROD = "update productos set nombre = ?, precioU = ?, cantidad = ? where idProductos = ?";
-    private static final String UDPATE_PROD_CANT = "update productos set cantidad = ? where idProductos = ?";
+    private static final String UPDATE_PROD_CANT = "update productos set cantidad = ? where idProductos = ?";
+    private static final String UPDATE_CLIENTE = "update cliente set nombre = ?, apellidoPat = ?, apellidoMat = ?, "
+            + "RFC = ?, correo = ?, telefono = ? where idCliente = ?";
+    private static final String UPDATE_CLIENTE_2 = "update cliente set RFC = ?, correo = ?, telefono = ? where idCliente = ?";
 
     private static final String DELETE_PROD_WHERE = "delete from productos where idProductos=?";
     private static final String DELETE_CLIENTE_WHERE = "delete from cliente where idCliente=?";
@@ -858,7 +861,7 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
-            smtm = conn.prepareStatement(UDPATE_PROD_CANT);
+            smtm = conn.prepareStatement(UPDATE_PROD_CANT);
             smtm.setInt(1, cantidad);
             smtm.setInt(2, IdP);
             registros = smtm.executeUpdate();
@@ -869,6 +872,48 @@ public class FerreteriaDAO {
             if (this.conexionTransaccional == null) {
                 close(conn);
             }
+        }
+        return registros;
+    }
+
+    public int actualizarCliente(String nombre, String apPat, String apMat,
+            String rfc, String correo, String tel, int idCliente) {
+        int registros = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(UPDATE_CLIENTE);
+            smtm.setString(1, nombre);
+            smtm.setString(2, apPat);
+            smtm.setString(3, apMat);
+            smtm.setString(4, rfc);
+            smtm.setString(5, correo);
+            smtm.setString(6, tel);
+            smtm.setInt(7, idCliente);
+            registros = smtm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(smtm);
+            close(conn);
+        }
+        return registros;
+    }
+
+    public int actualizarCliente(String rfc, String correo, String tel, int idCliente) {
+        int registros = 0;
+        try {
+            conn = getConnection();
+            smtm = conn.prepareStatement(UPDATE_CLIENTE_2);
+            smtm.setString(1, rfc);
+            smtm.setString(2, correo);
+            smtm.setString(3, tel);
+            smtm.setInt(4, idCliente);
+            registros = smtm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(smtm);
+            close(conn);
         }
         return registros;
     }
