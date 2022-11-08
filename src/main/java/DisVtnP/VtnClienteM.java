@@ -46,6 +46,7 @@ public class VtnClienteM extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         etqAltasT = new javax.swing.JLabel();
+        maderaOsucra = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         txtApPat = new javax.swing.JTextField();
         txtApMat = new javax.swing.JTextField();
@@ -58,6 +59,8 @@ public class VtnClienteM extends javax.swing.JFrame {
         etqOpcional1 = new javax.swing.JLabel();
         comboBoxCve = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        maderaClara = new javax.swing.JLabel();
+        maderaClara1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Altas");
@@ -91,8 +94,9 @@ public class VtnClienteM extends javax.swing.JFrame {
                 btnAceptarKeyPressed(evt);
             }
         });
-        panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, -1));
+        panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, -1, -1));
 
+        etqOpcional.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etqOpcional.setForeground(new java.awt.Color(0, 0, 0));
         etqOpcional.setText("(Opcional)");
         panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
@@ -133,17 +137,20 @@ public class VtnClienteM extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        panelAzul.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, -1, -1));
+        panelAzul.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqAltasT.setFont(new java.awt.Font("Broadway", 1, 36)); // NOI18N
         etqAltasT.setForeground(new java.awt.Color(255, 255, 255));
-        etqAltasT.setText("Cliente");
-        jPanel1.add(etqAltasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        etqAltasT.setText("Actualizar Cliente");
+        jPanel1.add(etqAltasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        panelAzul.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 60));
+        maderaOsucra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura2.jpg"))); // NOI18N
+        jPanel1.add(maderaOsucra, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 460, 100));
+
+        panelAzul.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 70));
 
         txtNom.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNom.setToolTipText("");
@@ -235,24 +242,33 @@ public class VtnClienteM extends javax.swing.JFrame {
         etqCantP4.setText("Teléfono:");
         panelAzul.add(etqCantP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
 
+        etqOpcional1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etqOpcional1.setForeground(new java.awt.Color(0, 0, 0));
         etqOpcional1.setText("(Opcional)");
         panelAzul.add(etqOpcional1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
+        comboBoxCve.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxCve.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxCve.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona clave del cliente" }));
         comboBoxCve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxCveActionPerformed(evt);
             }
         });
-        panelAzul.add(comboBoxCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 200, -1));
+        panelAzul.add(comboBoxCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 200, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Escoge la clave del cliente que deseas modificar: ");
-        panelAzul.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+        panelAzul.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
-        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 530));
+        maderaClara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelAzul.add(maderaClara, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 190, -1, -1));
+
+        maderaClara1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelAzul.add(maderaClara1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 50, -1, -1));
+
+        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 500));
 
         pack();
         setLocationRelativeTo(null);
@@ -579,6 +595,9 @@ public class VtnClienteM extends javax.swing.JFrame {
     private javax.swing.JLabel etqOpcional1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel maderaClara;
+    private javax.swing.JLabel maderaClara1;
+    private javax.swing.JLabel maderaOsucra;
     private javax.swing.JPanel panelAzul;
     private javax.swing.JTextField txtApMat;
     private javax.swing.JTextField txtApPat;

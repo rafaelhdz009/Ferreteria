@@ -153,7 +153,7 @@ public class VtnClienteBajaCve extends javax.swing.JFrame {
         });
         jPanel2.add(comboBoxCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 150, -1));
 
-        maderaOscura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura.jpg"))); // NOI18N
+        maderaOscura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura2.jpg"))); // NOI18N
         jPanel2.add(maderaOscura, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 170));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 140));

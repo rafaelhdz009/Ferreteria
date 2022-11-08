@@ -48,6 +48,7 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
         txtRFC = new javax.swing.JTextField();
         rbRFC = new javax.swing.JRadioButton();
         rbCorreo = new javax.swing.JRadioButton();
+        madera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta por clave");
@@ -64,25 +65,27 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
         txtConsultaClv.setRows(5);
         scrollPane.setViewportView(txtConsultaClv);
 
-        panelAmarillo.add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 451, 125));
+        panelAmarillo.add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 451, 125));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelBlanco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqConsulta.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        etqConsulta.setForeground(new java.awt.Color(0, 0, 0));
         etqConsulta.setText("Consulta");
-        panelBlanco.add(etqConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 199, -1));
+        panelBlanco.add(etqConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 199, -1));
 
         etqPorCve.setFont(new java.awt.Font("Brush Script MT", 0, 24)); // NOI18N
-        etqPorCve.setText("Por RFC");
-        panelBlanco.add(etqPorCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        etqPorCve.setForeground(new java.awt.Color(0, 0, 0));
+        etqPorCve.setText("Por RFC-Correo");
+        panelBlanco.add(etqPorCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
-        panelAmarillo.add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 270, 70));
+        panelAmarillo.add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 560, 70));
 
         txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setForeground(new java.awt.Color(0, 0, 0));
-        txtCorreo.setToolTipText("Escribe como inicia el RFC");
+        txtCorreo.setToolTipText("Escribe como inicia el Correo");
         txtCorreo.setEnabled(false);
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -92,12 +95,12 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
                 txtCorreoKeyTyped(evt);
             }
         });
-        panelAmarillo.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 172, -1));
+        panelAmarillo.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 172, -1));
 
-        lbEscribeRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbEscribeRFC.setForeground(new java.awt.Color(0, 0, 0));
+        lbEscribeRFC.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lbEscribeRFC.setForeground(new java.awt.Color(255, 255, 255));
         lbEscribeRFC.setText("Escribe como comienza el RFC o el Correo");
-        panelAmarillo.add(lbEscribeRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+        panelAmarillo.add(lbEscribeRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -116,19 +119,19 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
         });
         panelAmarillo.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
 
-        comoBoxRC.setBackground(new java.awt.Color(255, 255, 153));
+        comoBoxRC.setBackground(new java.awt.Color(255, 255, 255));
         comoBoxRC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comoBoxRC.setForeground(new java.awt.Color(0, 0, 0));
         comoBoxRC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona..." }));
         comoBoxRC.setToolTipText("Selecciona un producto");
-        comoBoxRC.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        comoBoxRC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comoBoxRC.setEnabled(false);
         comoBoxRC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comoBoxRCActionPerformed(evt);
             }
         });
-        panelAmarillo.add(comoBoxRC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+        panelAmarillo.add(comoBoxRC, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
 
         txtRFC.setBackground(new java.awt.Color(255, 255, 255));
         txtRFC.setForeground(new java.awt.Color(0, 0, 0));
@@ -142,31 +145,36 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
                 txtRFCKeyTyped(evt);
             }
         });
-        panelAmarillo.add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 172, -1));
+        panelAmarillo.add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 172, -1));
 
         bgBusqueda.add(rbRFC);
-        rbRFC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbRFC.setForeground(new java.awt.Color(0, 0, 0));
+        rbRFC.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        rbRFC.setForeground(new java.awt.Color(255, 255, 255));
         rbRFC.setText("RFC");
+        rbRFC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbRFC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbRFCActionPerformed(evt);
             }
         });
-        panelAmarillo.add(rbRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
+        panelAmarillo.add(rbRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
 
         bgBusqueda.add(rbCorreo);
-        rbCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rbCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        rbCorreo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        rbCorreo.setForeground(new java.awt.Color(255, 255, 255));
         rbCorreo.setText("Correo");
+        rbCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbCorreoActionPerformed(evt);
             }
         });
-        panelAmarillo.add(rbCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
+        panelAmarillo.add(rbCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
-        getContentPane().add(panelAmarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 410));
+        madera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura2.jpg"))); // NOI18N
+        panelAmarillo.add(madera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 560, 450));
+
+        getContentPane().add(panelAmarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 410));
 
         pack();
         setLocationRelativeTo(null);
@@ -365,6 +373,7 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
     private javax.swing.JLabel etqConsulta;
     private javax.swing.JLabel etqPorCve;
     private javax.swing.JLabel lbEscribeRFC;
+    private javax.swing.JLabel madera;
     private javax.swing.JPanel panelAmarillo;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JRadioButton rbCorreo;

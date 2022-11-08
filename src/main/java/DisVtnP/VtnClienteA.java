@@ -40,21 +40,24 @@ public class VtnClienteA extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         etqOpcional = new javax.swing.JLabel();
         txtTel = new javax.swing.JTextField();
-        etqNomP = new javax.swing.JLabel();
-        etqMonP = new javax.swing.JLabel();
+        etqNom = new javax.swing.JLabel();
+        etqApPat = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         etqAltasT = new javax.swing.JLabel();
+        maderaOscura = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         txtApPat = new javax.swing.JTextField();
         txtApMat = new javax.swing.JTextField();
         txtRFC = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        etqCantP1 = new javax.swing.JLabel();
-        etqCantP2 = new javax.swing.JLabel();
-        etqCantP3 = new javax.swing.JLabel();
-        etqCantP4 = new javax.swing.JLabel();
+        etqApMat = new javax.swing.JLabel();
+        etqRFC = new javax.swing.JLabel();
+        etqCorreo = new javax.swing.JLabel();
+        etqTel = new javax.swing.JLabel();
         etqOpcional1 = new javax.swing.JLabel();
+        maderaClara = new javax.swing.JLabel();
+        maderaClara1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Altas");
@@ -85,6 +88,7 @@ public class VtnClienteA extends javax.swing.JFrame {
         });
         panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
 
+        etqOpcional.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etqOpcional.setForeground(new java.awt.Color(0, 0, 0));
         etqOpcional.setText("(Opcional)");
         panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
@@ -103,17 +107,17 @@ public class VtnClienteA extends javax.swing.JFrame {
         });
         panelAzul.add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 130, -1));
 
-        etqNomP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etqNomP.setForeground(new java.awt.Color(0, 0, 0));
-        etqNomP.setText("Nombre:");
-        etqNomP.setToolTipText("Escribe el nombre del Producto");
-        panelAzul.add(etqNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+        etqNom.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etqNom.setForeground(new java.awt.Color(0, 0, 0));
+        etqNom.setText("Nombre:");
+        etqNom.setToolTipText("Escribe el nombre del Producto");
+        panelAzul.add(etqNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
 
-        etqMonP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etqMonP.setForeground(new java.awt.Color(0, 0, 0));
-        etqMonP.setText("Apellido Paterno:");
-        etqMonP.setToolTipText("Escribe el precio del producto");
-        panelAzul.add(etqMonP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        etqApPat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etqApPat.setForeground(new java.awt.Color(0, 0, 0));
+        etqApPat.setText("Apellido Paterno:");
+        etqApPat.setToolTipText("Escribe el precio del producto");
+        panelAzul.add(etqApPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
         btnCancelar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -134,6 +138,9 @@ public class VtnClienteA extends javax.swing.JFrame {
         etqAltasT.setForeground(new java.awt.Color(255, 255, 255));
         etqAltasT.setText("Cliente");
         jPanel1.add(etqAltasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+
+        maderaOscura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura2.jpg"))); // NOI18N
+        jPanel1.add(maderaOscura, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 450, 80));
 
         panelAzul.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 60));
 
@@ -206,29 +213,36 @@ public class VtnClienteA extends javax.swing.JFrame {
         });
         panelAzul.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 240, -1));
 
-        etqCantP1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etqCantP1.setForeground(new java.awt.Color(0, 0, 0));
-        etqCantP1.setText("Apellido Materno:");
-        panelAzul.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        etqApMat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etqApMat.setForeground(new java.awt.Color(0, 0, 0));
+        etqApMat.setText("Apellido Materno:");
+        panelAzul.add(etqApMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
-        etqCantP2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etqCantP2.setForeground(new java.awt.Color(0, 0, 0));
-        etqCantP2.setText("RFC:");
-        panelAzul.add(etqCantP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+        etqRFC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etqRFC.setForeground(new java.awt.Color(0, 0, 0));
+        etqRFC.setText("RFC:");
+        panelAzul.add(etqRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
-        etqCantP3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etqCantP3.setForeground(new java.awt.Color(0, 0, 0));
-        etqCantP3.setText("Correo:");
-        panelAzul.add(etqCantP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+        etqCorreo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etqCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        etqCorreo.setText("Correo:");
+        panelAzul.add(etqCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
 
-        etqCantP4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etqCantP4.setForeground(new java.awt.Color(0, 0, 0));
-        etqCantP4.setText("Teléfono:");
-        panelAzul.add(etqCantP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+        etqTel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etqTel.setForeground(new java.awt.Color(0, 0, 0));
+        etqTel.setText("Teléfono:");
+        panelAzul.add(etqTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
+        etqOpcional1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         etqOpcional1.setForeground(new java.awt.Color(0, 0, 0));
         etqOpcional1.setText("(Opcional)");
         panelAzul.add(etqOpcional1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
+
+        maderaClara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelAzul.add(maderaClara, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 450, 240));
+
+        maderaClara1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelAzul.add(maderaClara1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 450, 340));
 
         getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 460));
 
@@ -458,15 +472,18 @@ public class VtnClienteA extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel etqAltasT;
-    private javax.swing.JLabel etqCantP1;
-    private javax.swing.JLabel etqCantP2;
-    private javax.swing.JLabel etqCantP3;
-    private javax.swing.JLabel etqCantP4;
-    private javax.swing.JLabel etqMonP;
-    private javax.swing.JLabel etqNomP;
+    private javax.swing.JLabel etqApMat;
+    private javax.swing.JLabel etqApPat;
+    private javax.swing.JLabel etqCorreo;
+    private javax.swing.JLabel etqNom;
     private javax.swing.JLabel etqOpcional;
     private javax.swing.JLabel etqOpcional1;
+    private javax.swing.JLabel etqRFC;
+    private javax.swing.JLabel etqTel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel maderaClara;
+    private javax.swing.JLabel maderaClara1;
+    private javax.swing.JLabel maderaOscura;
     private javax.swing.JPanel panelAzul;
     private javax.swing.JTextField txtApMat;
     private javax.swing.JTextField txtApPat;

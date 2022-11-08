@@ -40,8 +40,10 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
         panelAmarillo = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         txtConsultaClv = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
         comoBoxProd = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        madera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta por clave");
@@ -55,34 +57,23 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqConsulta.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        etqConsulta.setForeground(new java.awt.Color(0, 0, 0));
         etqConsulta.setText("Consulta");
         getContentPane().add(etqConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 199, -1));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelBlanco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqPorCve.setFont(new java.awt.Font("Brush Script MT", 0, 24)); // NOI18N
+        etqPorCve.setForeground(new java.awt.Color(0, 0, 0));
         etqPorCve.setText("Por clave");
+        panelBlanco.add(etqPorCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
 
-        javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
-        panelBlanco.setLayout(panelBlancoLayout);
-        panelBlancoLayout.setHorizontalGroup(
-            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
-                .addComponent(etqPorCve)
-                .addGap(21, 21, 21))
-        );
-        panelBlancoLayout.setVerticalGroup(
-            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBlancoLayout.createSequentialGroup()
-                .addGap(0, 27, Short.MAX_VALUE)
-                .addComponent(etqPorCve))
-        );
-
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 270, 60));
+        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 600, 60));
 
         panelAmarillo.setBackground(new java.awt.Color(255, 255, 204));
+        panelAmarillo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtConsultaClv.setEditable(false);
         txtConsultaClv.setColumns(20);
@@ -90,11 +81,9 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
         txtConsultaClv.setRows(5);
         scrollPane.setViewportView(txtConsultaClv);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Clave del producto: ");
+        panelAmarillo.add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 169, 451, 125));
 
-        comoBoxProd.setBackground(new java.awt.Color(255, 255, 153));
+        comoBoxProd.setBackground(new java.awt.Color(255, 255, 255));
         comoBoxProd.setForeground(new java.awt.Color(0, 0, 0));
         comoBoxProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona clave de producto" }));
         comoBoxProd.setToolTipText("Selecciona un producto");
@@ -104,33 +93,20 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
                 comoBoxProdActionPerformed(evt);
             }
         });
+        panelAmarillo.add(comoBoxProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 190, -1));
 
-        javax.swing.GroupLayout panelAmarilloLayout = new javax.swing.GroupLayout(panelAmarillo);
-        panelAmarillo.setLayout(panelAmarilloLayout);
-        panelAmarilloLayout.setHorizontalGroup(
-            panelAmarilloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAmarilloLayout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comoBoxProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAmarilloLayout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
-        );
-        panelAmarilloLayout.setVerticalGroup(
-            panelAmarilloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAmarilloLayout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
-                .addGroup(panelAmarilloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(comoBoxProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
-        );
+        jPanel1.setBackground(new java.awt.Color(0, 26, 53));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Clave del producto:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 30));
+
+        panelAmarillo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 105, 360, 50));
+
+        madera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura.jpg"))); // NOI18N
+        panelAmarillo.add(madera, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 690, 380));
 
         getContentPane().add(panelAmarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 350));
 
@@ -210,7 +186,9 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comoBoxProd;
     private javax.swing.JLabel etqConsulta;
     private javax.swing.JLabel etqPorCve;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel madera;
     private javax.swing.JPanel panelAmarillo;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JScrollPane scrollPane;

@@ -70,7 +70,7 @@ public class VtnProductoM extends javax.swing.JFrame {
         etqSubtitulo.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         etqSubtitulo.setForeground(new java.awt.Color(0, 0, 0));
         etqSubtitulo.setText("Escoge la clave del producto que deseas modificar: ");
-        panelNaranja.add(etqSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+        panelNaranja.add(etqSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         comboBoxP.setBackground(new java.awt.Color(255, 204, 153));
         comboBoxP.setForeground(new java.awt.Color(0, 0, 0));
@@ -81,17 +81,18 @@ public class VtnProductoM extends javax.swing.JFrame {
                 comboBoxPActionPerformed(evt);
             }
         });
-        panelNaranja.add(comboBoxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 200, -1));
+        panelNaranja.add(comboBoxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 200, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqModif.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
         etqModif.setForeground(new java.awt.Color(255, 255, 255));
-        etqModif.setText("Modificaciones");
-        jPanel1.add(etqModif);
+        etqModif.setText("Actualizar Producto");
+        jPanel1.add(etqModif, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
-        panelNaranja.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 350, 60));
+        panelNaranja.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 80));
 
         etqNomP.setForeground(new java.awt.Color(0, 0, 0));
         etqNomP.setText("Nombre");

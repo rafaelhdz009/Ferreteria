@@ -39,6 +39,7 @@ public class VtnCosultaCl extends javax.swing.JFrame {
         panelNaranja = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         txtConsultaP = new javax.swing.JTextArea();
+        madera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta todos los productos");
@@ -52,10 +53,12 @@ public class VtnCosultaCl extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqCons.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        etqCons.setForeground(new java.awt.Color(0, 0, 0));
         etqCons.setText("Consulta");
         getContentPane().add(etqCons, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 199, -1));
 
         etqTodP.setFont(new java.awt.Font("Brush Script MT", 0, 24)); // NOI18N
+        etqTodP.setForeground(new java.awt.Color(0, 0, 0));
         etqTodP.setText("Todos los clientes");
         getContentPane().add(etqTodP, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
@@ -66,16 +69,17 @@ public class VtnCosultaCl extends javax.swing.JFrame {
         panelBlanco.setLayout(panelBlancoLayout);
         panelBlancoLayout.setHorizontalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 268, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
         panelBlancoLayout.setVerticalGroup(
             panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 58, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 270, 60));
+        getContentPane().add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 20, 610, 70));
 
         panelNaranja.setBackground(new java.awt.Color(255, 220, 186));
+        panelNaranja.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtConsultaP.setEditable(false);
         txtConsultaP.setColumns(20);
@@ -83,22 +87,10 @@ public class VtnCosultaCl extends javax.swing.JFrame {
         txtConsultaP.setRows(5);
         scrollPane.setViewportView(txtConsultaP);
 
-        javax.swing.GroupLayout panelNaranjaLayout = new javax.swing.GroupLayout(panelNaranja);
-        panelNaranja.setLayout(panelNaranjaLayout);
-        panelNaranjaLayout.setHorizontalGroup(
-            panelNaranjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNaranjaLayout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-        );
-        panelNaranjaLayout.setVerticalGroup(
-            panelNaranjaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNaranjaLayout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
+        panelNaranja.add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 104, 451, 226));
+
+        madera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura2.jpg"))); // NOI18N
+        panelNaranja.add(madera, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 630, 440));
 
         getContentPane().add(panelNaranja, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 360));
 
@@ -168,6 +160,7 @@ public class VtnCosultaCl extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel etqCons;
     private javax.swing.JLabel etqTodP;
+    private javax.swing.JLabel madera;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JPanel panelNaranja;
     private javax.swing.JScrollPane scrollPane;

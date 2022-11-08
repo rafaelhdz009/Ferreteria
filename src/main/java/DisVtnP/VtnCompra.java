@@ -80,10 +80,10 @@ public class VtnCompra extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 70));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Clave del producto:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, 30));
 
         etqCant.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCant.setForeground(new java.awt.Color(0, 0, 0));
@@ -109,7 +109,7 @@ public class VtnCompra extends javax.swing.JFrame {
         jPanel1.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 390, 140));
 
         comboBoxP.setBackground(new java.awt.Color(255, 255, 255));
-        comboBoxP.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboBoxP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxP.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona clave del producto" }));
         comboBoxP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -118,7 +118,7 @@ public class VtnCompra extends javax.swing.JFrame {
                 comboBoxPActionPerformed(evt);
             }
         });
-        jPanel1.add(comboBoxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 210, -1));
+        jPanel1.add(comboBoxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 250, -1));
 
         btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
         btnAceptar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -226,6 +226,7 @@ public class VtnCompra extends javax.swing.JFrame {
                 String desp = p.toString();
                 this.txtAreaC.setText(desp);
                 CtrlInterfaz.habilita(true, txtCant);
+                CtrlInterfaz.cambia(this.txtCant);
             } else {
                 btnCancelarActionPerformed(evt);
             }
