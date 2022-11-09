@@ -396,6 +396,10 @@ public class VtnNota extends javax.swing.JFrame {
                 if (txtDescuento.getText().equals("")) {
                     Mensaje.error(this, "No ha llenado el campo descuento.");
                     b = false;
+                } else if (Integer.parseInt(txtDescuento.getText()) > 100
+                        || Integer.parseInt(txtDescuento.getText()) <= 0) {
+                    Mensaje.error(this, "El descuento no puede ser mayor a 100 o menor o igual a 0");
+                    b = false;
                 } else {
                     desc = Integer.parseInt(txtDescuento.getText());
                     b = true;
