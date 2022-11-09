@@ -421,6 +421,7 @@ public class VtnFactura extends javax.swing.JFrame {
                 txtAVta.setText(desp);
                 CtrlInterfaz.habilita(true, comboBoxProd);
             } else {
+                CtrlInterfaz.limpia(txtCantP);
                 CtrlInterfaz.habilita(false, comboBoxProd, txtCantP, btnAgregar);
                 this.comboBoxProd.setSelectedIndex(0);
                 comboBoxVendActionPerformed(evt);
@@ -477,6 +478,7 @@ public class VtnFactura extends javax.swing.JFrame {
                 CtrlInterfaz.habilita(true, txtCantP);
                 CtrlInterfaz.cambia(this.txtCantP);
             } else {
+                CtrlInterfaz.limpia(txtCantP);
                 CtrlInterfaz.habilita(false, txtCantP, btnAgregar);
                 comboBoxRFCActionPerformed(evt);
             }

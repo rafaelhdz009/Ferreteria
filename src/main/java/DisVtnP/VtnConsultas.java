@@ -74,7 +74,7 @@ public class VtnConsultas extends javax.swing.JFrame {
         etqC.setText("Cliente:");
         panelBlanco.add(etqC, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, 30));
 
-        btnTodP.setBackground(new java.awt.Color(35, 0, 0));
+        btnTodP.setBackground(new java.awt.Color(102, 0, 0));
         btnTodP.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnTodP.setForeground(new java.awt.Color(255, 255, 255));
         btnTodP.setText("Todos los productos");
@@ -87,7 +87,7 @@ public class VtnConsultas extends javax.swing.JFrame {
         });
         panelBlanco.add(btnTodP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
-        btnCveP.setBackground(new java.awt.Color(35, 0, 0));
+        btnCveP.setBackground(new java.awt.Color(102, 0, 0));
         btnCveP.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnCveP.setForeground(new java.awt.Color(255, 255, 255));
         btnCveP.setText("Clave de producto");
@@ -100,7 +100,7 @@ public class VtnConsultas extends javax.swing.JFrame {
         });
         panelBlanco.add(btnCveP, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
-        btnFact.setBackground(new java.awt.Color(35, 0, 0));
+        btnFact.setBackground(new java.awt.Color(102, 0, 0));
         btnFact.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnFact.setForeground(new java.awt.Color(255, 255, 255));
         btnFact.setText("Factura");
@@ -113,7 +113,7 @@ public class VtnConsultas extends javax.swing.JFrame {
         });
         panelBlanco.add(btnFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
 
-        btnNot.setBackground(new java.awt.Color(35, 0, 0));
+        btnNot.setBackground(new java.awt.Color(102, 0, 0));
         btnNot.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnNot.setForeground(new java.awt.Color(255, 255, 255));
         btnNot.setText("Nota");
@@ -126,7 +126,7 @@ public class VtnConsultas extends javax.swing.JFrame {
         });
         panelBlanco.add(btnNot, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
-        btnVend.setBackground(new java.awt.Color(35, 0, 0));
+        btnVend.setBackground(new java.awt.Color(102, 0, 0));
         btnVend.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnVend.setForeground(new java.awt.Color(255, 255, 255));
         btnVend.setText("Vendedor");
@@ -144,7 +144,7 @@ public class VtnConsultas extends javax.swing.JFrame {
         etqV1.setText("Ventas:");
         panelBlanco.add(etqV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 20));
 
-        btnTodosClientes.setBackground(new java.awt.Color(35, 0, 0));
+        btnTodosClientes.setBackground(new java.awt.Color(102, 0, 0));
         btnTodosClientes.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnTodosClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnTodosClientes.setText("Todos los clientes");
@@ -155,7 +155,7 @@ public class VtnConsultas extends javax.swing.JFrame {
         });
         panelBlanco.add(btnTodosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
-        btnRC.setBackground(new java.awt.Color(35, 0, 0));
+        btnRC.setBackground(new java.awt.Color(102, 0, 0));
         btnRC.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnRC.setForeground(new java.awt.Color(255, 255, 255));
         btnRC.setText("RFC/Correo del cliente");
@@ -189,7 +189,7 @@ public class VtnConsultas extends javax.swing.JFrame {
 
         panelFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 270, 40));
 
-        maderaBlanca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaBlanca.jpg"))); // NOI18N
+        maderaBlanca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura2.jpg"))); // NOI18N
         panelFondo.add(maderaBlanca, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -10, 630, 430));
 
         getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 420));

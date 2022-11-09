@@ -60,8 +60,6 @@ public class VtnNota extends javax.swing.JFrame {
         txtDescuento = new javax.swing.JTextField();
         cbDescuento = new javax.swing.JCheckBox();
         comboBoxVend = new javax.swing.JComboBox<>();
-        etqCliente = new javax.swing.JLabel();
-        comboBoxCliente = new javax.swing.JComboBox<>();
         txtCantP = new javax.swing.JTextField();
         etqCantP1 = new javax.swing.JLabel();
 
@@ -207,11 +205,11 @@ public class VtnNota extends javax.swing.JFrame {
 
         etqCveVend.setForeground(new java.awt.Color(0, 0, 0));
         etqCveVend.setText("Clave del vendedor: ");
-        jPanel1.add(etqCveVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        jPanel1.add(etqCveVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         etqProd.setForeground(new java.awt.Color(0, 0, 0));
         etqProd.setText("Producto:");
-        jPanel1.add(etqProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jPanel1.add(etqProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         comboBoxProd.setBackground(new java.awt.Color(204, 255, 255));
         comboBoxProd.setForeground(new java.awt.Color(0, 0, 0));
@@ -223,7 +221,7 @@ public class VtnNota extends javax.swing.JFrame {
                 comboBoxProdActionPerformed(evt);
             }
         });
-        jPanel1.add(comboBoxProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 170, 20));
+        jPanel1.add(comboBoxProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 170, 20));
 
         txtDescuento.setEnabled(false);
         txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -254,23 +252,7 @@ public class VtnNota extends javax.swing.JFrame {
                 comboBoxVendActionPerformed(evt);
             }
         });
-        jPanel1.add(comboBoxVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, -1));
-
-        etqCliente.setForeground(new java.awt.Color(0, 0, 0));
-        etqCliente.setText("Clave del cliente:");
-        jPanel1.add(etqCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-
-        comboBoxCliente.setBackground(new java.awt.Color(204, 255, 255));
-        comboBoxCliente.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el cliente" }));
-        comboBoxCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        comboBoxCliente.setEnabled(false);
-        comboBoxCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxClienteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(comboBoxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 170, -1));
+        jPanel1.add(comboBoxVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 180, -1));
 
         txtCantP.setEnabled(false);
         txtCantP.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -281,7 +263,7 @@ public class VtnNota extends javax.swing.JFrame {
                 txtCantPKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 80, 20));
+        jPanel1.add(txtCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 80, -1));
 
         etqCantP1.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP1.setText("Cantidad:");
@@ -332,7 +314,7 @@ public class VtnNota extends javax.swing.JFrame {
                 txtDteVn.setText(s);
                 CtrlInterfaz.limpia(txtCantP);
                 CtrlInterfaz.cambia(btnConfirmarN);
-                CtrlInterfaz.habilita(false, btnAgregar, comboBoxVend, comboBoxCliente);
+                CtrlInterfaz.habilita(false, btnAgregar, comboBoxVend);
                 CtrlInterfaz.habilita(true, btnConfirmarN);
                 comboBoxProd.setSelectedIndex(0);
             }
@@ -359,11 +341,10 @@ public class VtnNota extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
         CtrlInterfaz.limpia(txtDescuento, txtCantP, btnAgregar, btnConfirmarN, txtDteVn, txtAVta);
-        CtrlInterfaz.habilita(false, comboBoxCliente, txtDescuento, txtCantP, btnAgregar, btnConfirmarN);
+        CtrlInterfaz.habilita(false, txtDescuento, txtCantP, btnAgregar, btnConfirmarN);
         CtrlInterfaz.habilita(true, comboBoxVend);
         cbDescuento.setSelected(false);
         this.comboBoxVend.setSelectedIndex(0);
-        this.comboBoxCliente.setSelectedIndex(0);
         this.comboBoxProd.setSelectedIndex(0);
         this.cantidadP = -1;
         this.idVenta = -1;
@@ -396,26 +377,34 @@ public class VtnNota extends javax.swing.JFrame {
     private void btnConfirmarNActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnConfirmarNActionPerformed
     {//GEN-HEADEREND:event_btnConfirmarNActionPerformed
         if (Mensaje.pregunta(this, "Desea Confirmar la venta?") == 0) {
-            int desc;
+            int desc = -1;
+            boolean b = true;
             if (txtDescuento.getText() == null || txtDescuento.isEnabled() == false) {
                 desc = 0;
+                b = true;
             } else {
-                desc = Integer.parseInt(txtDescuento.getText());
+                if (txtDescuento.getText().equals("")) {
+                    Mensaje.error(this, "No ha llenado el campo descuento.");
+                    b = false;
+                } else {
+                    desc = Integer.parseInt(txtDescuento.getText());
+                    b = true;
+                }
             }
-            double descuento = calcDesc(monto, desc);
-            double total = monto - descuento;
-            this.ferrD.insertVent(idVenta, monto, total, Integer.parseInt(String.valueOf(comboBoxVend.getSelectedItem())));
-            int cantidadAct;
-            for (ProductoVenta pv : this.listPV) {
-                this.ferrD.insertProductoVen(pv.getIdProd(), pv.getIdVenta(), pv.getCantidad());
-                cantidadAct = this.ferrD.listaCantidadP(pv.getIdProd()) - pv.getCantidad();
-                this.ferrD.actualizarPcant(cantidadAct, pv.getIdProd());
+            if (b) {
+                double descuento = calcDesc(monto, desc);
+                double total = monto - descuento;
+                this.ferrD.insertVent(idVenta, monto, total, Integer.parseInt(String.valueOf(comboBoxVend.getSelectedItem())));
+                int cantidadAct;
+                for (ProductoVenta pv : this.listPV) {
+                    this.ferrD.insertProductoVen(pv.getIdProd(), pv.getIdVenta(), pv.getCantidad());
+                    cantidadAct = this.ferrD.listaCantidadP(pv.getIdProd()) - pv.getCantidad();
+                    this.ferrD.actualizarPcant(cantidadAct, pv.getIdProd());
+                }
+                this.ferrD.insertNota(generaNumNot(), desc, this.idVenta, 0);
+                Mensaje.exito(this, "Venta realizada con exito!");
+                btnCancelarActionPerformed(evt);
             }
-            int idCliente = Integer.parseInt(String.valueOf(this.comboBoxCliente.getSelectedItem()));
-            this.ferrD.insertNota(generaNumNot(), desc, this.idVenta, idCliente);
-            Mensaje.exito(this, "Venta realizada con exito!");
-            btnCancelarActionPerformed(evt);
-
         } else {
             Mensaje.error(this, "Operacion cancelada");
             btnCancelarActionPerformed(evt);
@@ -472,7 +461,6 @@ public class VtnNota extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_formWindowOpened
         try {
             llenaComboVend();
-            llenaComboCliente();
             llenaComboProd();
         } catch (Exception e) {
             Mensaje.error(this, "Aún no hay registros");
@@ -484,13 +472,14 @@ public class VtnNota extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_comboBoxProdActionPerformed
         try {
             if (this.comboBoxProd.getSelectedIndex() != 0) {
-                String desp = this.vendedorDesp() + this.clienteDesp() + this.productoDesp();
+                String desp = this.vendedorDesp() + this.productoDesp();
                 txtAVta.setText(desp);
                 CtrlInterfaz.habilita(true, txtCantP);
                 CtrlInterfaz.cambia(this.txtCantP);
             } else {
+                CtrlInterfaz.limpia(txtCantP);
                 CtrlInterfaz.habilita(false, txtCantP, btnAgregar);
-                comboBoxClienteActionPerformed(evt);
+                this.comboBoxVendActionPerformed(evt);
             }
         } catch (Exception e) {
             //e.printStackTrace(System.out);
@@ -500,38 +489,19 @@ public class VtnNota extends javax.swing.JFrame {
     private void comboBoxVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxVendActionPerformed
         try {
             if (this.comboBoxVend.getSelectedIndex() != 0) {
-                this.comboBoxCliente.setSelectedIndex(0);
                 this.comboBoxProd.setSelectedIndex(0);
                 txtAVta.setText(vendedorDesp());
-                CtrlInterfaz.habilita(true, this.comboBoxCliente);
-                CtrlInterfaz.cambia(this.comboBoxCliente);
+                CtrlInterfaz.habilita(true, this.comboBoxProd);
+                CtrlInterfaz.cambia(this.comboBoxProd);
             } else {
                 CtrlInterfaz.limpia(txtCantP, txtAVta);
-                CtrlInterfaz.habilita(false, comboBoxCliente, comboBoxProd, txtCantP, btnAgregar);
-                this.comboBoxCliente.setSelectedIndex(0);
+                CtrlInterfaz.habilita(false, comboBoxProd, txtCantP, btnAgregar);
                 this.comboBoxProd.setSelectedIndex(0);
             }
         } catch (Exception e) {
 //            e.printStackTrace(System.out);
         }
     }//GEN-LAST:event_comboBoxVendActionPerformed
-
-    private void comboBoxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxClienteActionPerformed
-        try {
-            if (this.comboBoxCliente.getSelectedIndex() != 0) {
-                this.comboBoxProd.setSelectedIndex(0);
-                String desp = this.vendedorDesp() + this.clienteDesp();
-                txtAVta.setText(desp);
-                CtrlInterfaz.habilita(true, comboBoxProd);
-            } else {
-                CtrlInterfaz.habilita(false, comboBoxProd, txtCantP, btnAgregar);
-                this.comboBoxProd.setSelectedIndex(0);
-                comboBoxVendActionPerformed(evt);
-            }
-        } catch (Exception e) {
-            //e.printStackTrace(System.out);
-        }
-    }//GEN-LAST:event_comboBoxClienteActionPerformed
 
     private String vendedorDesp() {
         this.vend_idV = Integer.parseInt(String.valueOf(this.comboBoxVend.getSelectedItem()));
@@ -556,12 +526,6 @@ public class VtnNota extends javax.swing.JFrame {
         return p.toString();
     }
 
-    private String clienteDesp() {
-        this.cliente_id = Integer.parseInt(String.valueOf(this.comboBoxCliente.getSelectedItem()));
-        Cliente c = this.ferrD.listaClienteWhere(this.cliente_id);
-        return c.desp();
-    }
-
     public void llenaComboProd() {
         List<Integer> arr = ferrD.listaIdP();
         for (int idP : arr) {
@@ -573,13 +537,6 @@ public class VtnNota extends javax.swing.JFrame {
         List<Integer> arr = ferrD.listaVendId();
         for (int idVend : arr) {
             this.comboBoxVend.addItem(String.valueOf(idVend));
-        }
-    }
-
-    private void llenaComboCliente() {
-        List<Integer> arr = ferrD.listaIdCliente();
-        for (int idCl : arr) {
-            this.comboBoxCliente.addItem(String.valueOf(idCl));
         }
     }
 
@@ -659,11 +616,9 @@ public class VtnNota extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmarN;
     private javax.swing.JCheckBox cbDescuento;
-    private javax.swing.JComboBox<String> comboBoxCliente;
     private javax.swing.JComboBox<String> comboBoxProd;
     private javax.swing.JComboBox<String> comboBoxVend;
     private javax.swing.JLabel etqCantP1;
-    private javax.swing.JLabel etqCliente;
     private javax.swing.JLabel etqCveVend;
     private javax.swing.JLabel etqDetV;
     private javax.swing.JLabel etqDetV1;

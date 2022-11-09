@@ -23,19 +23,19 @@ public class FerreteriaDAO {
     private Connection conexionTransaccional;
 
     private static final String SELECT_PRODUCTOS = "select * from productos";
-    private static final String SELECT_CLIENTE = "select * from cliente";
+    private static final String SELECT_CLIENTE = "select * from cliente where idCliente <> 0";
     private static final String SELECT_CLIENTE_RFC_NOT_NULL = "select * from cliente where rfc <> 'NULL'";
     private static final String SELECT_CLIENTE_WHERE_CORREO = "select * from cliente where correo = ?";
     private static final String SELECT_PRODUCTOS_MAX = "select max(idProductos) from productos";
-    private static final String SELECT_CLIENTE_MAX = "select max(idCliente) from cliente";
+    private static final String SELECT_CLIENTE_MAX = "select max(idCliente) from cliente where idCliente <> 0";
     private static final String SELECT_PROD_IDP = "select Productos_idProductos from producto_venta";
     private static final String SELECT_CLIENTE_ID = "select cliente_idCliente from FacturaNota";
     private static final String SELECT_PRODUCTOS_WHERE = "select * from productos where idProductos = ?";
     private static final String SELECT_CLIENTE_WHERE = "select * from cliente where idCliente = ?";
     private static final String SELECT_CLIENTE_WHERE_RFC = "select * from cliente where rfc = ?";
     private static final String SELECT_CLIENTE_WHERE_LIKE = "select rfc from cliente where rfc like ? and rfc <> 'NULL'";
-    private static final String SELECT_CLIENTE_WHERE_LIKE_CORREO = "select correo from cliente where correo like ?";
-    private static final String SELECT_CLIENTE_CORREO = "select correo from cliente";
+    private static final String SELECT_CLIENTE_WHERE_LIKE_CORREO = "select correo from cliente where correo like ? and idCliente <> 0";
+    private static final String SELECT_CLIENTE_CORREO = "select correo from cliente where idCliente <> 0";
 
     private static final String SELECT_PRODUCTOS_CANT = "select cantidad from productos where idProductos = ?";
     private static final String SELECT_VENDEDOR_ID = "select idVendedor from vendedor order by idVendedor asc";

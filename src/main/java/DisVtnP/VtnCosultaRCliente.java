@@ -283,6 +283,7 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
                 this.comoBoxRC.addItem("Selecciona...");
                 rbRFC.setSelected(rootPaneCheckingEnabled);
                 CtrlInterfaz.habilita(true, txtRFC);
+                CtrlInterfaz.cambia(txtRFC);
                 CtrlInterfaz.habilita(false, comoBoxRC, txtCorreo, btnBuscar);
             } else {
                 CtrlInterfaz.habilita(false, txtRFC, txtCorreo, btnBuscar);
@@ -304,6 +305,7 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
                 this.comoBoxRC.addItem("Selecciona...");
                 rbCorreo.setSelected(rootPaneCheckingEnabled);
                 CtrlInterfaz.habilita(true, txtCorreo);
+                CtrlInterfaz.cambia(txtCorreo);
                 CtrlInterfaz.habilita(false, comoBoxRC, txtRFC, btnBuscar);
             } else {
                 CtrlInterfaz.habilita(false, txtRFC, txtCorreo, btnBuscar);

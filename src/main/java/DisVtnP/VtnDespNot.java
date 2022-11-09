@@ -107,7 +107,6 @@ public class VtnDespNot extends javax.swing.JFrame {
                 this.IdFN = Integer.parseInt(String.valueOf(comboBoxN.getSelectedItem()));
                 FacturaNota fn = this.ferrD.listaFacturaNotaWhere(IdFN);
                 Ventas vent = this.ferrD.listaFNotaWhereVent(IdFN);
-                Cliente c = this.ferrD.listaFNotaWhereClienteNota(IdFN);
                 List<Productos> prod = this.ferrD.listaFNotaWhereP(IdFN);
                 Vendedor vend = this.ferrD.listaFNotaWhereVend(IdFN);
 
@@ -115,9 +114,6 @@ public class VtnDespNot extends javax.swing.JFrame {
                         + "Fecha: " + vent.getFecha() + "\n"
                         + "Clave del vendedor: " + vend.getIdVend() + "\n"
                         + "Nombre del vendedor: " + vend.getNombre() + " " + vend.getApellido()
-                        + "\n--------------------------------------\n\tDatos del cliente\n\n"
-                        + "Nombre: " + c.getNombre() + " " + c.getApPat() + " " + c.getApMat() + "\n"
-                        + "Correo: " + c.getCorreo()
                         + "\n--------------------------------------\n\tProductos\n\n";
                 for (int i = 0; i < prod.size(); i++) {
                     cantidad = this.ferrD.listaProdVentCant(vent.getIdVenta(), prod.get(i).getIdP());
