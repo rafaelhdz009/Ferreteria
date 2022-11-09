@@ -46,9 +46,11 @@ public class VtnProductoA extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         etqAltasT = new javax.swing.JLabel();
+        maderaO = new javax.swing.JLabel();
+        maderaC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Altas");
+        setTitle("Altas de productos");
         setBackground(new java.awt.Color(204, 255, 255));
         setIconImage(getIconImage());
         setResizable(false);
@@ -74,7 +76,7 @@ public class VtnProductoA extends javax.swing.JFrame {
                 btnAceptarKeyPressed(evt);
             }
         });
-        panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 267, -1, -1));
+        panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
         txtExistP.setToolTipText("Escribe las existencias del producto");
         txtExistP.setEnabled(false);
@@ -86,11 +88,12 @@ public class VtnProductoA extends javax.swing.JFrame {
                 txtExistPKeyTyped(evt);
             }
         });
-        panelAzul.add(txtExistP, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 194, 140, -1));
+        panelAzul.add(txtExistP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 110, -1));
 
+        etqCantP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCantP.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP.setText("Existencias:");
-        panelAzul.add(etqCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
+        panelAzul.add(etqCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
         txtNomP.setToolTipText("Escribe el nombre del producto");
         txtNomP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -102,12 +105,13 @@ public class VtnProductoA extends javax.swing.JFrame {
                 txtNomPKeyTyped(evt);
             }
         });
-        panelAzul.add(txtNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 149, -1));
+        panelAzul.add(txtNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 149, -1));
 
+        etqNomP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqNomP.setForeground(new java.awt.Color(0, 0, 0));
         etqNomP.setText("Nombre:");
         etqNomP.setToolTipText("Escribe el nombre del Producto");
-        panelAzul.add(etqNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        panelAzul.add(etqNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         txtPrecioP.setToolTipText("Escribe el precio del producto");
         txtPrecioP.setEnabled(false);
@@ -119,12 +123,13 @@ public class VtnProductoA extends javax.swing.JFrame {
                 txtPrecioPKeyTyped(evt);
             }
         });
-        panelAzul.add(txtPrecioP, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 194, 141, -1));
+        panelAzul.add(txtPrecioP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 120, -1));
 
+        etqMonP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqMonP.setForeground(new java.awt.Color(0, 0, 0));
         etqMonP.setText("Precio:");
         etqMonP.setToolTipText("Escribe el precio del producto");
-        panelAzul.add(etqMonP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+        panelAzul.add(etqMonP, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
         btnCancelar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -136,34 +141,26 @@ public class VtnProductoA extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        panelAzul.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 267, -1, -1));
+        panelAzul.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqAltasT.setFont(new java.awt.Font("Broadway", 1, 36)); // NOI18N
         etqAltasT.setForeground(new java.awt.Color(255, 255, 255));
         etqAltasT.setText("Altas");
+        jPanel1.add(etqAltasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(etqAltasT)
-                .addContainerGap(193, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(etqAltasT)
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
+        maderaO.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        maderaO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura.jpg"))); // NOI18N
+        jPanel1.add(maderaO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 350, 110));
 
-        panelAzul.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 60));
+        panelAzul.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 70));
 
-        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 330));
+        maderaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelAzul.add(maderaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 44, -1, 340));
+
+        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 330));
 
         pack();
         setLocationRelativeTo(null);
@@ -326,6 +323,8 @@ public class VtnProductoA extends javax.swing.JFrame {
     private javax.swing.JLabel etqMonP;
     private javax.swing.JLabel etqNomP;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel maderaC;
+    private javax.swing.JLabel maderaO;
     private javax.swing.JPanel panelAzul;
     private javax.swing.JTextField txtExistP;
     private javax.swing.JTextField txtNomP;

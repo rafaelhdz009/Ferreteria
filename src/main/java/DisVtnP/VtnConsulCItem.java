@@ -37,7 +37,7 @@ public class VtnConsulCItem extends javax.swing.JFrame {
         maderaOscura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de productos");
+        setTitle("Consulta de clientes");
         setIconImage(getIconImage());
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);

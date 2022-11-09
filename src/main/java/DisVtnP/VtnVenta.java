@@ -35,6 +35,9 @@ public class VtnVenta extends javax.swing.JFrame
         panelVerdeC = new javax.swing.JPanel();
         btnFactura = new javax.swing.JButton();
         btnNota = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        maderaClara = new javax.swing.JLabel();
+        maderaOscura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta");
@@ -45,47 +48,58 @@ public class VtnVenta extends javax.swing.JFrame
         panelVerdeF.setBackground(new java.awt.Color(51, 204, 0));
         panelVerdeF.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
+        panelBlanco.setBackground(new java.awt.Color(0, 0, 51));
         panelBlanco.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelBlanco.setForeground(new java.awt.Color(255, 255, 255));
         panelBlanco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqVenta.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        etqVenta.setForeground(new java.awt.Color(255, 255, 255));
         etqVenta.setText("Venta");
-        panelBlanco.add(etqVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
+        panelBlanco.add(etqVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
-        panelVerdeF.add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 200, 60));
+        panelVerdeF.add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 210, 50));
 
         panelVerdeC.setBackground(new java.awt.Color(204, 255, 204));
         panelVerdeC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelVerdeC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnFactura.setBackground(new java.awt.Color(255, 255, 255));
-        btnFactura.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnFactura.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnFactura.setForeground(new java.awt.Color(0, 0, 0));
         btnFactura.setText("Factura");
         btnFactura.setToolTipText("Compra un producto por factura");
-        btnFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFacturaActionPerformed(evt);
             }
         });
-        panelVerdeC.add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        panelVerdeC.add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         btnNota.setBackground(new java.awt.Color(255, 255, 255));
-        btnNota.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnNota.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnNota.setForeground(new java.awt.Color(0, 0, 0));
         btnNota.setText("Nota");
         btnNota.setToolTipText("Compra un producto por venta");
-        btnNota.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNota.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNotaActionPerformed(evt);
             }
         });
-        panelVerdeC.add(btnNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+        panelVerdeC.add(btnNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/moneda.png"))); // NOI18N
+        panelVerdeC.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
+
+        maderaClara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelVerdeC.add(maderaClara, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -10, -1, 190));
 
         panelVerdeF.add(panelVerdeC, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 450, 140));
+
+        maderaOscura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura.jpg"))); // NOI18N
+        panelVerdeF.add(maderaOscura, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 530, 210));
 
         getContentPane().add(panelVerdeF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 180));
 
@@ -155,6 +169,9 @@ public class VtnVenta extends javax.swing.JFrame
     private javax.swing.JButton btnFactura;
     private javax.swing.JButton btnNota;
     private javax.swing.JLabel etqVenta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel maderaClara;
+    private javax.swing.JLabel maderaOscura;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JPanel panelVerdeC;
     private javax.swing.JPanel panelVerdeF;

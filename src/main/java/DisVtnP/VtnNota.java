@@ -62,9 +62,10 @@ public class VtnNota extends javax.swing.JFrame {
         comboBoxVend = new javax.swing.JComboBox<>();
         txtCantP = new javax.swing.JTextField();
         etqCantP1 = new javax.swing.JLabel();
+        madera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Factura");
+        setTitle("Nota");
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -74,7 +75,7 @@ public class VtnNota extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelGis.setBackground(new java.awt.Color(153, 153, 0));
+        panelGis.setBackground(new java.awt.Color(0, 51, 51));
         panelGis.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAgregar.setBackground(new java.awt.Color(51, 153, 0));
@@ -134,6 +135,7 @@ public class VtnNota extends javax.swing.JFrame {
         panelBlanco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etqFactura.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        etqFactura.setForeground(new java.awt.Color(0, 0, 0));
         etqFactura.setText("Nota");
         panelBlanco.add(etqFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, 31));
 
@@ -153,7 +155,7 @@ public class VtnNota extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 340, 210));
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel2.setBackground(new java.awt.Color(0, 51, 51));
 
         etqDetV.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         etqDetV.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,7 +180,7 @@ public class VtnNota extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 80, 50));
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 51, 51));
 
         etqDetV1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         etqDetV1.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,15 +205,17 @@ public class VtnNota extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 140, 50));
 
+        etqCveVend.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCveVend.setForeground(new java.awt.Color(0, 0, 0));
         etqCveVend.setText("Clave del vendedor: ");
         jPanel1.add(etqCveVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
+        etqProd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqProd.setForeground(new java.awt.Color(0, 0, 0));
         etqProd.setText("Producto:");
-        jPanel1.add(etqProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        jPanel1.add(etqProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        comboBoxProd.setBackground(new java.awt.Color(204, 255, 255));
+        comboBoxProd.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxProd.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione productos" }));
         comboBoxProd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -234,6 +238,7 @@ public class VtnNota extends javax.swing.JFrame {
         });
         jPanel1.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 100, -1));
 
+        cbDescuento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cbDescuento.setForeground(new java.awt.Color(0, 0, 0));
         cbDescuento.setText("Descuento");
         cbDescuento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -242,9 +247,9 @@ public class VtnNota extends javax.swing.JFrame {
                 cbDescuentoActionPerformed(evt);
             }
         });
-        jPanel1.add(cbDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        jPanel1.add(cbDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
-        comboBoxVend.setBackground(new java.awt.Color(255, 255, 153));
+        comboBoxVend.setBackground(new java.awt.Color(255, 255, 255));
         comboBoxVend.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxVend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el vendedor" }));
         comboBoxVend.addActionListener(new java.awt.event.ActionListener() {
@@ -265,9 +270,14 @@ public class VtnNota extends javax.swing.JFrame {
         });
         jPanel1.add(txtCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 80, -1));
 
+        etqCantP1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etqCantP1.setForeground(new java.awt.Color(0, 0, 0));
         etqCantP1.setText("Cantidad:");
-        jPanel1.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, -1, -1));
+        jPanel1.add(etqCantP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
+
+        madera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaBlanca.jpg"))); // NOI18N
+        madera.setText("jLabel1");
+        jPanel1.add(madera, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1050, 410));
 
         panelGis.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1020, 380));
 
@@ -629,6 +639,7 @@ public class VtnNota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel madera;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JPanel panelGis;
     private javax.swing.JTextArea txtAVta;

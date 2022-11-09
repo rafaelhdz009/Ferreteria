@@ -51,7 +51,7 @@ public class VtnCosultaRCliente extends javax.swing.JFrame {
         madera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta por clave");
+        setTitle("Consulta por RFC/Correo del cliente");
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

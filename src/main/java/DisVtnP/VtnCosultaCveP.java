@@ -46,7 +46,7 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
         madera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta por clave");
+        setTitle("Consulta por clave del producto");
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {

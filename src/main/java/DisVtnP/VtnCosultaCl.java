@@ -42,7 +42,7 @@ public class VtnCosultaCl extends javax.swing.JFrame {
         madera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta todos los productos");
+        setTitle("Consulta todos los clientes");
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {

@@ -40,8 +40,12 @@ public class VtnDespVendedor extends javax.swing.JFrame {
         txtVend = new javax.swing.JTextArea();
         panelBlanco = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
+        txtTitulo1 = new javax.swing.JLabel();
+        maderaO = new javax.swing.JLabel();
         etqVend = new javax.swing.JLabel();
         comboBoxV = new javax.swing.JComboBox<>();
+        maderaC = new javax.swing.JLabel();
+        maderaC1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta por vendedor");
@@ -59,39 +63,54 @@ public class VtnDespVendedor extends javax.swing.JFrame {
 
         txtVend.setEditable(false);
         txtVend.setColumns(20);
-        txtVend.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        txtVend.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         txtVend.setRows(5);
         scrollPane.setViewportView(txtVend);
 
-        panelAzul.add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 436, 330));
+        panelAzul.add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 436, 190));
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelBlanco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setText("Consulta por vendedor");
-        panelBlanco.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+        panelBlanco.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 10, -1, -1));
+
+        txtTitulo1.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        txtTitulo1.setForeground(new java.awt.Color(0, 0, 0));
+        txtTitulo1.setText("Consulta por vendedor");
+        panelBlanco.add(txtTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+
+        maderaO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera4.jpg"))); // NOI18N
+        panelBlanco.add(maderaO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -130, 660, 340));
 
         panelAzul.add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 70));
 
         etqVend.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         etqVend.setForeground(new java.awt.Color(0, 0, 0));
         etqVend.setText("Vendedor:");
-        panelAzul.add(etqVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 90, -1));
+        panelAzul.add(etqVend, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 90, -1));
 
-        comboBoxV.setBackground(new java.awt.Color(0, 102, 102));
-        comboBoxV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        comboBoxV.setForeground(new java.awt.Color(255, 255, 255));
+        comboBoxV.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        comboBoxV.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona el vendedor" }));
         comboBoxV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxVActionPerformed(evt);
             }
         });
-        panelAzul.add(comboBoxV, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 210, -1));
+        panelAzul.add(comboBoxV, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 210, -1));
 
-        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 570));
+        maderaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelAzul.add(maderaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+
+        maderaC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelAzul.add(maderaC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 60, -1, -1));
+
+        getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 370));
 
         pack();
         setLocationRelativeTo(null);
@@ -180,10 +199,14 @@ public class VtnDespVendedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxV;
     private javax.swing.JLabel etqVend;
+    private javax.swing.JLabel maderaC;
+    private javax.swing.JLabel maderaC1;
+    private javax.swing.JLabel maderaO;
     private javax.swing.JPanel panelAzul;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JLabel txtTitulo;
+    private javax.swing.JLabel txtTitulo1;
     private javax.swing.JTextArea txtVend;
     // End of variables declaration//GEN-END:variables
 }

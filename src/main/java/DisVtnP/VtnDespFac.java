@@ -41,7 +41,9 @@ public class VtnDespFac extends javax.swing.JFrame {
         scrollPane = new javax.swing.JScrollPane();
         txtConsultaF = new javax.swing.JTextArea();
         panelBlanco = new javax.swing.JPanel();
+        maderaO = new javax.swing.JLabel();
         etqF = new javax.swing.JLabel();
+        maderaC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de facturas");
@@ -58,10 +60,12 @@ public class VtnDespFac extends javax.swing.JFrame {
         panelAzul.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setText("Consulta tu factura");
         panelAzul.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 14, -1, -1));
 
-        comboBoxF.setBackground(new java.awt.Color(204, 255, 204));
+        comboBoxF.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxF.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxF.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona tu factura" }));
         comboBoxF.setToolTipText("Selecciona una factura");
@@ -71,11 +75,11 @@ public class VtnDespFac extends javax.swing.JFrame {
                 comboBoxFActionPerformed(evt);
             }
         });
-        panelAzul.add(comboBoxF, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 86, 160, 30));
+        panelAzul.add(comboBoxF, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 86, 180, 30));
 
         txtConsultaF.setEditable(false);
         txtConsultaF.setColumns(20);
-        txtConsultaF.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
+        txtConsultaF.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         txtConsultaF.setRows(5);
         scrollPane.setViewportView(txtConsultaF);
 
@@ -83,17 +87,10 @@ public class VtnDespFac extends javax.swing.JFrame {
 
         panelBlanco.setBackground(new java.awt.Color(255, 255, 255));
         panelBlanco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelBlanco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout panelBlancoLayout = new javax.swing.GroupLayout(panelBlanco);
-        panelBlanco.setLayout(panelBlancoLayout);
-        panelBlancoLayout.setHorizontalGroup(
-            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
-        );
-        panelBlancoLayout.setVerticalGroup(
-            panelBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
-        );
+        maderaO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura.jpg"))); // NOI18N
+        panelBlanco.add(maderaO, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -10, 730, 110));
 
         panelAzul.add(panelBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 70));
 
@@ -101,6 +98,9 @@ public class VtnDespFac extends javax.swing.JFrame {
         etqF.setForeground(new java.awt.Color(0, 0, 0));
         etqF.setText("Factura: ");
         panelAzul.add(etqF, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
+        maderaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera2.jpg"))); // NOI18N
+        panelAzul.add(maderaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 60, 660, 380));
 
         getContentPane().add(panelAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 430));
 
@@ -205,6 +205,8 @@ public class VtnDespFac extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxF;
     private javax.swing.JLabel etqF;
+    private javax.swing.JLabel maderaC;
+    private javax.swing.JLabel maderaO;
     private javax.swing.JPanel panelAzul;
     private javax.swing.JPanel panelBlanco;
     private javax.swing.JScrollPane scrollPane;

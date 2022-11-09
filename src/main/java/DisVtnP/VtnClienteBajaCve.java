@@ -142,7 +142,7 @@ public class VtnClienteBajaCve extends javax.swing.JFrame {
         jPanel2.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
 
         comboBoxCve.setBackground(new java.awt.Color(255, 255, 255));
-        comboBoxCve.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboBoxCve.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         comboBoxCve.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxCve.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clave del cliente" }));
         comboBoxCve.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -151,7 +151,7 @@ public class VtnClienteBajaCve extends javax.swing.JFrame {
                 comboBoxCveActionPerformed(evt);
             }
         });
-        jPanel2.add(comboBoxCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 150, -1));
+        jPanel2.add(comboBoxCve, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 160, -1));
 
         maderaOscura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura2.jpg"))); // NOI18N
         jPanel2.add(maderaOscura, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 170));

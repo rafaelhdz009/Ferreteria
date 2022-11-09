@@ -40,6 +40,7 @@ public class VtnProductoM extends javax.swing.JFrame {
         comboBoxP = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         etqModif = new javax.swing.JLabel();
+        maderaO = new javax.swing.JLabel();
         etqNomP = new javax.swing.JLabel();
         txtNomP = new javax.swing.JTextField();
         txtPrecioP = new javax.swing.JTextField();
@@ -48,9 +49,10 @@ public class VtnProductoM extends javax.swing.JFrame {
         txtExistP = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        maderaC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Modificaciones");
+        setTitle("Actualizar Productos");
         setIconImage(getIconImage());
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
@@ -67,12 +69,13 @@ public class VtnProductoM extends javax.swing.JFrame {
         panelNaranja.setBackground(new java.awt.Color(255, 204, 153));
         panelNaranja.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        etqSubtitulo.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        etqSubtitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         etqSubtitulo.setForeground(new java.awt.Color(0, 0, 0));
         etqSubtitulo.setText("Escoge la clave del producto que deseas modificar: ");
-        panelNaranja.add(etqSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+        panelNaranja.add(etqSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        comboBoxP.setBackground(new java.awt.Color(255, 204, 153));
+        comboBoxP.setBackground(new java.awt.Color(255, 255, 255));
+        comboBoxP.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         comboBoxP.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona clave del producto" }));
         comboBoxP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -81,7 +84,7 @@ public class VtnProductoM extends javax.swing.JFrame {
                 comboBoxPActionPerformed(evt);
             }
         });
-        panelNaranja.add(comboBoxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 200, -1));
+        panelNaranja.add(comboBoxP, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 220, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -90,14 +93,18 @@ public class VtnProductoM extends javax.swing.JFrame {
         etqModif.setFont(new java.awt.Font("Broadway", 0, 36)); // NOI18N
         etqModif.setForeground(new java.awt.Color(255, 255, 255));
         etqModif.setText("Actualizar Producto");
-        jPanel1.add(etqModif, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+        jPanel1.add(etqModif, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        panelNaranja.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 80));
+        maderaO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/maderaOscura.jpg"))); // NOI18N
+        jPanel1.add(maderaO, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -10, 490, 130));
 
+        panelNaranja.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 80));
+
+        etqNomP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         etqNomP.setForeground(new java.awt.Color(0, 0, 0));
-        etqNomP.setText("Nombre");
+        etqNomP.setText("Nombre:");
         etqNomP.setToolTipText("Escribe el nombre del Producto");
-        panelNaranja.add(etqNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, -1));
+        panelNaranja.add(etqNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
 
         txtNomP.setToolTipText("Escribe el nombre del producto");
         txtNomP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -115,7 +122,7 @@ public class VtnProductoM extends javax.swing.JFrame {
                 txtNomPKeyTyped(evt);
             }
         });
-        panelNaranja.add(txtNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 120, -1));
+        panelNaranja.add(txtNomP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 120, -1));
 
         txtPrecioP.setToolTipText("Escribe el precio del producto");
         txtPrecioP.setEnabled(false);
@@ -132,16 +139,18 @@ public class VtnProductoM extends javax.swing.JFrame {
                 txtPrecioPKeyTyped(evt);
             }
         });
-        panelNaranja.add(txtPrecioP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 80, -1));
+        panelNaranja.add(txtPrecioP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 80, -1));
 
+        etqMonP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         etqMonP.setForeground(new java.awt.Color(0, 0, 0));
-        etqMonP.setText("Precio");
+        etqMonP.setText("Precio:");
         etqMonP.setToolTipText("Escribe el precio del producto");
-        panelNaranja.add(etqMonP, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        panelNaranja.add(etqMonP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
+        etqCantP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         etqCantP.setForeground(new java.awt.Color(0, 0, 0));
-        etqCantP.setText("Existencias");
-        panelNaranja.add(etqCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+        etqCantP.setText("Existencias:");
+        panelNaranja.add(etqCantP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
 
         txtExistP.setToolTipText("Escribe las existencias del producto");
         txtExistP.setEnabled(false);
@@ -158,7 +167,7 @@ public class VtnProductoM extends javax.swing.JFrame {
                 txtExistPKeyTyped(evt);
             }
         });
-        panelNaranja.add(txtExistP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 100, -1));
+        panelNaranja.add(txtExistP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 100, -1));
 
         btnAceptar.setBackground(new java.awt.Color(51, 153, 0));
         btnAceptar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -176,7 +185,7 @@ public class VtnProductoM extends javax.swing.JFrame {
                 btnAceptarKeyPressed(evt);
             }
         });
-        panelNaranja.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+        panelNaranja.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
         btnCancelar.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -188,9 +197,12 @@ public class VtnProductoM extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        panelNaranja.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
+        panelNaranja.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
 
-        getContentPane().add(panelNaranja, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 0, 490, 440));
+        maderaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/madera.jpg"))); // NOI18N
+        panelNaranja.add(maderaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 80, 460, 310));
+
+        getContentPane().add(panelNaranja, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 0, 440, 380));
 
         pack();
         setLocationRelativeTo(null);
@@ -207,7 +219,7 @@ public class VtnProductoM extends javax.swing.JFrame {
                     int registro = ferrD.actualizarP(txtNomP.getText(),
                             Double.parseDouble(txtPrecioP.getText()),
                             Integer.parseInt(txtExistP.getText()), prod_idP);
-                    Mensaje.exito(this, registro + " registro modificado");
+                    Mensaje.exito(this, registro + " registro actualizado");
                     Mensaje.exito(this, "Producto Modificado");
                     btnCancelarActionPerformed(evt);
                 }
@@ -413,6 +425,8 @@ public class VtnProductoM extends javax.swing.JFrame {
     private javax.swing.JLabel etqNomP;
     private javax.swing.JLabel etqSubtitulo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel maderaC;
+    private javax.swing.JLabel maderaO;
     private javax.swing.JPanel panelNaranja;
     private javax.swing.JTextField txtExistP;
     private javax.swing.JTextField txtNomP;
