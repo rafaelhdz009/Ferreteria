@@ -24,8 +24,7 @@ public class VtnClienteM extends javax.swing.JFrame {
      */
     public VtnClienteM() {
         initComponents();
-        this.setTitle("Altas");
-
+        this.setTitle("Actualizar cliente");
     }
 
     /**
@@ -62,7 +61,7 @@ public class VtnClienteM extends javax.swing.JFrame {
         maderaClara1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Altas");
+        setTitle("Actualizar cliente");
         setBackground(new java.awt.Color(204, 255, 255));
         setIconImage(getIconImage());
         setResizable(false);

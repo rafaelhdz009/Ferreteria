@@ -80,9 +80,6 @@ public class VtnBajaCve extends javax.swing.JFrame {
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -204,11 +201,6 @@ public class VtnBajaCve extends javax.swing.JFrame {
             btnAceptarBajaCveActionPerformed(null);
         }
     }//GEN-LAST:event_btnAceptarBajaCveKeyPressed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
-    {//GEN-HEADEREND:event_formWindowClosing
-
-    }//GEN-LAST:event_formWindowClosing
 
     private void comboBoxCveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboBoxCveActionPerformed
     {//GEN-HEADEREND:event_comboBoxCveActionPerformed

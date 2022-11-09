@@ -103,6 +103,7 @@ public class VtnCompra extends javax.swing.JFrame {
 
         txtAreaC.setEditable(false);
         txtAreaC.setColumns(20);
+        txtAreaC.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtAreaC.setRows(5);
         jScrollPane.setViewportView(txtAreaC);
 
