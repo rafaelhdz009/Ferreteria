@@ -39,7 +39,6 @@ public class VtnClienteM extends javax.swing.JFrame {
 
         panelAzul = new javax.swing.JPanel();
         btnAceptar = new javax.swing.JButton();
-        etqOpcional = new javax.swing.JLabel();
         txtTel = new javax.swing.JTextField();
         etqNomP = new javax.swing.JLabel();
         etqMonP = new javax.swing.JLabel();
@@ -95,11 +94,6 @@ public class VtnClienteM extends javax.swing.JFrame {
             }
         });
         panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, -1, -1));
-
-        etqOpcional.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        etqOpcional.setForeground(new java.awt.Color(0, 0, 0));
-        etqOpcional.setText("(Opcional)");
-        panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
 
         txtTel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTel.setToolTipText("");
@@ -277,7 +271,7 @@ public class VtnClienteM extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
         CtrlInterfaz.limpia(txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
-        CtrlInterfaz.habilita(false, txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
+        CtrlInterfaz.habilita(false, btnAceptar, txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
         this.comboBoxCve.setSelectedIndex(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -290,7 +284,7 @@ public class VtnClienteM extends javax.swing.JFrame {
                 if (b) {
                     if (txtCorreo.getText().equals("")) {
                         Mensaje.error(this, "El correo no puede ser nulo.");
-                    } else if (!txtRFC.getText().equals("") && txtRFC.getText().length() < 12) {
+                    } else if (txtRFC.getText().length() < 12) {
                         Mensaje.error(this, "Faltan digitos en el rfc, compruebe.");
                     } else if (!txtTel.getText().equals("") && txtTel.getText().length() < 10) {
                         Mensaje.error(this, "Faltan digitos en el teléfono, compruebe.");
@@ -314,9 +308,10 @@ public class VtnClienteM extends javax.swing.JFrame {
                     }
                 } else {
                     if (txtNom.getText().equals("") || txtApPat.getText().equals("")
-                            || txtApMat.getText().equals("") || txtCorreo.getText().equals("")) {
+                            || txtApMat.getText().equals("") || txtRFC.getText().equals("")
+                            || txtCorreo.getText().equals("")) {
                         Mensaje.error(this, "No se han llenado todos lo campos, verifique.");
-                    } else if (!txtRFC.getText().equals("") && txtRFC.getText().length() < 12) {
+                    } else if (txtRFC.getText().length() < 12) {
                         Mensaje.error(this, "Faltan digitos en el rfc, compruebe.");
                     } else if (!txtTel.getText().equals("") && txtTel.getText().length() < 10) {
                         Mensaje.error(this, "Faltan digitos en el teléfono, compruebe.");
@@ -441,12 +436,10 @@ public class VtnClienteM extends javax.swing.JFrame {
     private void txtRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyPressed
         String s = "";
         if (evt.getKeyChar() == '\n') {
-            if (!txtRFC.getText().equals(s)) {
-                if (txtRFC.getText().length() < 12) {
-                    Mensaje.error(this, "Faltan digitos, compruebe.");
-                } else {
-                    Validaciones.enter(this, evt, txtCorreo);
-                }
+            if (txtRFC.getText().equals(s)) {
+                Mensaje.error(this, "El campo no puede estar vacío");
+            } else if (txtRFC.getText().length() < 12) {
+                Mensaje.error(this, "Faltan digitos, compruebe.");
             } else {
                 Validaciones.enter(this, evt, txtCorreo);
             }
@@ -470,7 +463,7 @@ public class VtnClienteM extends javax.swing.JFrame {
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
         if (txtCorreo.getText().length() >= 38) {
-            Mensaje.error(this, "El tiene demasiados caracteres, verifique.");
+            Mensaje.error(this, "El correo demasiados caracteres, verifique.");
             CtrlInterfaz.limpia(txtCorreo);
             CtrlInterfaz.cambia(this.txtCorreo);
         }
@@ -480,7 +473,7 @@ public class VtnClienteM extends javax.swing.JFrame {
         try {
             if (this.comboBoxCve.getSelectedIndex() != 0) {
                 CtrlInterfaz.limpia(txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
-                CtrlInterfaz.habilita(false, txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
+                CtrlInterfaz.habilita(false, btnAceptar, txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
                 this.cliente_idC = Integer.parseInt(String.valueOf(this.comboBoxCve.getSelectedItem()));
                 Cliente p = this.ferrD.listaClienteWhere(cliente_idC);
                 this.txtNom.setText(p.getNombre());
@@ -591,7 +584,6 @@ public class VtnClienteM extends javax.swing.JFrame {
     private javax.swing.JLabel etqCantP4;
     private javax.swing.JLabel etqMonP;
     private javax.swing.JLabel etqNomP;
-    private javax.swing.JLabel etqOpcional;
     private javax.swing.JLabel etqOpcional1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

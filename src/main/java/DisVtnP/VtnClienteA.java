@@ -23,7 +23,7 @@ public class VtnClienteA extends javax.swing.JFrame {
      */
     public VtnClienteA() {
         initComponents();
-        this.setTitle("Altas");
+        this.setTitle("Altas clientes");
 
     }
 
@@ -38,7 +38,6 @@ public class VtnClienteA extends javax.swing.JFrame {
 
         panelAzul = new javax.swing.JPanel();
         btnAceptar = new javax.swing.JButton();
-        etqOpcional = new javax.swing.JLabel();
         txtTel = new javax.swing.JTextField();
         etqNom = new javax.swing.JLabel();
         etqApPat = new javax.swing.JLabel();
@@ -87,11 +86,6 @@ public class VtnClienteA extends javax.swing.JFrame {
             }
         });
         panelAzul.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
-
-        etqOpcional.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        etqOpcional.setForeground(new java.awt.Color(0, 0, 0));
-        etqOpcional.setText("(Opcional)");
-        panelAzul.add(etqOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
 
         txtTel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTel.setToolTipText("");
@@ -253,7 +247,7 @@ public class VtnClienteA extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
     {//GEN-HEADEREND:event_btnCancelarActionPerformed
         CtrlInterfaz.limpia(txtNom, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
-        CtrlInterfaz.habilita(false, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
+        CtrlInterfaz.habilita(false, btnAceptar, txtApPat, txtApMat, txtRFC, txtCorreo, txtTel);
         CtrlInterfaz.cambia(txtNom);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -263,9 +257,10 @@ public class VtnClienteA extends javax.swing.JFrame {
             if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
                 int cveProd = idCliente();
                 if (txtNom.getText().equals("") || txtApPat.getText().equals("")
-                        || txtApMat.getText().equals("") || txtCorreo.getText().equals("")) {
+                        || txtApMat.getText().equals("") || txtRFC.getText().equals("")
+                        || txtCorreo.getText().equals("")) {
                     Mensaje.error(this, "No se han llenado todos lo campos, verifique.");
-                } else if (!txtRFC.getText().equals("") && txtRFC.getText().length() < 12) {
+                } else if (txtRFC.getText().length() < 12) {
                     Mensaje.error(this, "Faltan digitos en el rfc, compruebe.");
                 } else if (!txtTel.getText().equals("") && txtTel.getText().length() < 10) {
                     Mensaje.error(this, "Faltan digitos en el teléfono, compruebe.");
@@ -287,8 +282,6 @@ public class VtnClienteA extends javax.swing.JFrame {
                         String tel = this.txtTel.getText();
                         if (tel.equals("")) {
                             tel = "NULL";
-                        } else if (rfc.equals("")) {
-                            rfc = "NULL";
                         }
                         int registro = this.ferrD.insertCliente(cveProd, nombre, apPat, apMat, rfc, correo, tel);
                         Mensaje.exito(this, registro + " registro insertado");
@@ -395,12 +388,10 @@ public class VtnClienteA extends javax.swing.JFrame {
     private void txtRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyPressed
         String s = "";
         if (evt.getKeyChar() == '\n') {
-            if (!txtRFC.getText().equals(s)) {
-                if (txtRFC.getText().length() < 12) {
-                    Mensaje.error(this, "Faltan digitos, compruebe.");
-                } else {
-                    Validaciones.enter(this, evt, txtCorreo);
-                }
+            if (txtRFC.getText().equals(s)) {
+                Mensaje.error(this, "El campo no puede estar vacío");
+            } else if (txtRFC.getText().length() < 12) {
+                Mensaje.error(this, "Faltan digitos, compruebe.");
             } else {
                 Validaciones.enter(this, evt, txtCorreo);
             }
@@ -424,7 +415,7 @@ public class VtnClienteA extends javax.swing.JFrame {
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
         if (txtCorreo.getText().length() >= 38) {
-            Mensaje.error(this, "El tiene demasiados caracteres, verifique.");
+            Mensaje.error(this, "El correo demasiados caracteres, verifique.");
             CtrlInterfaz.limpia(txtCorreo);
             CtrlInterfaz.cambia(this.txtCorreo);
         }
@@ -476,7 +467,6 @@ public class VtnClienteA extends javax.swing.JFrame {
     private javax.swing.JLabel etqApPat;
     private javax.swing.JLabel etqCorreo;
     private javax.swing.JLabel etqNom;
-    private javax.swing.JLabel etqOpcional;
     private javax.swing.JLabel etqOpcional1;
     private javax.swing.JLabel etqRFC;
     private javax.swing.JLabel etqTel;
