@@ -75,7 +75,7 @@ public class VtnDespNot extends javax.swing.JFrame {
 
         txtNota.setEditable(false);
         txtNota.setColumns(20);
-        txtNota.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        txtNota.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         txtNota.setRows(5);
         scrollPane.setViewportView(txtNota);
 

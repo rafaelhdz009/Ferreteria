@@ -1,9 +1,14 @@
+C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnConsulCItem.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnPrincipal.java
+C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnClienteM.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnInicio.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnVenta.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\domain\Productos.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnBajaCve.java
+C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnCosultaCl.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnCosultaCveP.java
+C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnCosultaRCliente.java
+C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnClienteBajaCve.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\datos\FerreteriaDAO.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnProductoM.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnConsulPItem.java
@@ -16,10 +21,12 @@ C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\datos\Conexion.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnCosultaP.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnProductoPanel.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnFactura.java
+C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\domain\Cliente.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnConsultas.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnDespNot.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnCompra.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\domain\Vendedor.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnDespFac.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\domain\ProductoVenta.java
+C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\DisVtnP\VtnClienteA.java
 C:\Users\rafah\Documents\NetBeans\Ferreteria\src\main\java\domain\FacturaNota.java
