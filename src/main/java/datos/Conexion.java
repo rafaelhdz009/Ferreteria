@@ -34,17 +34,17 @@ public class Conexion {
         }
     }
 
-    public static void close(Statement smtm) {
+    public static void close(Statement stmt) {
         try {
-            smtm.close();
+            stmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
     }
 
-    public static void close(PreparedStatement smtm) {
+    public static void close(PreparedStatement ps) {
         try {
-            smtm.close();
+            ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }

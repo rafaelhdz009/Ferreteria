@@ -17,7 +17,7 @@ import java.util.*;
 public class FerreteriaDAO {
 
     private Connection conn = null;
-    private PreparedStatement smtm = null;
+    private PreparedStatement ps = null;
     private ResultSet rs = null;
 
     private Connection conexionTransaccional;
@@ -93,8 +93,8 @@ public class FerreteriaDAO {
             String nombre;
             double precio;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idP = rs.getInt("idProductos");
                 nombre = rs.getString("nombre");
@@ -106,7 +106,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaP;
@@ -118,8 +118,8 @@ public class FerreteriaDAO {
             int idCliente;
             String nombre, apPat, apMat, rfc, correo, tel;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("idCliente");
                 nombre = rs.getString("nombre");
@@ -134,7 +134,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaCliente;
@@ -144,9 +144,9 @@ public class FerreteriaDAO {
         int cant = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS_CANT);
-            smtm.setInt(1, idProd);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS_CANT);
+            ps.setInt(1, idProd);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 cant = rs.getInt("cantidad");
             }
@@ -154,7 +154,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return cant;
@@ -165,8 +165,8 @@ public class FerreteriaDAO {
         try {
             int idP;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idP = rs.getInt("idProductos");
                 listaP.add(idP);
@@ -175,7 +175,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaP;
@@ -186,8 +186,8 @@ public class FerreteriaDAO {
         try {
             String productos;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 productos = rs.getString("nombre");
                 listaP.add(productos);
@@ -196,7 +196,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaP;
@@ -207,8 +207,8 @@ public class FerreteriaDAO {
         try {
             int idCliente;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("idCliente");
                 listaC.add(idCliente);
@@ -217,7 +217,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaC;
@@ -228,8 +228,8 @@ public class FerreteriaDAO {
         try {
             String rfc;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_RFC_NOT_NULL);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_RFC_NOT_NULL);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 rfc = rs.getString("rfc");
                 listaC.add(rfc);
@@ -238,7 +238,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaC;
@@ -249,8 +249,8 @@ public class FerreteriaDAO {
         try {
             String correo;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_CORREO);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_CORREO);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 correo = rs.getString("correo");
                 listaC.add(correo);
@@ -259,7 +259,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaC;
@@ -271,9 +271,9 @@ public class FerreteriaDAO {
             int idCliente;
             String nombre, apPat, apMat, rfc, correo, tel;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_CORREO);
-            smtm.setString(1, cliente_correo);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_WHERE_CORREO);
+            ps.setString(1, cliente_correo);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("idCliente");
                 nombre = rs.getString("nombre");
@@ -288,7 +288,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return c;
@@ -298,8 +298,8 @@ public class FerreteriaDAO {
         int idP = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS_MAX);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS_MAX);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idP = rs.getInt(1);
             }
@@ -307,7 +307,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return idP;
@@ -317,8 +317,8 @@ public class FerreteriaDAO {
         int idClienteMax = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_MAX);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_MAX);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idClienteMax = rs.getInt(1);
             }
@@ -326,7 +326,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return idClienteMax;
@@ -337,8 +337,8 @@ public class FerreteriaDAO {
         try {
             int idP;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PROD_IDP);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PROD_IDP);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idP = rs.getInt("Productos_idProductos");
                 listaPV.add(idP);
@@ -347,7 +347,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaPV;
@@ -358,8 +358,8 @@ public class FerreteriaDAO {
         try {
             int idCliente;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_ID);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_ID);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("Cliente_idCliente");
                 listClienteFN.add(idCliente);
@@ -368,7 +368,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listClienteFN;
@@ -379,9 +379,9 @@ public class FerreteriaDAO {
         try {
             String rfc;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_LIKE);
-            smtm.setString(1, cliente_rfc + "%");
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_WHERE_LIKE);
+            ps.setString(1, cliente_rfc + "%");
+            rs = ps.executeQuery();
             while (rs.next()) {
                 rfc = rs.getString("rfc");
                 listClienteRFC.add(rfc);
@@ -390,7 +390,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listClienteRFC;
@@ -401,9 +401,9 @@ public class FerreteriaDAO {
         try {
             String c;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_LIKE_CORREO);
-            smtm.setString(1, correo + "%");
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_WHERE_LIKE_CORREO);
+            ps.setString(1, correo + "%");
+            rs = ps.executeQuery();
             while (rs.next()) {
                 c = rs.getString("correo");
                 listClienteCorreo.add(c);
@@ -412,7 +412,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listClienteCorreo;
@@ -423,8 +423,8 @@ public class FerreteriaDAO {
         try {
             int idVend;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_VENDEDOR_ID);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_VENDEDOR_ID);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idVend = rs.getInt("idVendedor");
                 listaPV.add(idVend);
@@ -433,7 +433,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaPV;
@@ -446,9 +446,9 @@ public class FerreteriaDAO {
             String nombre;
             double precio;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS_WHERE);
-            smtm.setInt(1, ID);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS_WHERE);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idP = rs.getInt("idProductos");
                 nombre = rs.getString("nombre");
@@ -460,7 +460,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return p;
@@ -473,9 +473,9 @@ public class FerreteriaDAO {
             String nombre;
             double precio;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS_WHERE_NOMBRE);
-            smtm.setString(1, nomProducto);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS_WHERE_NOMBRE);
+            ps.setString(1, nomProducto);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idP = rs.getInt("idProductos");
                 nombre = rs.getString("nombre");
@@ -487,7 +487,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return p;
@@ -497,9 +497,9 @@ public class FerreteriaDAO {
         int cantidad = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODUCTOS_WHERE);
-            smtm.setInt(1, idProducto);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODUCTOS_WHERE);
+            ps.setInt(1, idProducto);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 cantidad = rs.getInt("cantidad");
             }
@@ -507,7 +507,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return cantidad;
@@ -519,9 +519,9 @@ public class FerreteriaDAO {
             int idCliente;
             String nombre, apPat, apMat, rfc, correo, tel;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE);
-            smtm.setInt(1, ID);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_WHERE);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("idCliente");
                 nombre = rs.getString("nombre");
@@ -536,7 +536,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return c;
@@ -548,9 +548,9 @@ public class FerreteriaDAO {
             int idCliente;
             String nombre, apPat, apMat, rfc, correo, tel;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_RFC);
-            smtm.setString(1, cliente_rfc);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_WHERE_RFC);
+            ps.setString(1, cliente_rfc);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("idCliente");
                 nombre = rs.getString("nombre");
@@ -565,7 +565,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return c;
@@ -575,9 +575,9 @@ public class FerreteriaDAO {
         int idCliente = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_CLIENTE_WHERE_RFC);
-            smtm.setString(1, cliente_rfc);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_CLIENTE_WHERE_RFC);
+            ps.setString(1, cliente_rfc);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("idCliente");
             }
@@ -585,7 +585,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return idCliente;
@@ -597,9 +597,9 @@ public class FerreteriaDAO {
             int idVend;
             String nombre, apellido, telefono, correo;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_VENDEDOR_WHERE);
-            smtm.setInt(1, ID);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_VENDEDOR_WHERE);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idVend = rs.getInt("idVendedor");
                 nombre = rs.getString("nombre");
@@ -612,7 +612,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return v;
@@ -622,9 +622,9 @@ public class FerreteriaDAO {
         int idVend = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_VENDEDOR_WHERE);
-            smtm.setInt(1, ID);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_VENDEDOR_WHERE);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idVend = rs.getInt("idVendedor");
             }
@@ -632,7 +632,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return idVend;
@@ -643,8 +643,8 @@ public class FerreteriaDAO {
         try {
             int idFacNot;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_IS_NULL);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_IS_NULL);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idFacNot = rs.getInt("idFactura_Nota");
                 listaFNin.add(idFacNot);
@@ -653,7 +653,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaFNin;
@@ -664,8 +664,8 @@ public class FerreteriaDAO {
         try {
             int idFacNot;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_IS_NOT_NULL);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_IS_NOT_NULL);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idFacNot = rs.getInt("idFactura_Nota");
                 listaFNinn.add(idFacNot);
@@ -674,7 +674,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return listaFNinn;
@@ -687,9 +687,9 @@ public class FerreteriaDAO {
             String rfc;
             double iva;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_WHERE);
+            ps.setInt(1, idFacNot);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idFacturaNota = rs.getInt("idFactura_Nota");
                 descuento = rs.getInt("descuento");
@@ -703,7 +703,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return fn;
@@ -713,9 +713,9 @@ public class FerreteriaDAO {
         int fn = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_WHERE);
+            ps.setInt(1, idFacNot);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 fn = rs.getInt("idFactura_Nota");
             }
@@ -723,7 +723,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return fn;
@@ -733,10 +733,10 @@ public class FerreteriaDAO {
         int cantidad = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_PRODVENTA_CANTIDAD);
-            smtm.setInt(1, idVenta);
-            smtm.setInt(2, idProd);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_PRODVENTA_CANTIDAD);
+            ps.setInt(1, idVenta);
+            ps.setInt(2, idProd);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 cantidad = rs.getInt("cantidad");
             }
@@ -744,7 +744,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return cantidad;
@@ -757,9 +757,9 @@ public class FerreteriaDAO {
             String nombre;
             double precio;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE_PROD_IDFACT);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_WHERE_PROD_IDFACT);
+            ps.setInt(1, idFacNot);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idProd = rs.getInt("p.idProductos");
                 nombre = rs.getString("p.nombre");
@@ -771,7 +771,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return p;
@@ -784,9 +784,9 @@ public class FerreteriaDAO {
             String fecha;
             double monto, total;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE_VENT_IDFACT);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_WHERE_VENT_IDFACT);
+            ps.setInt(1, idFacNot);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idVenta = rs.getInt("v.idVenta");
                 fecha = rs.getString("date_format(v.fecha, \"%d-%m-%Y\")");
@@ -799,7 +799,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return v;
@@ -811,9 +811,9 @@ public class FerreteriaDAO {
             int idVenta;
             String nombre, apellido, telefono, correo;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE_VEND_IDFACT);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_WHERE_VEND_IDFACT);
+            ps.setInt(1, idFacNot);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idVenta = rs.getInt("vend.idVendedor");
                 nombre = rs.getString("vend.nombre");
@@ -826,7 +826,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return vendedor;
@@ -838,9 +838,9 @@ public class FerreteriaDAO {
             int idCliente;
             String nombre, apPat, apMat, rfc, correo;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE_CLIEN_FACT);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_WHERE_CLIEN_FACT);
+            ps.setInt(1, idFacNot);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("c.idCliente");
                 nombre = rs.getString("c.nombre");
@@ -854,7 +854,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return c;
@@ -866,9 +866,9 @@ public class FerreteriaDAO {
             int idCliente;
             String nombre, apPat, apMat, correo;
             conn = getConnection();
-            smtm = conn.prepareStatement(SELECT_FACNOTA_WHERE_CLIEN_NOTA);
-            smtm.setInt(1, idFacNot);
-            rs = smtm.executeQuery();
+            ps = conn.prepareStatement(SELECT_FACNOTA_WHERE_CLIEN_NOTA);
+            ps.setInt(1, idFacNot);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 idCliente = rs.getInt("c.idCliente");
                 nombre = rs.getString("c.nombre");
@@ -881,7 +881,7 @@ public class FerreteriaDAO {
             ex.printStackTrace(System.out);
         } finally {
             close(rs);
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return c;
@@ -891,16 +891,16 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(UPDATE_PROD);
-            smtm.setString(1, nombre);
-            smtm.setDouble(2, precio);
-            smtm.setInt(3, cantidad);
-            smtm.setInt(4, IdP);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(UPDATE_PROD);
+            ps.setString(1, nombre);
+            ps.setDouble(2, precio);
+            ps.setInt(3, cantidad);
+            ps.setInt(4, IdP);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return registros;
@@ -910,14 +910,14 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
-            smtm = conn.prepareStatement(UPDATE_PROD_CANT);
-            smtm.setInt(1, cantidad);
-            smtm.setInt(2, IdP);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(UPDATE_PROD_CANT);
+            ps.setInt(1, cantidad);
+            ps.setInt(2, IdP);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             if (this.conexionTransaccional == null) {
                 close(conn);
             }
@@ -930,19 +930,19 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(UPDATE_CLIENTE);
-            smtm.setString(1, nombre);
-            smtm.setString(2, apPat);
-            smtm.setString(3, apMat);
-            smtm.setString(4, rfc);
-            smtm.setString(5, correo);
-            smtm.setString(6, tel);
-            smtm.setInt(7, idCliente);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(UPDATE_CLIENTE);
+            ps.setString(1, nombre);
+            ps.setString(2, apPat);
+            ps.setString(3, apMat);
+            ps.setString(4, rfc);
+            ps.setString(5, correo);
+            ps.setString(6, tel);
+            ps.setInt(7, idCliente);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return registros;
@@ -952,16 +952,16 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(UPDATE_CLIENTE_2);
-            smtm.setString(1, rfc);
-            smtm.setString(2, correo);
-            smtm.setString(3, tel);
-            smtm.setInt(4, idCliente);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(UPDATE_CLIENTE_2);
+            ps.setString(1, rfc);
+            ps.setString(2, correo);
+            ps.setString(3, tel);
+            ps.setInt(4, idCliente);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return registros;
@@ -971,13 +971,13 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(DELETE_PROD_WHERE);
-            smtm.setInt(1, IdP);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(DELETE_PROD_WHERE);
+            ps.setInt(1, IdP);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return registros;
@@ -987,13 +987,13 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(DELETE_CLIENTE_WHERE);
-            smtm.setInt(1, IdP);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(DELETE_CLIENTE_WHERE);
+            ps.setInt(1, IdP);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return registros;
@@ -1004,19 +1004,19 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(INSERT_CLIENTE);
-            smtm.setInt(1, idCliente);
-            smtm.setString(2, nombre);
-            smtm.setString(3, apPat);
-            smtm.setString(4, apMat);
-            smtm.setString(5, rfc);
-            smtm.setString(6, correo);
-            smtm.setString(7, tel);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(INSERT_CLIENTE);
+            ps.setInt(1, idCliente);
+            ps.setString(2, nombre);
+            ps.setString(3, apPat);
+            ps.setString(4, apMat);
+            ps.setString(5, rfc);
+            ps.setString(6, correo);
+            ps.setString(7, tel);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return registros;
@@ -1026,16 +1026,16 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = getConnection();
-            smtm = conn.prepareStatement(INSERT_PROD);
-            smtm.setInt(1, idP);
-            smtm.setString(2, nombre);
-            smtm.setDouble(3, precio);
-            smtm.setInt(4, cantidad);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(INSERT_PROD);
+            ps.setInt(1, idP);
+            ps.setString(2, nombre);
+            ps.setDouble(3, precio);
+            ps.setInt(4, cantidad);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             close(conn);
         }
         return registros;
@@ -1045,16 +1045,16 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
-            smtm = conn.prepareStatement(INSERT_NOT);
-            smtm.setInt(1, idNota);
-            smtm.setInt(2, desc);
-            smtm.setInt(3, idVenta);
-            smtm.setInt(4, idCliente);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(INSERT_NOT);
+            ps.setInt(1, idNota);
+            ps.setInt(2, desc);
+            ps.setInt(3, idVenta);
+            ps.setInt(4, idCliente);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             if (this.conexionTransaccional == null) {
                 close(conn);
             }
@@ -1066,17 +1066,17 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
-            smtm = conn.prepareStatement(INSERT_FAC);
-            smtm.setInt(1, idFact);
-            smtm.setString(2, rfc);
-            smtm.setDouble(3, iva);
-            smtm.setInt(4, idVenta);
-            smtm.setInt(5, idCliente);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(INSERT_FAC);
+            ps.setInt(1, idFact);
+            ps.setString(2, rfc);
+            ps.setDouble(3, iva);
+            ps.setInt(4, idVenta);
+            ps.setInt(5, idCliente);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             if (this.conexionTransaccional == null) {
                 close(conn);
             }
@@ -1088,15 +1088,15 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
-            smtm = conn.prepareStatement(INSERT_PROD_VENT);
-            smtm.setInt(1, idProd);
-            smtm.setInt(2, idVenta);
-            smtm.setInt(3, cantidad);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(INSERT_PROD_VENT);
+            ps.setInt(1, idProd);
+            ps.setInt(2, idVenta);
+            ps.setInt(3, cantidad);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             if (this.conexionTransaccional == null) {
                 close(conn);
             }
@@ -1108,16 +1108,16 @@ public class FerreteriaDAO {
         int registros = 0;
         try {
             conn = this.conexionTransaccional != null ? this.conexionTransaccional : getConnection();
-            smtm = conn.prepareStatement(INSERT_VENTAS);
-            smtm.setInt(1, idVenta);
-            smtm.setDouble(2, monto);
-            smtm.setDouble(3, total);
-            smtm.setInt(4, idVendedor);
-            registros = smtm.executeUpdate();
+            ps = conn.prepareStatement(INSERT_VENTAS);
+            ps.setInt(1, idVenta);
+            ps.setDouble(2, monto);
+            ps.setDouble(3, total);
+            ps.setInt(4, idVendedor);
+            registros = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
-            close(smtm);
+            close(ps);
             if (this.conexionTransaccional == null) {
                 close(conn);
             }
