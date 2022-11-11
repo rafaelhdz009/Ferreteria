@@ -219,7 +219,6 @@ public class VtnProductoM extends javax.swing.JFrame {
                     int registro = ferrD.actualizarP(txtNomP.getText(),
                             Double.parseDouble(txtPrecioP.getText()),
                             Integer.parseInt(txtExistP.getText()), prod_idP);
-                    Mensaje.exito(this, registro + " registro actualizado");
                     Mensaje.exito(this, "Producto Modificado");
                     btnCancelarActionPerformed(evt);
                 }

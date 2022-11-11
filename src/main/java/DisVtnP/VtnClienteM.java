@@ -298,7 +298,6 @@ public class VtnClienteM extends javax.swing.JFrame {
                                 rfc = "NULL";
                             }
                             int registro = this.ferrD.actualizarCliente(rfc, correo, tel, cliente_idC);
-                            Mensaje.exito(this, registro + " registro actualizado");
                             Mensaje.exito(this, "Cliente actualizado");
                             btnCancelarActionPerformed(evt);
                         } else {

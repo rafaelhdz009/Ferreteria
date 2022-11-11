@@ -31,6 +31,7 @@ public class FerreteriaDAO {
     private static final String SELECT_PROD_IDP = "select Productos_idProductos from producto_venta";
     private static final String SELECT_CLIENTE_ID = "select cliente_idCliente from FacturaNota";
     private static final String SELECT_PRODUCTOS_WHERE = "select * from productos where idProductos = ?";
+    private static final String SELECT_PRODUCTOS_WHERE_NOMBRE = "select * from productos where nombre = ?";
     private static final String SELECT_CLIENTE_WHERE = "select * from cliente where idCliente = ?";
     private static final String SELECT_CLIENTE_WHERE_RFC = "select * from cliente where rfc = ?";
     private static final String SELECT_CLIENTE_WHERE_LIKE = "select rfc from cliente where rfc like ? and rfc <> 'NULL'";
@@ -169,6 +170,27 @@ public class FerreteriaDAO {
             while (rs.next()) {
                 idP = rs.getInt("idProductos");
                 listaP.add(idP);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return listaP;
+    }
+    
+    public List<String> listaProductos() {
+        List<String> listaP = new ArrayList<>();
+        try {
+            String productos;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_PRODUCTOS);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                productos = rs.getString("nombre");
+                listaP.add(productos);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -426,6 +448,33 @@ public class FerreteriaDAO {
             conn = getConnection();
             smtm = conn.prepareStatement(SELECT_PRODUCTOS_WHERE);
             smtm.setInt(1, ID);
+            rs = smtm.executeQuery();
+            while (rs.next()) {
+                idP = rs.getInt("idProductos");
+                nombre = rs.getString("nombre");
+                precio = rs.getDouble("precioU");
+                cantidad = rs.getInt("cantidad");
+                p = new Productos(idP, nombre, precio, cantidad);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(smtm);
+            close(conn);
+        }
+        return p;
+    }
+    
+     public Productos listaPWhere(String nomProducto) {
+        Productos p = null;
+        try {
+            int idP, cantidad;
+            String nombre;
+            double precio;
+            conn = getConnection();
+            smtm = conn.prepareStatement(SELECT_PRODUCTOS_WHERE_NOMBRE);
+            smtm.setString(1, nomProducto);
             rs = smtm.executeQuery();
             while (rs.next()) {
                 idP = rs.getInt("idProductos");

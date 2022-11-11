@@ -169,10 +169,9 @@ public class VtnClienteBajaCve extends javax.swing.JFrame {
 
     private void btnAceptarBajaCveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAceptarBajaCveActionPerformed
     {//GEN-HEADEREND:event_btnAceptarBajaCveActionPerformed
-        if (Mensaje.pregunta(this, "Esta seguo de eliminar el producto") == 0) {
+        if (Mensaje.pregunta(this, "¿Estás seguro de eliminar el producto?") == 0) {
             int registro = this.ferrD.deleteCW(this.cliente_idC);
             CtrlInterfaz.limpia(txtAB);
-            Mensaje.exito(this, registro + " registro eliminado");
             Mensaje.exito(this, "Producto eliminado");
             CtrlInterfaz.limpia(comboBoxCve);
             comboBoxCve.removeAllItems();
@@ -182,7 +181,7 @@ public class VtnClienteBajaCve extends javax.swing.JFrame {
             btnCancelarActionPerformed(evt);
 
         } else {
-            Mensaje.error(this, "Operacion cancelada");
+            Mensaje.error(this, "Operación cancelada");
             btnCancelarActionPerformed(evt);
         }
     }//GEN-LAST:event_btnAceptarBajaCveActionPerformed

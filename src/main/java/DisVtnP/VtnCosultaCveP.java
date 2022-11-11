@@ -128,8 +128,8 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
     private void comoBoxProdActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comoBoxProdActionPerformed
     {//GEN-HEADEREND:event_comoBoxProdActionPerformed
         if (this.comoBoxProd.getSelectedIndex() != 0) {
-            int idProducto = Integer.parseInt(String.valueOf(this.comoBoxProd.getSelectedItem()));
-            Productos p = this.ferrD.listaPWhere(idProducto);
+            String producto = String.valueOf(this.comoBoxProd.getSelectedItem());
+            Productos p = this.ferrD.listaPWhere(producto);
             String desp = p.toString();
             this.txtConsultaClv.setText(desp);
         } else {
@@ -138,9 +138,9 @@ public class VtnCosultaCveP extends javax.swing.JFrame {
     }//GEN-LAST:event_comoBoxProdActionPerformed
 
     public void llenaComboCve() {
-        List<Integer> arr = ferrD.listaIdP();
-        for (int idP : arr) {
-            this.comoBoxProd.addItem(String.valueOf(idP));
+        List<String> arr = ferrD.listaProductos();
+        for (String producto : arr) {
+            this.comoBoxProd.addItem(String.valueOf(producto));
         }
     }
 

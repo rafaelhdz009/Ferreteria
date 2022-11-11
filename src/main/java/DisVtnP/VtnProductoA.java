@@ -177,7 +177,7 @@ public class VtnProductoA extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_btnAceptarActionPerformed
         try {
 
-            if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
+            if (Mensaje.pregunta(this, "¿Desea guardar esta información?") == 0) {
                 int cveProd = idProducto();
                 if (txtNomP.getText().equals("") || txtPrecioP.getText().equals("")
                         || txtExistP.getText().equals("")) {
@@ -187,12 +187,11 @@ public class VtnProductoA extends javax.swing.JFrame {
                     double precio = Double.parseDouble(txtPrecioP.getText());
                     int cantidad = Integer.parseInt(txtExistP.getText());
                     int registro = this.ferrD.insertP(cveProd, nombre, precio, cantidad);
-                    Mensaje.exito(this, registro + " registro insertado");
                     Mensaje.exito(this, "Producto dado de alta");
                     btnCancelarActionPerformed(evt);
                 }
             } else {
-                Mensaje.error(this, "Operacion cancelada");
+                Mensaje.error(this, "Operación cancelada");
                 btnCancelarActionPerformed(evt);
             }
         } catch (Exception e) {
@@ -259,7 +258,7 @@ public class VtnProductoA extends javax.swing.JFrame {
 
     private void txtNomPKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtNomPKeyTyped
     {//GEN-HEADEREND:event_txtNomPKeyTyped
-        Validaciones.validaAlfabeticos(evt, 12, txtNomP.getText());
+        Validaciones.validaAlfabeticos(evt, 40, txtNomP.getText());
     }//GEN-LAST:event_txtNomPKeyTyped
 
     private void txtPrecioPKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtPrecioPKeyTyped
