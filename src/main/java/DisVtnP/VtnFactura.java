@@ -18,7 +18,7 @@ public class VtnFactura extends javax.swing.JFrame {
 
     FerreteriaDAO ferrD = new FerreteriaDAO();
     int prod_idP, vend_idV, idVenta = -1, cantidadP = -1;
-    String cliente_rfc;
+    String cliente_rfc, prod_producto;
     double monto;
 
     List<ProductoVenta> listPV = new ArrayList<>();
@@ -292,8 +292,9 @@ public class VtnFactura extends javax.swing.JFrame {
                 Mensaje.error(this, "No puede ser menor o igual a 0, o la petición excede las existencias.");
                 CtrlInterfaz.cambia(txtCantP);
             } else {
-                this.prod_idP = Integer.parseInt(String.valueOf(this.comboBoxProd.getSelectedItem()));
-                Productos p = this.ferrD.listaPWhere(this.prod_idP);
+                this.prod_producto = String.valueOf(this.comboBoxProd.getSelectedItem());
+                Productos p = this.ferrD.listaPWhere(this.prod_producto);
+                this.prod_idP = p.getIdP();
                 if (this.idVenta == -1) {
                     this.idVenta = generaNumVent();
                 }
@@ -494,8 +495,9 @@ public class VtnFactura extends javax.swing.JFrame {
     }
 
     private String productoDesp() {
-        this.prod_idP = Integer.parseInt(String.valueOf(this.comboBoxProd.getSelectedItem()));
-        Productos p = this.ferrD.listaPWhere(this.prod_idP);
+        this.prod_producto = String.valueOf(this.comboBoxProd.getSelectedItem());
+        Productos p = this.ferrD.listaPWhere(this.prod_producto);
+        this.prod_idP = p.getIdP();
         int cantidadT;
         if (listPV.size() != 0) {
             for (ProductoVenta pv : listPV) {
@@ -517,9 +519,9 @@ public class VtnFactura extends javax.swing.JFrame {
     }
 
     private void llenaComboProd() {
-        List<Integer> arr = ferrD.listaIdP();
-        for (int idP : arr) {
-            this.comboBoxProd.addItem(String.valueOf(idP));
+        List<String> arr = ferrD.listaProductos();
+        for (String productos : arr) {
+            this.comboBoxProd.addItem(String.valueOf(productos));
         }
     }
 

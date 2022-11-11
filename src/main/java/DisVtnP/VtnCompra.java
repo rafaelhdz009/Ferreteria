@@ -195,7 +195,6 @@ public class VtnCompra extends javax.swing.JFrame {
                 if (Mensaje.pregunta(this, "Desea guardar esta informacion?") == 0) {
                     int cant = this.ferrD.cantidadP(this.prod_idP) + Integer.parseInt(this.txtCant.getText());
                     int registro = this.ferrD.actualizarPcant(cant, this.prod_idP);
-                    Mensaje.exito(this, registro + " registro actualizado");
                     Mensaje.exito(this, "Compra exitosa");
                     btnCancelarActionPerformed(evt);
                 } else {

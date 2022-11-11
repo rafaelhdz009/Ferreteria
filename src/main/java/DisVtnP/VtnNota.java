@@ -18,8 +18,7 @@ public class VtnNota extends javax.swing.JFrame {
 
     FerreteriaDAO ferrD = new FerreteriaDAO();
     int prod_idP, vend_idV, cliente_id, idVenta = -1, cantidadP = -1;
-    String prod_producto;
-    String cliente_rfc;
+    String cliente_rfc, prod_producto;
     double monto;
 
     List<ProductoVenta> listPV = new ArrayList<>();
