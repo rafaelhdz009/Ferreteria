@@ -7,7 +7,7 @@ package domain;
 
 /**
  *
- * @author rafael
+ * @author Equipo1
  */
 public class FacturaNota {
 

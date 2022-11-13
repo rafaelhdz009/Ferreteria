@@ -8,7 +8,7 @@ package DisVtnP;
 
 /**
  *
- * @author Rafael
+ * @author Equipo1
  */
 public class VtnConsulVItem extends javax.swing.JFrame
 {

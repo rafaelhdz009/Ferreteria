@@ -12,13 +12,13 @@ import java.util.*;
 
 /**
  *
- * @author rafael
+ * @author Equipo1
  */
 public class FerreteriaDAO {
 
-    private Connection conn = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
+    private static Connection conn = null;
+    private static PreparedStatement ps = null;
+    private static ResultSet rs = null;
 
     private Connection conexionTransaccional;
 
@@ -84,6 +84,158 @@ public class FerreteriaDAO {
 
     public FerreteriaDAO(Connection conexionTransaccional) {
         this.conexionTransaccional = conexionTransaccional;
+    }
+
+    private static List select(String tabla, String[] atributos, String[] whereAtributos) {
+        List list = new ArrayList();
+        try {
+            conn = getConnection();
+            int comas = atributos.length - 1;;
+            String s = "select ";
+            for (int i = 0; i < atributos.length; i++) {
+                if (atributos.length == 1) {
+                    s += atributos[i];
+                } else {
+                    s += atributos[i];
+                    if (i < comas) {
+                        s += ", ";
+                    }
+                }
+            }
+            s += " from " + tabla;
+            ps = conn.prepareStatement(s);
+            rs = ps.executeQuery();
+
+            if (whereAtributos != null) {
+                s += " where ";
+                for (int i = 0; i < whereAtributos.length; i++) {
+                    if (whereAtributos.length == 1) {
+                        s += whereAtributos[i] + " = ?";
+                    } else {
+                        s += whereAtributos[i] + " = ?";
+                        if (i < comas) {
+                            s += ", ";
+                        }
+                    }
+                }
+            }
+
+            int num;
+            if (tabla.equalsIgnoreCase("cliente where idCliente <> 0")) {
+                list = new ArrayList<Cliente>();
+                num = 1;
+            } else if (tabla.equalsIgnoreCase("facturanota")) {
+                list = new ArrayList<FacturaNota>();
+                num = 2;
+            } else if (tabla.equalsIgnoreCase("productos")) {
+                list = new ArrayList<Productos>();
+                num = 3;
+            } else if (tabla.equalsIgnoreCase("vendedor")) {
+                list = new ArrayList<Vendedor>();
+                num = 4;
+            } else {
+                list = new ArrayList<Ventas>();
+                num = 5;
+            }
+
+            switch (num) {
+                case 1:
+                    int idCliente;
+                    String nombre,
+                     apPat,
+                     apMat,
+                     rfc,
+                     correo,
+                     tel;
+                    while (rs.next()) {
+                        idCliente = rs.getInt("idCliente");
+                        nombre = rs.getString("nombre");
+                        apPat = rs.getString("apellidoPat");
+                        apMat = rs.getString("apellidoMat");
+                        rfc = rs.getString("RFC");
+                        correo = rs.getString("correo");
+                        tel = rs.getString("telefono");
+                        list.add(new Cliente(idCliente, nombre, apPat, apMat, rfc, correo, tel));
+                    }
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    int idP = -1,
+                     cantidad = -1;
+                    nombre = "";
+                    double precio = -1.0;
+                    if (atributos.length == 1 && atributos[0].equals("*")) {
+                        while (rs.next()) {
+                            idP = rs.getInt("idProductos");
+                            nombre = rs.getString("nombre");
+                            precio = rs.getDouble("precioU");
+                            cantidad = rs.getInt("cantidad");
+                            list.add(new Productos(idP, nombre, precio, cantidad));
+                        }
+                    } else {
+                        for (int i = 0; i < atributos.length; i++) {
+                            if (atributos[i].equalsIgnoreCase("idProductos")) {
+                                idP = 1;
+                            } else if (atributos[i].equalsIgnoreCase("nombre")) {
+                                nombre = "nombre";
+                            } else if (atributos[i].equalsIgnoreCase("precioU")) {
+                                precio = 1.0;
+                            } else if (atributos[i].equalsIgnoreCase("cantidad")) {
+                                cantidad = 1;
+                            }
+                        }
+                        while (rs.next()) {
+                            if (idP != -1) {
+                                idP = rs.getInt("idProductos");
+                            }
+                            if (nombre != "") {
+                                nombre = rs.getString("nombre");
+                            }
+                            if (precio != -1.0) {
+                                precio = rs.getDouble("precioU");
+                            }
+                            if (cantidad != -1) {
+                                cantidad = rs.getInt("cantidad");
+                            }
+                            list.add(new Productos(idP, nombre, precio, cantidad));
+                        }
+                    }
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            close(rs);
+            close(ps);
+            close(conn);
+        }
+        return list;
+    }
+
+    public static List<Productos> selectProductos() {
+        List list = select("productos", new String[]{"nombre", "precioU"}, null);
+        return list;
+    }
+
+    public static List<Cliente> selectCliente() {
+        List list = select("cliente where idCliente <> 0", new String[]{"*"}, null);
+        return list;
+    }
+
+    public static void main(String[] args) {
+        List list = selectProductos();
+        list.forEach(object -> {
+            System.out.println(object);
+        });
     }
 
     public List<Productos> listaP() {
@@ -180,7 +332,7 @@ public class FerreteriaDAO {
         }
         return listaP;
     }
-    
+
     public List<String> listaProductos() {
         List<String> listaP = new ArrayList<>();
         try {
@@ -465,8 +617,8 @@ public class FerreteriaDAO {
         }
         return p;
     }
-    
-     public Productos listaPWhere(String nomProducto) {
+
+    public Productos listaPWhere(String nomProducto) {
         Productos p = null;
         try {
             int idP, cantidad;

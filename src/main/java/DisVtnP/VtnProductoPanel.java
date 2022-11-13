@@ -7,7 +7,7 @@ package DisVtnP;
 
 /**
  *
- * @author Rafael
+ * @author Equipo1
  */
 public class VtnProductoPanel extends javax.swing.JFrame
 {

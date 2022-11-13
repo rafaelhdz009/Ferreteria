@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author Rafael
+ * @author Equipo1
  */
 public class VtnDespNot extends javax.swing.JFrame {
 

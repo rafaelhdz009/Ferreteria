@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  *
- * @author Rafael
+ * @author Equipo1
  */
 public class VtnDespFac extends javax.swing.JFrame {
 

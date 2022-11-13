@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  *
- * @author Rafael
+ * @author Equipo1
  */
 public class VtnProductoA extends javax.swing.JFrame {
 

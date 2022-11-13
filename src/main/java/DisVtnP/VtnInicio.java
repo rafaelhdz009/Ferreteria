@@ -10,7 +10,7 @@ import java.awt.Toolkit;
 
 /**
  *
- * @author rafael
+ * @author Equipo1
  */
 public class VtnInicio extends javax.swing.JFrame {
 

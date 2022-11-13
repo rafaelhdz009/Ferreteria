@@ -12,7 +12,7 @@ import domain.Productos;
 
 /**
  *
- * @author Rafael
+ * @author Equipo1
  */
 public class VtnCosultaP extends javax.swing.JFrame {
 

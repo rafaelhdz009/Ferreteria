@@ -13,7 +13,7 @@ import domain.Cliente;
 
 /**
  *
- * @author Rafael
+ * @author Equipo1
  */
 public class VtnCosultaCl extends javax.swing.JFrame {
 
